@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementStateMachine
+public class MovementStateMachine: MonoBehaviour
 {
     private PlayerInputManager inputManager;
     private IMovementState currentState;
@@ -14,8 +14,10 @@ public class MovementStateMachine
  
     void Start()
     {
+        inputManager = GetComponent<PlayerInputManager>();
         Debug.Log("Instantiated state machine");
-        // Initialize states with reference to the Move script
+
+        // Initialize states.
         groundState = new GroundMoveState();
         dashState = new DashMovementState();
 
