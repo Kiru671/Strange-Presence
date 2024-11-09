@@ -935,6 +935,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bad6f166-6510-4ba0-83bf-a8d60ea4ded7
     m_ActionName: Move/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 407358e0-6926-4285-ac9e-f99f526736f9
+    m_ActionName: Move/Look&Shoot
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Move
