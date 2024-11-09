@@ -8,7 +8,6 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField, Range(4f,15f)]
     private float moveSpeed = 4f;
-    private Vector2 pos;
 
     private void Awake()
     {
@@ -43,12 +42,13 @@ public class PlayerInputManager : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         Vector2 moveDirection = context.ReadValue<Vector2>();
+        Debug.Log("Moving");
     }
 
     private void MovePlayer()
     {
         Vector2 dir = inputActions.Move.Walk.ReadValue<Vector2>();
-        pos = dir.normalized * moveSpeed * Time.deltaTime;
+        Vector2 pos = dir.normalized * moveSpeed * Time.deltaTime;
         Vector3 move = new Vector3(pos.x, 0, pos.y);
         transform.position += move;
     }

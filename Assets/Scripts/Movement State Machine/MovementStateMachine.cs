@@ -22,15 +22,14 @@ public class MovementStateMachine: MonoBehaviour
         dashState = new DashMovementState();
 
         // Set initial state
-        currentState = groundState;
+        currentState = groundState;  
         currentState.EnterState(this);
     }
-   
-
-    void UpdateState()
-    { 
-
+    private void Update()
+    {
+        currentState.UpdateState(this, inputManager);
     }
+
 
     private void SwitchState(IMovementState newState)
     {

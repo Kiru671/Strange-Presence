@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class DashMovementState : IMovementState
 {
-    public void EnterState(MovementStateMachine context)
+
+
+    public void EnterState(MovementStateMachine context, PlayerInputManager inputs)
     {
         
     }
 
-    public void ExitState(MovementStateMachine context)
+    public void ExitState(MovementStateMachine context, PlayerInputManager inputs)
     {
         
     }
 
-    public void PhysicsUpdateState(MovementStateMachine context)
+    public void PhysicsUpdateState(MovementStateMachine context, PlayerInputManager inputs)
     {
         
     }
 
-    public void UpdateState(MovementStateMachine context)
+    public void UpdateState(MovementStateMachine context, PlayerInputManager inputs)
     {
         
     }
 
+    public void Jump()
+    {
+
+    }
+
+    public void Dash()
+    {
+
+    }
 }
