@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DashMovementState : IMovementState
 {
@@ -26,13 +27,14 @@ public class DashMovementState : IMovementState
         
     }
 
-    public void Jump()
+    public void Jump(InputAction.CallbackContext context)
     {
 
     }
 
-    public void Dash()
+    public void Dash(InputAction.CallbackContext context)
     {
 
     }
+    public void LookAndShoot(InputAction.CallbackContext context) { }
 }

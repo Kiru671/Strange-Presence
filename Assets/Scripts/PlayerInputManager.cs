@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
-    private InputActions inputActions;
+    public InputActions inputActions;
     private MovementStateMachine stateMachine;
 
     [SerializeField, Range(4f,15f)]
@@ -20,6 +20,7 @@ public class PlayerInputManager : MonoBehaviour
         inputActions.Enable();
         inputActions.Move.Jump.performed += OnJump;
         inputActions.Move.Walk.performed += OnMove;
+        inputActions.Move.LookShoot.performed += OnLookAndShoot;
     }
 
     private void OnDisable()
@@ -27,6 +28,7 @@ public class PlayerInputManager : MonoBehaviour
         inputActions.Disable();
         inputActions.Move.Jump.performed -= OnJump;
         inputActions.Move.Walk.performed -= OnMove;
+        inputActions.Move.LookShoot.performed -= OnLookAndShoot;
     }
 
     private void Update()
@@ -34,22 +36,27 @@ public class PlayerInputManager : MonoBehaviour
         MovePlayer();
     }
 
-    private void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log("SKIDIBOPMMDADA!!");
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 moveDirection = context.ReadValue<Vector2>();
         Debug.Log("Moving");
     }
 
-    private void MovePlayer()
+    public void MovePlayer()
     {
         Vector2 dir = inputActions.Move.Walk.ReadValue<Vector2>();
         Vector2 pos = dir.normalized * moveSpeed * Time.deltaTime;
         Vector3 move = new Vector3(pos.x, 0, pos.y);
         transform.position += move;
+    }
+
+    public void OnLookAndShoot(InputAction.CallbackContext context)
+    {
+
     }
 }

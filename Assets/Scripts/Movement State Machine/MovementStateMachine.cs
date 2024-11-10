@@ -23,7 +23,7 @@ public class MovementStateMachine: MonoBehaviour
 
         // Set initial state
         currentState = groundState;  
-        currentState.EnterState(this);
+        currentState.EnterState(this, inputManager);
     }
     private void Update()
     {
@@ -33,8 +33,8 @@ public class MovementStateMachine: MonoBehaviour
 
     private void SwitchState(IMovementState newState)
     {
-        currentState.ExitState(this);
+        currentState.ExitState(this, inputManager);
         currentState = newState;
-        currentState.EnterState(this);
+        currentState.EnterState(this, inputManager);
     }
 }

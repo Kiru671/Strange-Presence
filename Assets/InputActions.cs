@@ -49,7 +49,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Look&Shoot"",
                     ""type"": ""PassThrough"",
                     ""id"": ""407358e0-6926-4285-ac9e-f99f526736f9"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -81,7 +81,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""34ca5682-d04f-41b5-9353-a2bd3215f9f2"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
