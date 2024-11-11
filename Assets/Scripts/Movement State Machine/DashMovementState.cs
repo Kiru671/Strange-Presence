@@ -26,11 +26,7 @@ public class DashMovementState : IMovementState
     {
         
     }
-
-    public void Jump(InputAction.CallbackContext context)
-    {
-
-    }
+    public void Move() { }
 
     public void Dash(InputAction.CallbackContext context)
     {

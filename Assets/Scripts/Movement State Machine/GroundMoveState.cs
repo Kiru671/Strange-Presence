@@ -16,11 +16,9 @@ public class GroundMoveState : IMovementState
         stateMachine = context;
         player = context.gameObject;
         inputManager = inputs;
-        //Set private rotation to returned rotation vector from input manager.
         
-        inputs.inputActions.Move.Jump.performed -= inputs.OnJump;
-
-        inputs.inputActions.Move.Jump.performed += Jump;
+        inputs.inputActions.Move.Dash.performed -= inputs.OnDash;
+        inputs.inputActions.Move.Dash.performed += Dash;
     }
 
     public void ExitState()
@@ -36,17 +34,21 @@ public class GroundMoveState : IMovementState
     public void UpdateState()
     {
         LookAndShoot();
+        Move();
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Move()
     {
-        Debug.Log("GroundJump");
+        Vector2 pos = inputManager.move.normalized * inputManager.moveSpeed * Time.deltaTime;
+        Vector3 move = new Vector3(pos.x, 0, pos.y);
+        player.transform.position += move;
     }
 
     public void Dash(InputAction.CallbackContext context)
     {
-
+        Debug.Log("GroundDash");
     }
+
     public void LookAndShoot()
     {
         rotation = inputManager.rotation;

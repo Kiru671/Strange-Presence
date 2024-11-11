@@ -6,8 +6,8 @@ public interface IMovementState
     void UpdateState();
     void PhysicsUpdateState();
     void ExitState();
-    void Jump(InputAction.CallbackContext context);
+    void Move();
     void Dash(InputAction.CallbackContext context);
-
     void LookAndShoot();
+    
 }

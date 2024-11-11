@@ -37,7 +37,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""bad6f166-6510-4ba0-83bf-a8d60ea4ded7"",
                     ""expectedControlType"": ""Button"",
@@ -85,7 +85,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -114,7 +114,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Move
         m_Move = asset.FindActionMap("Move", throwIfNotFound: true);
         m_Move_Walk = m_Move.FindAction("Walk", throwIfNotFound: true);
-        m_Move_Jump = m_Move.FindAction("Jump", throwIfNotFound: true);
+        m_Move_Dash = m_Move.FindAction("Dash", throwIfNotFound: true);
         m_Move_LookShoot = m_Move.FindAction("Look&Shoot", throwIfNotFound: true);
     }
 
@@ -178,14 +178,14 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Move;
     private List<IMoveActions> m_MoveActionsCallbackInterfaces = new List<IMoveActions>();
     private readonly InputAction m_Move_Walk;
-    private readonly InputAction m_Move_Jump;
+    private readonly InputAction m_Move_Dash;
     private readonly InputAction m_Move_LookShoot;
     public struct MoveActions
     {
         private @InputActions m_Wrapper;
         public MoveActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Move_Walk;
-        public InputAction @Jump => m_Wrapper.m_Move_Jump;
+        public InputAction @Dash => m_Wrapper.m_Move_Dash;
         public InputAction @LookShoot => m_Wrapper.m_Move_LookShoot;
         public InputActionMap Get() { return m_Wrapper.m_Move; }
         public void Enable() { Get().Enable(); }
@@ -199,9 +199,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
             @LookShoot.started += instance.OnLookShoot;
             @LookShoot.performed += instance.OnLookShoot;
             @LookShoot.canceled += instance.OnLookShoot;
@@ -212,9 +212,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
             @LookShoot.started -= instance.OnLookShoot;
             @LookShoot.performed -= instance.OnLookShoot;
             @LookShoot.canceled -= instance.OnLookShoot;
@@ -247,7 +247,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IMoveActions
     {
         void OnWalk(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
         void OnLookShoot(InputAction.CallbackContext context);
     }
 }

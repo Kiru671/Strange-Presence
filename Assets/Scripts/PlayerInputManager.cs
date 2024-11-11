@@ -7,21 +7,21 @@ public class PlayerInputManager : MonoBehaviour
     private MovementStateMachine stateMachine;
 
     [SerializeField, Range(4f,15f)]
-    private float moveSpeed = 4f;
+    public float moveSpeed = 4f;
 
     public Vector2 rotation;
+    public Vector2 move;
 
     private void Awake()
     {
         inputActions = new InputActions();
         stateMachine = new MovementStateMachine();
     }
-
     private void OnEnable()
     {
         inputActions.Enable();
-        inputActions.Move.Jump.performed += OnJump;
-        inputActions.Move.Walk.performed += OnMove;
+        inputActions.Move.Dash.performed += OnDash;
+        inputActions.Move.Walk.performed += cntxt => move = cntxt.ReadValue<Vector2>();
         inputActions.Move.LookShoot.performed += cntxt => rotation = cntxt.ReadValue<Vector2>();
         inputActions.Move.LookShoot.canceled += cntxt => rotation = Vector2.zero;
         //inputActions.Move.LookShoot.performed += OnLookAndShoot;
@@ -30,33 +30,19 @@ public class PlayerInputManager : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Disable();
-        inputActions.Move.Jump.performed -= OnJump;
-        inputActions.Move.Walk.performed -= OnMove;
-        inputActions.Move.LookShoot.performed -= OnLookAndShoot;
+        inputActions.Move.Dash.performed -= OnDash;
+
     }
 
-    private void Update()
-    {
-        MovePlayer();
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnDash(InputAction.CallbackContext context)
     {
         Debug.Log("SKIDIBOPMMDADA!!");
     }
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        Vector2 moveDirection = context.ReadValue<Vector2>();
-        Debug.Log("Moving");
-    }
 
     public void MovePlayer()
     {
-        Vector2 dir = inputActions.Move.Walk.ReadValue<Vector2>();
-        Vector2 pos = dir.normalized * moveSpeed * Time.deltaTime;
-        Vector3 move = new Vector3(pos.x, 0, pos.y);
-        transform.position += move;
+
     }
 
     public void OnLookAndShoot(InputAction.CallbackContext context)
