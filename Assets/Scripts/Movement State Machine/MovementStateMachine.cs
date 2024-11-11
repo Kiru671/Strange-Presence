@@ -10,6 +10,8 @@ public class MovementStateMachine: MonoBehaviour
     // State instances
     private GroundMoveState groundState;
     private DashMovementState dashState;
+    [SerializeField, Range(2f,10f)]
+    public float lerpAmount = 5f;
 
  
     void Start()
@@ -27,13 +29,13 @@ public class MovementStateMachine: MonoBehaviour
     }
     private void Update()
     {
-        currentState.UpdateState(this, inputManager);
+        currentState.UpdateState();
     }
 
 
     private void SwitchState(IMovementState newState)
     {
-        currentState.ExitState(this, inputManager);
+        currentState.ExitState();
         currentState = newState;
         currentState.EnterState(this, inputManager);
     }

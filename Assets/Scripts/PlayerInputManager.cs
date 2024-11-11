@@ -9,6 +9,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField, Range(4f,15f)]
     private float moveSpeed = 4f;
 
+    public Vector2 rotation;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -20,7 +22,9 @@ public class PlayerInputManager : MonoBehaviour
         inputActions.Enable();
         inputActions.Move.Jump.performed += OnJump;
         inputActions.Move.Walk.performed += OnMove;
-        inputActions.Move.LookShoot.performed += OnLookAndShoot;
+        inputActions.Move.LookShoot.performed += cntxt => rotation = cntxt.ReadValue<Vector2>();
+        inputActions.Move.LookShoot.canceled += cntxt => rotation = Vector2.zero;
+        //inputActions.Move.LookShoot.performed += OnLookAndShoot;
     }
 
     private void OnDisable()

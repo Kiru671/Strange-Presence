@@ -12,17 +12,17 @@ public class DashMovementState : IMovementState
         
     }
 
-    public void ExitState(MovementStateMachine context, PlayerInputManager inputs)
+    public void ExitState()
     {
         
     }
 
-    public void PhysicsUpdateState(MovementStateMachine context, PlayerInputManager inputs)
+    public void PhysicsUpdateState()
     {
         
     }
 
-    public void UpdateState(MovementStateMachine context, PlayerInputManager inputs)
+    public void UpdateState()
     {
         
     }
@@ -36,5 +36,5 @@ public class DashMovementState : IMovementState
     {
 
     }
-    public void LookAndShoot(InputAction.CallbackContext context) { }
+    public void LookAndShoot() { }
 }

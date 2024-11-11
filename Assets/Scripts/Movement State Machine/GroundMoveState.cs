@@ -2,33 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class GroundMoveState : IMovementState
 {
     private GameObject player;
+    private Vector2 rotation;
+    private MovementStateMachine stateMachine;
+    private PlayerInputManager inputManager;
     public void EnterState(MovementStateMachine context, PlayerInputManager inputs)
     {
         Debug.Log("GroundState");
+        stateMachine = context;
         player = context.gameObject;
+        inputManager = inputs;
+        //Set private rotation to returned rotation vector from input manager.
+        
         inputs.inputActions.Move.Jump.performed -= inputs.OnJump;
 
         inputs.inputActions.Move.Jump.performed += Jump;
-        inputs.inputActions.Move.LookShoot.performed += LookAndShoot;
     }
 
-    public void ExitState(MovementStateMachine context, PlayerInputManager inputs)
+    public void ExitState()
     {
         
     }
 
-    public void PhysicsUpdateState(MovementStateMachine context, PlayerInputManager inputs)
+    public void PhysicsUpdateState()
     {
         
     }
 
-    public void UpdateState(MovementStateMachine context, PlayerInputManager inputs)
+    public void UpdateState()
     {
-        
+        LookAndShoot();
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -40,8 +47,14 @@ public class GroundMoveState : IMovementState
     {
 
     }
-    public void LookAndShoot(InputAction.CallbackContext context)
+    public void LookAndShoot()
     {
-        //player.transform.rotation = Quaternion.LookRotation(Vector3.forward, context.ReadValue<Vector3>());
+        rotation = inputManager.rotation;
+        if (rotation.magnitude > 0)
+        {           
+            Vector3 direction = new Vector3(rotation.x, 0, rotation.y);
+            Quaternion tragetRotation = Quaternion.LookRotation(direction);
+            player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, tragetRotation, stateMachine.lerpAmount);
+        }
     }
 }
