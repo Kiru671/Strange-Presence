@@ -5,15 +5,46 @@ using UnityEngine.Pool;
 
 public class BulletPool : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ObjectPool<Bullet> objectPool;
+
+    [SerializeField] private bool collectionCheck;
+    [SerializeField] private int defaultCap = 4;
+    [SerializeField] private int maxSize = 20;
+
+    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private Weapon chosenWeapon;
+    [SerializeField] private GameObject Player;
+    private Transform bulletSpawnPoint;
+
+    private void Awake()
     {
-        
+        objectPool = new ObjectPool<Bullet>(CreateGround, OnPull, OnRelease, OnDestroyGround, collectionCheck, defaultCap, maxSize);
+        chosenWeapon = Player.GetComponent<Weapon>();
+
+        //Always set BulletSpawn as first child!
+        bulletSpawnPoint = chosenWeapon.transform.GetChild(0);
     }
 
-    // Update is called once per frame
-    void Update()
+    private Bullet CreateGround()
     {
-        
+        Bullet bulletInstance = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity);
+        bulletInstance.gameObject.SetActive(false);
+        return bulletInstance;
+    }
+
+    void OnPull(Bullet bulletInstance)
+    {
+        bulletInstance.gameObject.SetActive(true);
+        bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
+    }
+
+    void OnRelease(Bullet bulletInstance)
+    {
+        bulletInstance.gameObject.SetActive(false);
+    }
+
+    void OnDestroyGround(Bullet bulletInstance)
+    {
+
     }
 }
