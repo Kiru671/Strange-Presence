@@ -10,6 +10,7 @@ public class GroundMoveState : IMovementState
     private Vector2 rotation;
     private MovementStateMachine stateMachine;
     private PlayerInputManager inputManager;
+    private Weapon chosenWeapon;
     public void EnterState(MovementStateMachine context, PlayerInputManager inputs)
     {
         Debug.Log("GroundState");
@@ -58,5 +59,6 @@ public class GroundMoveState : IMovementState
             Quaternion tragetRotation = Quaternion.LookRotation(direction);
             player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, tragetRotation, stateMachine.lerpAmount);
         }
+        
     }
 }

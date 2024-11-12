@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
+    [SerializeField]
+    private float bulletspeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,10 +15,6 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    void Fire()
-    {
-
+        gameObject.transform.localPosition += Vector3.forward * bulletspeed * Time.deltaTime;
     }
 }
