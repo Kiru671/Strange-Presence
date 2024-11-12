@@ -345,10 +345,10 @@ MonoBehaviour:
   collectionCheck: 0
   defaultCap: 20
   maxSize: 200
-  bulletPrefab: {fileID: 2273283322904045552, guid: 1332f561c0781f646b17622b91496e82,
+  bulletPrefab: {fileID: 1826598072555337247, guid: 1332f561c0781f646b17622b91496e82,
     type: 3}
   chosenWeapon: {fileID: 0}
-  Player: {fileID: 0}
+  Player: {fileID: 885212979}
 --- !u!4 &294518863
 Transform:
   m_ObjectHideFlags: 0
@@ -959,6 +959,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &860708125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 860708126}
+  m_Layer: 0
+  m_Name: WeaponPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &860708126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860708125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.327, y: 0.279, z: 0.702}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 885212984}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &885212979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,14 +1093,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885212979}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.99830145, z: 0, w: 0.05826097}
   m_LocalPosition: {x: 2.4018116, y: -7.72, z: 16.040459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 860708126}
   - {fileID: 3366535558532396617}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 173.32, z: 0}
 --- !u!114 &885212986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,37 +1455,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586967473}
   m_CullTransparentMesh: 1
---- !u!1 &1783001437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1783001438}
-  m_Layer: 0
-  m_Name: vfx_MuzzleFlash
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1783001438
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783001437}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.359762, y: -1.8024306, z: 18.500332}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3366535558532396617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5164607793540341036, guid: 6882a54d6e7153c42be795ee62fb0a79,
@@ -1556,5 +1557,4 @@ SceneRoots:
   - {fileID: 885212984}
   - {fileID: 1209074104}
   - {fileID: 898579336}
-  - {fileID: 1783001438}
   - {fileID: 294518863}

@@ -7,23 +7,35 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]
     private float bulletspeed;
-    [SerializeField]
     private BulletPool pool;
+    private float bulletDespawnTimer = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        pool = FindObjectOfType<BulletPool>();
+        StartCoroutine("DestroyAfterTime", bulletDespawnTimer);
+    }
+    private void OnEnable()
+    {
+        StartCoroutine("DestroyAfterTime", bulletDespawnTimer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition += Vector3.forward * bulletspeed * Time.deltaTime;
+        transform.localPosition += transform.forward * bulletspeed * Time.deltaTime;
     }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
             pool.objectPool.Release(this);
+    }
 
+    private IEnumerator DestroyAfterTime(float t)
+    {
+        yield return new WaitForSeconds(t);
+        pool.objectPool.Release(this);
     }
 }
