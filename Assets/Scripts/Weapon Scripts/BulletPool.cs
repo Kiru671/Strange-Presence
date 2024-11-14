@@ -18,7 +18,6 @@ public class BulletPool : MonoBehaviour
     [SerializeField] private GameObject Player;
     private Transform bulletSpawnPoint;
     private Bullet bullet;
-    private VisualEffect bulletVFX;
 
     private void Awake()
     {
@@ -32,7 +31,6 @@ public class BulletPool : MonoBehaviour
         //Always set BulletSpawn as first child!
         bulletSpawnPoint = chosenWeapon.transform.GetChild(0);
         bullet = bulletPrefab.GetComponent<Bullet>();
-        bulletVFX = bulletPrefab.GetComponentInChildren<VisualEffect>();
     }
 
     private Bullet CreateGround()
@@ -47,7 +45,6 @@ public class BulletPool : MonoBehaviour
         bulletInstance.gameObject.SetActive(true);
         bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
         bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0,Player.transform.localEulerAngles.y,0);
-        //bulletVFX.SetFloat("BulletRotation", Player.transform.eulerAngles.y);
     }
 
     void OnRelease(Bullet bulletInstance)

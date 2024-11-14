@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d73250b7a09d8f4393755ad75e5cdb7, type: 3}
-  m_Name: Shotgun_Data
+  m_Name: Pistol_Data
   m_EditorClassIdentifier: 
-  weaponType: 1
-  weaponWeight: 0
-  bulletDMG: 0
-  fireRate: 0
+  weaponType: 0
+  weaponWeight: 1
+  bulletDMG: 25
+  fireRate: 180
+  reloadSpeed: 3
+  magSize: 12

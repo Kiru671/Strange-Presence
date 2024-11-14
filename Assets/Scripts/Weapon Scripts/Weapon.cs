@@ -5,11 +5,12 @@ using UnityEngine.VFX;
 
 public class Weapon : MonoBehaviour
 {
-    private BulletPool bulletPool;
     private PlayerInputManager inputManager;
-    private VisualEffect muzzleFlash;
+    protected BulletPool bulletPool; 
+    protected VisualEffect muzzleFlash;
+    [SerializeField] protected Cooldown cooldown;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         muzzleFlash = GetComponentInChildren<VisualEffect>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<BulletPool>();
@@ -18,13 +19,10 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            Fire();
+
     }
-    void Fire()
+    public virtual void Fire()
     {
-        Debug.Log("Fire");
-        bulletPool.objectPool.Get();
-        muzzleFlash.Play();
+
     }
 }
