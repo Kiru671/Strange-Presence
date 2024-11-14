@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class Weapon : MonoBehaviour
 {
-    private PlayerInputManager inputManager;
+    protected PlayerInputManager inputManager;
     protected BulletPool bulletPool; 
     protected VisualEffect muzzleFlash;
     [SerializeField] protected Cooldown cooldown;
@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash = GetComponentInChildren<VisualEffect>();
         bulletPool = GameObject.Find("BulletPool").GetComponent<BulletPool>();
+        inputManager = GameObject.Find("Player").GetComponent<PlayerInputManager>();
     }
 
     // Update is called once per frame

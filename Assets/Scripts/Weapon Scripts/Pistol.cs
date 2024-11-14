@@ -12,14 +12,10 @@ public class Pistol : Weapon
     private float reloadSpeed; //Lower is better
     private float magSize;
     private float currentAmmo;
+    private bool reloadStarted;
 
     private bool IsReloading => currentAmmo == 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
     private void OnEnable()
     {
         weaponWeight = weaponData.weaponWeight;
@@ -30,12 +26,24 @@ public class Pistol : Weapon
         currentAmmo = magSize;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Mouse0)){
             Fire();
+        }
+#endif
+        if (inputManager.rotation.magnitude > 0 &! IsReloading)
+            Fire();
+
+        else if(IsReloading &! reloadStarted)
+        {
+            Debug.Log("RELOADING!");
+            reloadStarted = true;
+            StartCoroutine("Reload", reloadSpeed);
+        }
     }
+
     public override void Fire()
     {
         if (cooldown.IsCoolingDown &! IsReloading)
@@ -47,10 +55,11 @@ public class Pistol : Weapon
         cooldown.StartCooldown();
         currentAmmo--;
     }
+
     private IEnumerator Reload(float t)
     {
         yield return new WaitForSeconds(t);
+        reloadStarted = false;
         currentAmmo = magSize;
     }
-
 }
