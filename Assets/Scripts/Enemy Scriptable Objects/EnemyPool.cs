@@ -14,9 +14,7 @@ public class EnemyPool : MonoBehaviour
 
     [SerializeField] private GameObject enemyPrefab;
 
-    [SerializeField] private Weapon chosenWeapon;
     [SerializeField] private GameObject Player;
-    private Transform bulletSpawnPoint;
     private Enemy enemy;
 
     private void Awake()

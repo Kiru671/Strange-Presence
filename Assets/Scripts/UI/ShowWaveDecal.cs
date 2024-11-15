@@ -17,7 +17,7 @@ public class ShowWaveDecal : MonoBehaviour
 
     private void OnEnable()
     {
-        startPos = new Vector3(player.transform.position.x, -5, player.transform.position.z - 16);
+        startPos = new Vector3(player.transform.position.x, -5, player.transform.position.z - 20);
         animParent.transform.position = startPos;
         StartCoroutine("DisableAfterSeconds", 2f);
         if (gameManager.currentWave % 5 == 0 &! (gameManager.currentWave == 0)) 

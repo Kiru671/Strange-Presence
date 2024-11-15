@@ -11,16 +11,17 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        enemiesRemaining = waves[gameManager.currentWave].EnemySpawnCount;
         switch (waves[gameManager.currentWave].waveType)
         {
             case WaveType.Normal:
-
+                
                 break;
             case WaveType.Boss:
 
