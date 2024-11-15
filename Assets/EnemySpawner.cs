@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemySpawner : MonoBehaviour
+{   
+    [SerializeField] private WaveDataObject[] waves;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private EnemyPool enemyPool;
+    public int enemiesRemaining;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        switch (waves[gameManager.currentWave].waveType)
+        {
+            case WaveType.Normal:
+
+                break;
+            case WaveType.Boss:
+
+                break;
+            case WaveType.Special:
+                break;
+        }
+    }
+}

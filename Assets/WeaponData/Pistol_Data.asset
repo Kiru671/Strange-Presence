@@ -16,5 +16,5 @@ MonoBehaviour:
   weaponWeight: 1
   bulletDMG: 25
   fireRate: 180
-  reloadSpeed: 3
+  reloadSpeed: 2
   magSize: 12
