@@ -10,11 +10,10 @@ public class Pistol : Weapon
     private float bulletDMG;
     private float fireRate;
     private float reloadSpeed; //Lower is better
-    private float magSize;
-    private float currentAmmo;
+    private int magSize;
     private bool reloadStarted;
 
-    private bool IsReloading => currentAmmo == 0;
+    
 
     private void OnEnable()
     {
@@ -29,6 +28,7 @@ public class Pistol : Weapon
     void Update()
     {
 #if UNITY_EDITOR
+
         if (Input.GetKeyDown(KeyCode.Mouse0)){
             Fire();
         }

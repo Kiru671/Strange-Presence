@@ -10,7 +10,7 @@ public class WeaponDataObject : ScriptableObject
     public float bulletDMG;
     public float fireRate;
     public float reloadSpeed;
-    public float magSize;
+    public int magSize;
 }
 public enum WeaponType
 {

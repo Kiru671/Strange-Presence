@@ -16,12 +16,14 @@ public class BulletPool : MonoBehaviour
 
     [SerializeField] private Weapon chosenWeapon;
     [SerializeField] private GameObject Player;
+    [SerializeField] private CinemachineShake virtualCam;
     private Transform bulletSpawnPoint;
     private Bullet bullet;
 
     private void Awake()
     {
         objectPool = new ObjectPool<Bullet>(CreateGround, OnPull, OnRelease, OnDestroyGround, collectionCheck, defaultCap, maxSize);
+        virtualCam = GameObject.Find("VirtualCamera").GetComponent<CinemachineShake>();
         
         if(chosenWeapon == null)
             chosenWeapon = Player.GetComponentInChildren<Weapon>();
@@ -45,6 +47,7 @@ public class BulletPool : MonoBehaviour
         bulletInstance.gameObject.SetActive(true);
         bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
         bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0,Player.transform.localEulerAngles.y,0);
+        virtualCam.Shake(1f, 0.1f);
     }
 
     void OnRelease(Bullet bulletInstance)

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] protected EnemyDataObject enemyData;
+    protected Randomizer randomizer;
+    protected int MaxHealth;
     void Start()
     {
-        
+        randomizer = new Randomizer();
     }
 
     // Update is called once per frame

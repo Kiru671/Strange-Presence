@@ -7,6 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private WaveDataObject[] waves;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private EnemyPool enemyPool;
+    private Randomizer randomizer;
+    private Enemy enemy;
     public int enemiesRemaining;
     // Start is called before the first frame update
     void Start()
@@ -29,5 +31,10 @@ public class EnemySpawner : MonoBehaviour
             case WaveType.Special:
                 break;
         }
+    }
+    private void SpawnAd()
+    {
+        enemy = enemyPool.objectPool.Get();
+        enemy.transform.position = randomizer.GetSpawnPos();
     }
 }

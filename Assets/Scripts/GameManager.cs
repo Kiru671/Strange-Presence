@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private ShowWaveDecal decal;
+    private Weapon chosenWeapon;
 
     private bool waveCleared;
     public int currentWave = 0;

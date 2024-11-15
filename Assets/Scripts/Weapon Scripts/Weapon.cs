@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     protected BulletPool bulletPool; 
     protected VisualEffect muzzleFlash;
     [SerializeField] protected Cooldown cooldown;
+    public bool IsReloading => currentAmmo == 0;
+    protected int currentAmmo;
     // Start is called before the first frame update
     void Awake()
     {
