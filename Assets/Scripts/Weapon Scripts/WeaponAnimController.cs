@@ -21,10 +21,7 @@ public class WeaponAnimController : MonoBehaviour
         {
             Debug.Log("No animator attached to controller.");
         }
-        else if(chosenWeapon.IsReloading)
-        {
-            Debug.Log("ReloadAnim");
-            animator.SetTrigger("Reload");
-        }
+        animator.SetBool("Reload", chosenWeapon.IsReloading);
+
     }
 }
