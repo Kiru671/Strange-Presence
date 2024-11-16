@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Orbed : Enemy
 {
-    private int health;
-    private float damage;
+    private int damage;
     private float attackCooldown;
     private bool willThrow;
+    private int enemyXP;
     
     void Start()
     {
         health = enemyData.maxHealth;
         damage = enemyData.damage;
         attackCooldown = enemyData.attackCooldown;
+        enemyXP = enemyData.enemyXP;
     }
 
     private void OnEnable()
     {
-        willThrow = randomizer.SetEnemyVariant();
+        //willThrow = randomizer.SetEnemyVariant();
         health = enemyData.maxHealth;
         damage = enemyData.damage;
         attackCooldown = enemyData.attackCooldown;
@@ -29,18 +30,14 @@ public class Orbed : Enemy
         
     }
 
-    void Attack()
+    void Attack(int damage)
     {
 
     }
 
-    void GetHit()
+    private void OnDestroy()
     {
-
-    }
-
-    void Die()
-    {
-
+        xpOrb = Instantiate(xpOrb, transform.position, Quaternion.identity);
+        xpOrb.containedXP = enemyXP;
     }
 }

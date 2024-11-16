@@ -7,6 +7,7 @@ using UnityEngine.Windows;
 public class GroundMoveState : IMovementState
 {
     private GameObject player;
+    private Player playerScript;
     private Vector2 rotation;
     private MovementStateMachine stateMachine;
     private PlayerInputManager inputManager;
@@ -16,8 +17,8 @@ public class GroundMoveState : IMovementState
         Debug.Log("GroundState");
         stateMachine = context;
         player = context.gameObject;
+        playerScript = player.gameObject.GetComponent<Player>();
         inputManager = inputs;
-        
         inputs.inputActions.Move.Dash.performed -= inputs.OnDash;
         inputs.inputActions.Move.Dash.performed += Dash;
     }
@@ -40,7 +41,7 @@ public class GroundMoveState : IMovementState
 
     public void Move()
     {
-        Vector2 pos = inputManager.move.normalized * inputManager.moveSpeed * Time.deltaTime;
+        Vector2 pos = inputManager.move.normalized * playerScript.moveSpeed * Time.deltaTime;
         Vector3 move = new Vector3(pos.x, 0, pos.y);
         player.transform.position += move;
     }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyDataObject : ScriptableObject
 {
     public int maxHealth;
-    public float damage;
+    public int damage;
     public float attackCooldown;
+    public int enemyXP;
 }

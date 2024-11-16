@@ -7,13 +7,15 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]
     private float bulletspeed;
+    private float bulletDamage; 
     private BulletPool pool;
     private float bulletDespawnTimer = 1f;
-
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
         pool = FindObjectOfType<BulletPool>();
+        player = GameObject.Find("Player").GetComponent<Player>();
         StartCoroutine("DestroyAfterTime", bulletDespawnTimer);
     }
     private void OnEnable()
@@ -30,6 +32,7 @@ public class Bullet : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
+            other.gameObject.GetComponent<Enemy>().GetHit(player.damage);
             pool.objectPool.Release(this);
     }
 

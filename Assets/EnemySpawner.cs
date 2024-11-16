@@ -33,7 +33,12 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnAd()
     {
+        
         enemy = enemyPool.objectPool.Get();
-        enemy.transform.position = randomizer.GetSpawnPos();
+        Vector3 spawnPoint = randomizer.GetSpawnPos();
+
+        //Enemy should relocate if spawnPoint is colliding with another object.
+
+        enemy.transform.position = spawnPoint;
     }
 }

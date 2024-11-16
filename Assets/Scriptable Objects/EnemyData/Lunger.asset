@@ -15,3 +15,4 @@ MonoBehaviour:
   maxHealth: 150
   damage: 25
   attackCooldown: 2.5
+  enemyXP: 50

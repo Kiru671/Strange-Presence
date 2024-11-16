@@ -25,12 +25,12 @@ public class VorgEnhanced : Enemy
 
     }
     
-    void GetHit()
+    void GetHit(float damage)
     {
 
     }
 
-    void Die()
+    void Die(float damage)
     {
 
     }
