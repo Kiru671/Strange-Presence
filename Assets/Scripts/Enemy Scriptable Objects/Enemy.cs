@@ -19,10 +19,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            Die();
-        }
+
     }
 
     public void GetHit(int damage)
@@ -31,8 +28,5 @@ public class Enemy : MonoBehaviour
         health -= damage;
     }
 
-    protected void Die()
-    {
-        Destroy(gameObject);
-    }
+ 
 }

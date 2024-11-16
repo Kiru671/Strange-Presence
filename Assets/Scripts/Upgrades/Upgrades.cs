@@ -181,12 +181,13 @@ public class Upgrades : MonoBehaviour
 
     public void UpgradeChosen(string upgradeChosen)
     {
+        Debug.Log(upgradeChosen);
         switch (upgradeChosen)
         {
             case "Agile Hands":
 
                 break;
         }
-        this.enabled = false;
+        this.gameObject.SetActive(false);
     }
 }

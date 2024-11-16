@@ -2442,7 +2442,7 @@ GameObject:
   - component: {fileID: 885212988}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2591,7 +2591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc9f1feb295579408e99e97ffd99243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
   rotation: {x: 0, y: 0}
   move: {x: 0, y: 0}
 --- !u!114 &885212988
@@ -2620,12 +2619,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  moveSpeed: 1
+  moveSpeed: 5
   damage: 25
   XP: 0
   xpCap: 0
   magnetic: 0
-  upgrades: {fileID: 0}
+  upgrades: {fileID: 981056356}
 --- !u!1 &898579333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &981056355
 Transform:
   m_ObjectHideFlags: 0
@@ -4971,6 +4970,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2920715772919164954, guid: 9483b1951e620c24fab2b8231c0599f3,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3815660864807902736, guid: 9483b1951e620c24fab2b8231c0599f3,
         type: 3}
       propertyPath: xpOrb
@@ -5031,6 +5035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Demon_damaged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304633942281528903, guid: 9483b1951e620c24fab2b8231c0599f3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

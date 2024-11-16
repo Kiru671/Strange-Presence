@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int Health = 100;
-    public float moveSpeed = 1f;
+    public float moveSpeed = 4f;
     public int damage;
     public int XP;
     [SerializeField] private int xpCap;
@@ -42,8 +42,8 @@ public class Player : MonoBehaviour
     }
     void LevelUp()
     {
-        Debug.Log("LEVEL UP!");
         upgrades.enabled = true;
+        Time.timeScale = 0;
     }
 
 }

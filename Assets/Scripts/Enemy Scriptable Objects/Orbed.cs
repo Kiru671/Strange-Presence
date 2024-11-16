@@ -27,7 +27,10 @@ public class Orbed : Enemy
 
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     void Attack(int damage)
@@ -35,9 +38,17 @@ public class Orbed : Enemy
 
     }
 
-    private void OnDestroy()
+    public void Die()
     {
+        Debug.Log("Ded");
         xpOrb = Instantiate(xpOrb, transform.position, Quaternion.identity);
         xpOrb.containedXP = enemyXP;
+        Destroy(gameObject);
     }
+
+    private void OnDestroy()
+    {
+
+    }
+
 }

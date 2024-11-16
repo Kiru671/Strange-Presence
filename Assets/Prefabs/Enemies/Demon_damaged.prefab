@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2920715772919164954}
   m_Layer: 0
   m_Name: Demon_damaged
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: a3200526afe48cc49a17d350353a2444, type: 2}
   xpOrb: {fileID: 1772978810394773105, guid: 3758f4c70e333de418132e1efe364f39, type: 3}
+  player: {fileID: 0}
+  health: 0
 --- !u!65 &1867239349134444000
 BoxCollider:
   m_ObjectHideFlags: 0

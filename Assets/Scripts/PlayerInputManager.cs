@@ -7,7 +7,6 @@ public class PlayerInputManager : MonoBehaviour
     private MovementStateMachine stateMachine;
 
     [SerializeField, Range(4f,15f)]
-    public float moveSpeed = 4f;
 
     public Vector2 rotation;
     public Vector2 move;
@@ -31,22 +30,10 @@ public class PlayerInputManager : MonoBehaviour
     {
         inputActions.Disable();
         inputActions.Move.Dash.performed -= OnDash;
-
     }
-
     public void OnDash(InputAction.CallbackContext context)
     {
         Debug.Log("SKIDIBOPMMDADA!!");
     }
 
-
-    public void MovePlayer()
-    {
-
-    }
-
-    public void OnLookAndShoot(InputAction.CallbackContext context)
-    {
-
-    }
 }

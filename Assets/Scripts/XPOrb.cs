@@ -20,11 +20,13 @@ public class XPOrb : MonoBehaviour
             transform.position += (magnetismSpeed * Time.deltaTime) * (player.transform.position - transform.position);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             player.GainXP(containedXP);
+            Debug.Log("XP Gained");
+            Destroy(this);
         }
     }
 }

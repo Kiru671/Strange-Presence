@@ -18,7 +18,10 @@ public class Vorg : Enemy
 
     void Update()
     {
-
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     void Attack(float damage)
@@ -26,11 +29,20 @@ public class Vorg : Enemy
 
     }
 
-    private void OnDestroy()
+    public void Die()
     {
+        Debug.Log("Ded");
         xpOrb = Instantiate(xpOrb, transform.position, Quaternion.identity);
         xpOrb.containedXP = enemyXP;
+        Destroy(gameObject);
     }
+
+    private void OnDestroy()
+    {
+        
+    }
+
+
 
 
 }
