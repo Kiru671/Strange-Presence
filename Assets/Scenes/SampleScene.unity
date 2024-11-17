@@ -191,6 +191,9 @@ MonoBehaviour:
   gameManager: {fileID: 2137175316}
   enemyPool: {fileID: 1553725555}
   enemiesRemaining: 0
+  minSpawnTime: 0.4
+  maxSpawnTime: 1
+  spawnRadius: 20
 --- !u!4 &24585872
 Transform:
   m_ObjectHideFlags: 0
@@ -390,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 40410506}
   serializedVersion: 2
   m_LocalRotation: {x: 0.515441, y: 0.000000018260874, z: -0.000000010983925, w: 0.8569251}
-  m_LocalPosition: {x: 2.4018116, y: 11.107, z: 6.0404587}
+  m_LocalPosition: {x: -3.7, y: 11.107, z: 6.0404587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -921,7 +924,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.515441, y: 0.000000018260877, z: -0.000000010983929, w: 0.8569251}
-  m_LocalPosition: {x: 2.4018116, y: 11.107, z: 6.0404587}
+  m_LocalPosition: {x: -3.7, y: 11.107, z: 6.0404587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2529,7 +2532,7 @@ Transform:
   m_GameObject: {fileID: 885212979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 2.4018116, y: -7.743, z: 16.040459}
+  m_LocalPosition: {x: -3.7, y: -7.743, z: 16.040459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2605,7 +2608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf5572a1eac24f41aface77cfed6698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpAmount: 4
+  lerpAmount: 6
 --- !u!114 &885212989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,7 +2625,7 @@ MonoBehaviour:
   moveSpeed: 5
   damage: 25
   XP: 0
-  xpCap: 0
+  xpCap: 1
   magnetic: 0
   upgrades: {fileID: 981056356}
 --- !u!1 &898579333
@@ -2784,7 +2787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &981056355
 Transform:
   m_ObjectHideFlags: 0
@@ -4009,8 +4012,7 @@ MonoBehaviour:
   collectionCheck: 0
   defaultCap: 4
   maxSize: 20
-  enemyPrefab: {fileID: 6334826068141619221, guid: 19a833be767fa05488940b15918b0a8b,
-    type: 3}
+  enemyPrefab: {fileID: 6210939013375824992}
   Player: {fileID: 885212979}
 --- !u!4 &1553725556
 Transform:
@@ -4984,7 +4986,7 @@ PrefabInstance:
     - target: {fileID: 8236718232718037933, guid: 9483b1951e620c24fab2b8231c0599f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.3255687
+      value: 8.35
       objectReference: {fileID: 0}
     - target: {fileID: 8236718232718037933, guid: 9483b1951e620c24fab2b8231c0599f3,
         type: 3}
@@ -5073,7 +5075,7 @@ PrefabInstance:
     - target: {fileID: 8844310678108863959, guid: c5cc9e3077885f24c98b6df42108b2b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4127
+      value: 11.52
       objectReference: {fileID: 0}
     - target: {fileID: 8844310678108863959, guid: c5cc9e3077885f24c98b6df42108b2b7,
         type: 3}
@@ -5125,6 +5127,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5cc9e3077885f24c98b6df42108b2b7, type: 3}
+--- !u!1 &6210939013375824992 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4579174209625151753, guid: c5cc9e3077885f24c98b6df42108b2b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6210939013375824991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

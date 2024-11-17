@@ -16,3 +16,4 @@ MonoBehaviour:
   damage: 35
   attackCooldown: 3
   enemyXP: 75
+  attackRange: 3

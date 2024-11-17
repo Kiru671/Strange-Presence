@@ -26,7 +26,7 @@ public class XPOrb : MonoBehaviour
         {
             player.GainXP(containedXP);
             Debug.Log("XP Gained");
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

@@ -21,35 +21,35 @@ public class Upgrades : MonoBehaviour
 
     public Upgrade[] upgrades = new Upgrade[]
     {
-        new Upgrade{Title = "Agile Hands", Rarity = "Common", Description = "Reload speed is faster by X%", Increase = 25, Reocurring = true},
-        new Upgrade{Title = "Hasty Reflexes", Rarity = "Rare", Description = "Reload speed is faster by X%", Increase = 50, Reocurring = true},
-        new Upgrade{Title = "0 Delay Neural Enhancements", Rarity = "Epic", Description = "Reload speed is faster by X%", Increase = 100, Reocurring = false},
-        new Upgrade{Title = "Rocket Assisted Gloves by LeaTech", Rarity = "Legendary", Description = "Reload speed is faster by X%", Increase = 250, Reocurring = false},
+        new Upgrade{Title = "Agile Hands", Rarity = "Common", Description = "Reload speed is faster by X%", Increase = 25, Reocurring = true , UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "Hasty Reflexes", Rarity = "Rare", Description = "Reload speed is faster by X%", Increase = 50, Reocurring = true, UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "0 Delay Neural Enhancements", Rarity = "Epic", Description = "Reload speed is faster by X%", Increase = 100, Reocurring = false, UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "Rocket Assisted Gloves by LeaTech", Rarity = "Legendary", Description = "Reload speed is faster by X%", Increase = 250, Reocurring = false, UpgradeType = UpgradeType.ReloadSpeed},
 
-        new Upgrade{Title = "Deep Mags", Rarity = "Common", Description = "Your magazines have X% more ammunition.", Increase = 30, Reocurring = true},
-        new Upgrade{Title = "Deeper Mags", Rarity = "Rare", Description = "Your magazines have X% more ammunition.", Increase = 75, Reocurring = true},
-        new Upgrade{Title = "Bottomless Mags", Rarity = "Epic", Description = "Your magazines have X% more ammunition.", Increase = 150, Reocurring = false},
-        new Upgrade{Title = "Pocket Dimension", Rarity = "Legendary", Description = "Your magazines have X% more ammunition.", Increase = 300, Reocurring = false},
+        new Upgrade{Title = "Deep Mags", Rarity = "Common", Description = "Your magazines have X% more ammunition.", Increase = 30, Reocurring = true, UpgradeType = UpgradeType.Magazine},
+        new Upgrade{Title = "Deeper Mags", Rarity = "Rare", Description = "Your magazines have X% more ammunition.", Increase = 75, Reocurring = true, UpgradeType = UpgradeType.Magazine},
+        new Upgrade{Title = "Bottomless Mags", Rarity = "Epic", Description = "Your magazines have X% more ammunition.", Increase = 150, Reocurring = false, UpgradeType = UpgradeType.Magazine},
+        new Upgrade{Title = "Pocket Dimension", Rarity = "Legendary", Description = "Your magazines have X% more ammunition.", Increase = 300, Reocurring = false, UpgradeType = UpgradeType.Magazine},
 
-        new Upgrade{Title = "Sturdiness", Rarity = "Common", Description = "Your base health is increased by X", Increase = 25, Reocurring = true},
-        new Upgrade{Title = "Light Armor", Rarity = "Rare", Description = "Your base health is increased by X", Increase = 50, Reocurring = true},
-        new Upgrade{Title = "Indomitability", Rarity = "Epic", Description = "Your base health is increased by X", Increase = 125, Reocurring = false},
-        new Upgrade{Title = "Hit me. I said hit me!", Rarity = "Legendary", Description = "Your base health is increased by X", Increase = 175, Reocurring = false},
+        new Upgrade{Title = "Sturdiness", Rarity = "Common", Description = "Your base health is increased by X", Increase = 25, Reocurring = true, UpgradeType = UpgradeType.Health},
+        new Upgrade{Title = "Light Armor", Rarity = "Rare", Description = "Your base health is increased by X", Increase = 50, Reocurring = true, UpgradeType = UpgradeType.Health},
+        new Upgrade{Title = "Indomitability", Rarity = "Epic", Description = "Your base health is increased by X", Increase = 125, Reocurring = false, UpgradeType = UpgradeType.Health},
+        new Upgrade{Title = "Hit me. I said hit me!", Rarity = "Legendary", Description = "Your base health is increased by X", Increase = 175, Reocurring = false, UpgradeType = UpgradeType.Health},
 
-        new Upgrade{Title = "Light on Feet", Rarity = "Common", Description = "You move X% faster", Increase = 15, Reocurring = true},
-        new Upgrade{Title = "Athlete", Rarity = "Rare", Description = "You move X% faster", Increase = 25, Reocurring = true},
-        new Upgrade{Title = "Quick, graceful movements", Rarity = "Epic", Description = "You move X% faster", Increase = 40, Reocurring = false},
-        new Upgrade{Title = "The speed to evade tax- I mean, rockets.", Rarity = "Legendary", Description = "You move X% faster", Increase = 75, Reocurring = false},
+        new Upgrade{Title = "Light on Feet", Rarity = "Common", Description = "You move X% faster", Increase = 15, Reocurring = true, UpgradeType = UpgradeType.MovementSpeed},
+        new Upgrade{Title = "Athlete", Rarity = "Rare", Description = "You move X% faster", Increase = 25, Reocurring = true, UpgradeType = UpgradeType.MovementSpeed},
+        new Upgrade{Title = "Quick, graceful movements", Rarity = "Epic", Description = "You move X% faster", Increase = 40, Reocurring = false, UpgradeType = UpgradeType.MovementSpeed},
+        new Upgrade{Title = "The speed to evade tax- I mean, rockets.", Rarity = "Legendary", Description = "You move X% faster", Increase = 75, Reocurring = false, UpgradeType = UpgradeType.MovementSpeed},
 
-        new Upgrade{Title = "Light on Feet", Rarity = "Common", Description = "Your weapon fires X% faster.", Increase = 15, Reocurring = true},
-        new Upgrade{Title = "Athlete", Rarity = "Rare", Description = "Your weapon fires X% faster.", Increase = 25, Reocurring = true},
-        new Upgrade{Title = "Quick, graceful movements", Rarity = "Epic", Description = "Your weapon fires X% faster.", Increase = 40, Reocurring = false},
-        new Upgrade{Title = "Thermodynamics? Never heard of 'em.", Rarity = "Legendary", Description = "Your weapon fires X% faster.", Increase = 125, Reocurring = false},
+        new Upgrade{Title = "Improved Trigger", Rarity = "Common", Description = "Your weapon fires X% faster.", Increase = 15, Reocurring = true, UpgradeType = UpgradeType.FireRate},
+        new Upgrade{Title = "Enhanced Trigger Finger", Rarity = "Rare", Description = "Your weapon fires X% faster.", Increase = 25, Reocurring = true, UpgradeType = UpgradeType.FireRate},
+        new Upgrade{Title = "Enhanced Trigger Finger (Enhanced)", Rarity = "Epic", Description = "Your weapon fires X% faster.", Increase = 40, Reocurring = false, UpgradeType = UpgradeType.FireRate},
+        new Upgrade{Title = "Thermodynamics? Never heard of 'em.", Rarity = "Legendary", Description = "Your weapon fires X% faster.", Increase = 125, Reocurring = false, UpgradeType = UpgradeType.FireRate},
 
 
         new Upgrade{Title = "Electromagnetism", Rarity = "Unique", Description = "Experience Orbs are attracted to you.", Reocurring = false},
-        new Upgrade{Title = "Dire's Vengeance", Rarity = "Unique", Description = "Your rifle now shoots in a spread out pattern with X% reduced damage.", UpgradeType = "Assault Rifle", Increase = 15, Reocurring = false},
-        new Upgrade{Title = "Dire's Vengeance", Rarity = "Unique", Description = "Your rifle now deals twice the damage and knocks back enemies. Reduces firerate by 50%", UpgradeType = "Assault Rifle", Increase = 2, Reocurring = false},
+        new Upgrade{Title = "Dire's Vengeance", Rarity = "Unique", Description = "Your rifle now shoots in a spread out pattern with X% reduced damage.", UpgradeType = UpgradeType.Unique, Increase = 15, Reocurring = false},
+        new Upgrade{Title = "LeaTech's Leaked Weapon Design", Rarity = "Unique", Description = "Your rifle now deals twice the damage and knocks back enemies. Reduces firerate by 50%", UpgradeType = UpgradeType.Unique, Increase = 2, Reocurring = false},
 
 
         /*new Upgrade{Title = "Attack"},
@@ -89,7 +89,7 @@ public class Upgrades : MonoBehaviour
         public string Title { get; set; }
         public float Increase { get; set; }
         public string Description { get; set; }
-        public string UpgradeType { get; set; }
+        public UpgradeType UpgradeType { get; set; }
         public string Rarity { get; set; }
         public bool Reocurring { get; set; }
         public float Bias {get; set;}
@@ -113,6 +113,15 @@ public class Upgrades : MonoBehaviour
             default:
                 return 1f;
         }
+    }
+    public enum UpgradeType
+    {
+        ReloadSpeed,
+        FireRate,
+        MovementSpeed,
+        Magazine,
+        Health,
+        Unique
     }
 
     public void ChooseUpgrades()
@@ -187,6 +196,7 @@ public class Upgrades : MonoBehaviour
             case "Agile Hands":
 
                 break;
+
         }
         this.gameObject.SetActive(false);
     }

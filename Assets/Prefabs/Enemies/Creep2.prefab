@@ -75,6 +75,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 7fd607540048c894c9a50b7bf21b0037, type: 2}
   xpOrb: {fileID: 1772978810394773105, guid: 3758f4c70e333de418132e1efe364f39, type: 3}
   player: {fileID: 0}
+  health: 0
 --- !u!65 &8323613560675213859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1001 &2151145766424331661
 PrefabInstance:
@@ -341,6 +342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Creep_mesh_lod1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: af69d37b180cc2f49b87e760dfaa46bb,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: af69d37b180cc2f49b87e760dfaa46bb,
         type: 3}

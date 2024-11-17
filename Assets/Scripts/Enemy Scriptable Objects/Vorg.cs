@@ -32,17 +32,8 @@ public class Vorg : Enemy
     public void Die()
     {
         Debug.Log("Ded");
-        xpOrb = Instantiate(xpOrb, transform.position, Quaternion.identity);
+        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 0.5f, Quaternion.identity);
         xpOrb.containedXP = enemyXP;
         Destroy(gameObject);
     }
-
-    private void OnDestroy()
-    {
-        
-    }
-
-
-
-
 }

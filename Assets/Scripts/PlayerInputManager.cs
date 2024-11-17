@@ -16,6 +16,7 @@ public class PlayerInputManager : MonoBehaviour
         inputActions = new InputActions();
         stateMachine = new MovementStateMachine();
     }
+
     private void OnEnable()
     {
         inputActions.Enable();
@@ -31,6 +32,7 @@ public class PlayerInputManager : MonoBehaviour
         inputActions.Disable();
         inputActions.Move.Dash.performed -= OnDash;
     }
+
     public void OnDash(InputAction.CallbackContext context)
     {
         Debug.Log("SKIDIBOPMMDADA!!");

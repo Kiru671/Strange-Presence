@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wave 0
   m_EditorClassIdentifier: 
   waveType: 2
-  skeletonCount: 0
+  skeletonCount: 1
   specialCount: 0

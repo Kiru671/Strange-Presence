@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private bool waveCleared;
     public int currentWave = 0;
     private int enemyCount;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,5 +45,9 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         decal.enabled = true;
+    }
+    public void RemoveEnemy()
+    {
+        enemyCount--;
     }
 }

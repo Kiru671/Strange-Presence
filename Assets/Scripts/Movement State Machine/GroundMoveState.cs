@@ -12,6 +12,7 @@ public class GroundMoveState : IMovementState
     private MovementStateMachine stateMachine;
     private PlayerInputManager inputManager;
     private Weapon chosenWeapon;
+    private float rayLength;
     public void EnterState(MovementStateMachine context, PlayerInputManager inputs)
     {
         Debug.Log("GroundState");
@@ -36,6 +37,18 @@ public class GroundMoveState : IMovementState
     public void UpdateState()
     {
         LookAndShoot();
+        Ray camRay = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, -9,0));
+        
+
+        if (groundPlane.Raycast(camRay, out rayLength))
+        {
+            Vector3 pointToLook = camRay.GetPoint(rayLength);
+            Debug.DrawLine(camRay.origin, pointToLook, Color.cyan);
+            player.transform.LookAt(new Vector3(pointToLook.x, player.transform.position.y, pointToLook.z));
+        }
+
+
         Move();
     }
 

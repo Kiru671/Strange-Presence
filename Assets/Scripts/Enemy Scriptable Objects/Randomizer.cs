@@ -7,14 +7,16 @@ public class Randomizer
 {
     [SerializeField] private GameObject player;
 
-    public Vector3 GetSpawnPos()
+
+    public Vector3 GetSpawnPos(float spawnRange)
     {
-        Vector2 playerPos = GameObject.Find("Player").GetComponent<Transform>().position;
-        Vector2 spawnPoint = Random.insideUnitCircle;
-        Vector2 spawnPos = spawnPoint - playerPos.normalized;
-        Vector3 returnPos = new Vector3(spawnPos.x, -8.75f, spawnPos.y);
+        Vector3 playerPos = GameObject.Find("Player").GetComponent<Transform>().position;
+        Vector2 randomV2 = Random.insideUnitCircle;
+        Vector2 spawnPos = randomV2.normalized * spawnRange;
+        Vector3 returnPos = new Vector3(spawnPos.x + playerPos.x,0, spawnPos.y + playerPos.z);
         return returnPos;   
     }
+
     public bool SetEnemyVariant()
     {
         return false;

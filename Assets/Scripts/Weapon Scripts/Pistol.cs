@@ -29,7 +29,7 @@ public class Pistol : Weapon
     {
 #if UNITY_EDITOR
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)){
+        if (Input.GetKey(KeyCode.Mouse0)){
             Fire();
         }
 #endif

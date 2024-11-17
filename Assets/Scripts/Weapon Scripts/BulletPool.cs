@@ -22,13 +22,11 @@ public class BulletPool : MonoBehaviour
 
     private void Awake()
     {
-        objectPool = new ObjectPool<Bullet>(CreateGround, OnPull, OnRelease, OnDestroyGround, collectionCheck, defaultCap, maxSize);
+        objectPool = new ObjectPool<Bullet>(CreateGround, OnPull, OnRelease, OnDestroyBullet, collectionCheck, defaultCap, maxSize);
         virtualCam = GameObject.Find("VirtualCamera").GetComponent<CinemachineShake>();
         
         if(chosenWeapon == null)
             chosenWeapon = Player.GetComponentInChildren<Weapon>();
-        else
-            Debug.LogError("No weapon attached to player.");
 
         //Always set BulletSpawn as first child!
         bulletSpawnPoint = chosenWeapon.transform.GetChild(0);
@@ -55,7 +53,7 @@ public class BulletPool : MonoBehaviour
         bulletInstance.gameObject.SetActive(false);
     }
 
-    void OnDestroyGround(Bullet bulletInstance)
+    void OnDestroyBullet(Bullet bulletInstance)
     {
 
     }

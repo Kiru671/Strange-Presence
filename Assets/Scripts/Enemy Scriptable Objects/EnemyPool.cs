@@ -19,7 +19,7 @@ public class EnemyPool : MonoBehaviour
 
     private void Awake()
     {
-        objectPool = new ObjectPool<Enemy>(CreateGround, OnPull, OnRelease, OnDestroyGround, collectionCheck, defaultCap, maxSize);
+        objectPool = new ObjectPool<Enemy>(CreateGround, OnPull, OnRelease, OnDestroyEnemy, collectionCheck, defaultCap, maxSize);
 
         enemy = enemyPrefab.GetComponent<Enemy>();
     }
@@ -41,7 +41,7 @@ public class EnemyPool : MonoBehaviour
         enemyInstance.gameObject.SetActive(false);
     }
 
-    void OnDestroyGround(Enemy enemyInstance)
+    void OnDestroyEnemy(Enemy enemyInstance)
     {
 
     }

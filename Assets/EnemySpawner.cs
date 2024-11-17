@@ -1,44 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {   
     [SerializeField] private WaveDataObject[] waves;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private EnemyPool enemyPool;
+    [SerializeField] private EnemyPool enemyPoolSkeletons;
+    [SerializeField] private EnemyPoolOrbed enemyPoolOrbeds;
+    [SerializeField] private EnemyPoolVorg enemyPoolVorgs;
+
+
+
+    [SerializeField] private Enemy initialEnemy;
+
     private Randomizer randomizer;
     private Enemy enemy;
     public int enemiesRemaining;
 
-    void Start()
-    {
+    [SerializeField] private float minSpawnTime;
+    [SerializeField] private float maxSpawnTime;
 
+    [SerializeField] private float spawnRadius;
+
+    private List<Enemy> enemiesToSpawn = new List<Enemy>();
+
+    private int vorgCount;
+    private int enhancedVorgCount;
+    private int orbedCount;
+    private int totalEnemyCount;
+
+    private float timeUntilSpawn;
+
+    void Awake()
+    {
+        randomizer = new Randomizer();
+        SetTimeUntilSpawn();
     }
 
     void Update()
     {
-        enemiesRemaining = waves[gameManager.currentWave].EnemySpawnCount;
-        switch (waves[gameManager.currentWave].waveType)
-        {
-            case WaveType.Normal:
-                
-                break;
-            case WaveType.Boss:
+        timeUntilSpawn -= Time.deltaTime;
 
-                break;
-            case WaveType.Special:
-                break;
+        if (timeUntilSpawn <= 0)
+        {
+            SpawnAd();
+            SetTimeUntilSpawn();
+        }
+        if(enemiesRemaining <= 0)
+        {
+            ChangeWave();
         }
     }
+
     private void SpawnAd()
     {
-        
-        enemy = enemyPool.objectPool.Get();
-        Vector3 spawnPoint = randomizer.GetSpawnPos();
+        if (gameManager.currentWave == 0)
+        {
+            Instantiate(initialEnemy);
+            return;
+        }
+        //new List<Enemy>().Add();
+        Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
 
-        //Enemy should relocate if spawnPoint is colliding with another object.
+        Enemy enemyInstance = enemyPoolSkeletons.objectPool.Get();
+        enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+    }
 
-        enemy.transform.position = spawnPoint;
+    private void SetTimeUntilSpawn()
+    {
+        timeUntilSpawn = Random.Range(minSpawnTime, maxSpawnTime);
+    }
+    private void ChangeWave()
+    {
+        enemiesRemaining = waves[gameManager.currentWave].totalEnemyCount;
+        for (int i = 0; i >= totalEnemyCount; i++)
+        {
+            if (waves[gameManager.currentWave].vorgCount > 0) 
+            {
+                enemiesToSpawn.Add(enemyPoolVorgs.objectPool.Get());
+            }
+
+            
+        }
+    }
+    public void RemoveEnemy()
+    {
+        enemiesRemaining--;
     }
 }
