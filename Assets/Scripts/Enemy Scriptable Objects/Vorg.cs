@@ -78,15 +78,24 @@ public class Vorg : Enemy
     {
         healthSlider.gameObject.SetActive(false);
         gameManager.RemoveEnemy();
-        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 2.25f, Quaternion.identity);
         xpOrb.containedXP = enemyXP;
-        Destroy(gameObject);
+        StartCoroutine("DieAfter");
     }
+
     public void DamageIfInRange()
     {
         if (TargetInRange)
         {
             player.GetHit(damage);
         }
+    }
+
+    private IEnumerator DieAfter()
+    {
+        agent.speed = 0;
+        deathStarted = true;
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

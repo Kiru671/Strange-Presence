@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 18.85, z: -10}
+  m_FollowOffset: {x: 0, y: 20.35, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2869,6 +2869,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 90feef88dc3b26e47a56ff341981fbaa, type: 3}
   - name: UpgradeChosen
     clip: {fileID: 8300000, guid: 90feef88dc3b26e47a56ff341981fbaa, type: 3}
+  - name: xp
+    clip: {fileID: 8300000, guid: b1382b64570ef4d46928e046c8d8b7f1, type: 3}
   musicSource: {fileID: 1748457371}
   SFXSource: {fileID: 346232067}
 --- !u!4 &297448412
@@ -11399,8 +11401,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121075677}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.515441, y: 0.000000018260874, z: -0.000000010983925, w: 0.8569251}
-  m_LocalPosition: {x: 18.109, y: 10.012, z: -42.2}
+  m_LocalRotation: {x: 0.5286641, y: 0.0000000115393535, z: -0.0000000071868773, w: 0.8488311}
+  m_LocalPosition: {x: 18.109, y: 11.512, z: -42.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13677,8 +13679,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332729420}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.515441, y: 0.000000018260877, z: -0.000000010983929, w: 0.8569251}
-  m_LocalPosition: {x: 18.109, y: 10.012, z: -42.2}
+  m_LocalRotation: {x: 0.5286642, y: 0.00000001153935, z: -0.0000000071868715, w: 0.8488311}
+  m_LocalPosition: {x: 18.109, y: 11.512, z: -42.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

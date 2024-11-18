@@ -48,7 +48,7 @@ public class Upgrades : MonoBehaviour
         new Upgrade{Title = "Thermodynamics? Never heard of 'em.", Rarity = "Legendary", Description = "Your weapon fires X% faster.", Increase = 125, Reocurring = false, UpgradeType = UpgradeType.FireRate},
 
 
-        new Upgrade{Title = "Electromagnetism", Rarity = "Unique", Description = "Experience Orbs are attracted to you.", Reocurring = false},
+        new Upgrade{Title = "Electromagnetism", Rarity = "Unique", Description = "Experience Orbs are attracted to you.", Reocurring = false, UpgradeType = UpgradeType.Unique},
         new Upgrade{Title = "Dire's Vengeance", Rarity = "Unique", Description = "Your rifle now shoots in a spread out pattern with X% reduced damage.", UpgradeType = UpgradeType.Unique, Increase = 15, Reocurring = false},
         new Upgrade{Title = "LeaTech's Leaked Weapon Design", Rarity = "Unique", Description = "Your rifle now deals twice the damage and knocks back enemies. Reduces firerate by 50%", UpgradeType = UpgradeType.Unique, Increase = 2, Reocurring = false},
 
@@ -68,6 +68,7 @@ public class Upgrades : MonoBehaviour
 
     private void OnEnable()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         AudioManager.Instance.PlaySFX("Upgrade");
         // List 3 upgrades on screen when enabled. List 3 uniques playerLevel % 5 = 0. List 3 weapons at first.
         if(borderImages != null)
@@ -214,8 +215,10 @@ public class Upgrades : MonoBehaviour
                 player.moveSpeed += chosenUpgrade.Increase * 0.01f * player.moveSpeed;
                 break;
             case UpgradeType.Unique:
+
                 if(chosenUpgrade.Title == "Electromagnetism")
                 {
+                    Debug.Log("Magnetic");
                     player.magnetic = true;
                 }
                 if (chosenUpgrade.Title == "LeaTech's Leaked Weapon Design")
@@ -227,6 +230,7 @@ public class Upgrades : MonoBehaviour
                     weapon.bulletDMG *= chosenUpgrade.Increase * 0.01f;
                     weapon.diresVengeance = true;
                 }
+
                 break;
 
         }

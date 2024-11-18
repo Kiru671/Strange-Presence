@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Wave 7
   m_EditorClassIdentifier: 
   waveType: 0
-  skeletonCount: 0
-  specialCount: 0
+  skeletonCount: 35
+  orbedCount: 0
+  vorgCount: 0
+  enhancedVorgCount: 0
+  totalEnemyCount: 0

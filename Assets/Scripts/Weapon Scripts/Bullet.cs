@@ -33,12 +33,14 @@ public class Bullet : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
-            other.gameObject.GetComponent<Enemy>().GetHit(player.damage);
-        if (knockBack)
         {
-            other.gameObject.GetComponent<Enemy>().KnockedBack();
-        }
             pool.objectPool.Release(this);
+            other.gameObject.GetComponent<Enemy>().GetHit(player.damage);
+            if (knockBack)
+            {
+                other.gameObject.GetComponent<Enemy>().KnockedBack();
+            }
+        }                 
     }
 
     private IEnumerator DestroyAfterTime(float t)

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public int damage;
     public int XP;
     public int xpCap;
-    public bool magnetic = false;
+    public bool magnetic;
 
     private AudioManager audioManager;
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     void LevelUp()
     {
         upgrades.gameObject.SetActive(true);
-        xpCap += 20;
+        xpCap += 10;
         StartCoroutine("StopTime");
     }
 
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     }
     public void SetHealthBar()
     {
-
+        healthBar.value = (float)health / maxHealth;
     }
     public void SetXPBar()
     {

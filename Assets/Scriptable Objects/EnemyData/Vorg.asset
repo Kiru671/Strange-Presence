@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022b8418c26ccc74ab234cdc3b3eef92, type: 3}
   m_Name: Vorg
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  maxHealth: 250
   damage: 15
   attackCooldown: 2.5
   enemyXP: 25
