@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class Upgrades : MonoBehaviour
 {
     [SerializeField] private GameObject[] upgradeCards;
+    private Weapon weapon;
     private TextMeshPro titleText;
     private TextMeshPro descriptionText;
     [SerializeField] private Player player;
@@ -62,6 +63,7 @@ public class Upgrades : MonoBehaviour
     void Start()
     {
         availabeUpgrades.Clear();
+        weapon = player.transform.GetChild(0).GetComponent<Weapon>();
     }
 
     private void OnEnable()
@@ -188,16 +190,56 @@ public class Upgrades : MonoBehaviour
         }
     }
 
-    public void UpgradeChosen(string upgradeChosen)
+    public void UpgradeChosen(Upgrade chosenUpgrade)
     {
-        Debug.Log(upgradeChosen);
-        switch (upgradeChosen)
+        Debug.Log(chosenUpgrade.Title);
+        switch (chosenUpgrade.UpgradeType)
         {
-            case "Agile Hands":
-
+            case UpgradeType.Health:
+                player.maxHealth += (int)chosenUpgrade.Increase;
+                player.health = player.maxHealth;
+                player.SetHealthBar();
+                break;
+            case UpgradeType.FireRate:
+                weapon.fireRate +=  chosenUpgrade.Increase * 0.01f * weapon.fireRate;
+                break;
+            case UpgradeType.Magazine:
+                weapon.magSize += Mathf.RoundToInt(chosenUpgrade.Increase * 0.01f * weapon.magSize);
+                break;
+            case UpgradeType.ReloadSpeed:
+                weapon.reloadSpeed -= chosenUpgrade.Increase * 0.01f * weapon.reloadSpeed;
+                break;
+            case UpgradeType.MovementSpeed:
+                player.moveSpeed += chosenUpgrade.Increase * 0.01f * player.moveSpeed;
+                break;
+            case UpgradeType.Unique:
+                if(chosenUpgrade.Title == "Electromagnetism")
+                {
+                    player.magnetic = true;
+                }
+                if (chosenUpgrade.Title == "LeaTech's Leaked Weapon Design")
+                {
+                    weapon.bulletDMG *= 2; weapon.isKnockbackEnabled = true;
+                }
+                if(chosenUpgrade.Title == "Dire's Vengeance")
+                {
+                    weapon.bulletDMG *= chosenUpgrade.Increase * 0.01f;
+                    weapon.diresVengeance = true;
+                }
                 break;
 
         }
         this.gameObject.SetActive(false);
+    }
+    public Upgrade GetClassWithValue(Upgrade[] array, string targetValue)
+    {
+        foreach (Upgrade item in array)
+        {
+            if (item.Title == targetValue)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 }

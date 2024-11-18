@@ -4,20 +4,62 @@ using UnityEngine;
 
 public class Vorg : Enemy
 {
-    private float damage;
+    private int damage;
     private float attackCooldown;
+    private float nextAttack;
     private int enemyXP;
+    private bool deathStarted;
+    private bool attacking;
 
-    void Start()
+    private bool TargetInRange => Vector3.Distance(transform.position, player.transform.position) < attackRange;
+
+
+    private void OnEnable()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        deathStarted = false;
+        anim.SetBool("isDying", false);
         health = enemyData.maxHealth;
+        maxHealth = enemyData.maxHealth;
         damage = enemyData.damage;
         attackCooldown = enemyData.attackCooldown;
+        attackRange = enemyData.attackRange;
         enemyXP = enemyData.enemyXP;
+        healthSlider.gameObject.SetActive(true);
     }
 
     void Update()
     {
+        if (deathStarted)
+        {
+            anim.SetFloat("Speed", 0);
+            return;
+        }
+        anim.SetFloat("Speed", agent.velocity.magnitude);
+
+
+        if (!agent.isOnNavMesh)
+        {
+            StartCoroutine("CheckGround");
+        }
+        else
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        if (TargetInRange & !attacking)
+        {
+            Attack(damage);
+        }
+    }
+
+    public override void GetHit(int damage)
+    {
+        if (deathStarted)
+            return;
+        health -= damage;
+        healthSlider.value = (float)health / maxHealth;
+        anim.SetTrigger("Hit");
         if (health <= 0)
         {
             Die();
@@ -26,14 +68,25 @@ public class Vorg : Enemy
 
     void Attack(float damage)
     {
-
+        if (deathStarted || Time.time < nextAttack)
+            return;
+        nextAttack = Time.time + attackCooldown;
+        anim.SetTrigger("Attack");
     }
 
     public void Die()
     {
-        Debug.Log("Ded");
+        healthSlider.gameObject.SetActive(false);
+        gameManager.RemoveEnemy();
         xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 0.5f, Quaternion.identity);
         xpOrb.containedXP = enemyXP;
         Destroy(gameObject);
+    }
+    public void DamageIfInRange()
+    {
+        if (TargetInRange)
+        {
+            player.GetHit(damage);
+        }
     }
 }

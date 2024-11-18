@@ -10,18 +10,23 @@ public class Player : MonoBehaviour
     public float moveSpeed = 4f;
     public int damage;
     public int XP;
-    [SerializeField] private int xpCap;
+    public int xpCap;
     public bool magnetic = false;
 
     [SerializeField] private Upgrades upgrades;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider xpBar;
 
+    [SerializeField] protected CinemachineShake virtualCam;
+
     void Start()
     {
         health = maxHealth;
         healthBar.value = 1;
-        xpBar.value = 0;
+        xpBar.value = 0.01f;
+        XP = 0;
+        xpCap = 5;
+        virtualCam = GameObject.Find("VirtualCamera").GetComponent<CinemachineShake>();
     }
 
     void Update()
@@ -33,6 +38,7 @@ public class Player : MonoBehaviour
     {
         health -= damage;
         healthBar.value = (float)health / maxHealth;
+        virtualCam.Shake(damage * 0.25f, 0.2f);
     }
 
     void Die()
@@ -42,10 +48,13 @@ public class Player : MonoBehaviour
     
     public void GainXP(int gainedXP)
     {
-        xpBar.value = (float)XP / xpCap;
+        Debug.Log("Gained XP!");
         XP += gainedXP;
-        if(XP >= xpCap)
+        xpBar.value = (float)XP / (float)xpCap;
+        if (XP >= xpCap)
         {
+            Debug.Log("Checkxp");
+            XP = 0;
             LevelUp();
             Debug.Log("Leveled up!");
         }
@@ -62,16 +71,22 @@ public class Player : MonoBehaviour
     {
         while (upgrades.gameObject.activeInHierarchy) 
         {
-            Debug.Log("Timestop running");
-
             if (Time.timeScale >= 0.015f)
                 Time.timeScale -= 0.0125f;
             else
                 Time.timeScale = 0;       
 
-            yield return new WaitForSeconds(0.002f);
+            yield return new WaitForSeconds(0.00175f);
 
         }
         StopCoroutine(StopTime());
+    }
+    public void SetHealthBar()
+    {
+
+    }
+    public void SetXPBar()
+    {
+        xpBar.value = (float)XP / xpCap;
     }
 }

@@ -24,12 +24,14 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float spawnRadius;
 
-    private List<Enemy> enemiesToSpawn = new List<Enemy>();
+    public List<string> enemiesToSpawn = new List<string>();
 
     private int vorgCount;
     private int enhancedVorgCount;
     private int orbedCount;
+    private int skeletonCount;
     private int totalEnemyCount;
+
 
     private float timeUntilSpawn;
 
@@ -37,56 +39,110 @@ public class EnemySpawner : MonoBehaviour
     {
         randomizer = new Randomizer();
         SetTimeUntilSpawn();
+        ChangeWave();
     }
 
     void Update()
     {
         timeUntilSpawn -= Time.deltaTime;
 
-        if (timeUntilSpawn <= 0)
+        if (enemiesRemaining <= 0)
+        {
+            ChangeWave();
+        }
+        if (timeUntilSpawn <= 0 && gameManager.currentWave > 0 && enemiesToSpawn.Count > 0)
         {
             SpawnAd();
             SetTimeUntilSpawn();
-        }
-        if(enemiesRemaining <= 0)
-        {
-            ChangeWave();
         }
     }
 
     private void SpawnAd()
     {
-        if (gameManager.currentWave == 0)
-        {
-            Instantiate(initialEnemy);
-            return;
-        }
-        //new List<Enemy>().Add();
+        //if (enemiesToSpawn.Count == 0) Debug.Log("List Empty"); return;
+
         Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
 
-        Enemy enemyInstance = enemyPoolSkeletons.objectPool.Get();
-        enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+        if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Skeleton")
+        {
+            Enemy enemyInstance = enemyPoolSkeletons.objectPool.Get();
+            enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+            enemiesToSpawn.Remove("Skeleton");
+        }
+        else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Orbed")
+        {
+            Enemy enemyInstance = enemyPoolOrbeds.objectPool.Get();
+            enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+            enemiesToSpawn.Remove("Orbed");
+        }
+        else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Vorg")
+        {
+            Enemy enemyInstance = enemyPoolVorgs.objectPool.Get();
+            enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+            enemiesToSpawn.Remove("Vorg");
+        }
+        else
+            Debug.Log("All enemies in this wave have spawned.");
+
     }
 
     private void SetTimeUntilSpawn()
     {
         timeUntilSpawn = Random.Range(minSpawnTime, maxSpawnTime);
     }
-    private void ChangeWave()
+    public void ChangeWave()
     {
+        skeletonCount = waves[gameManager.currentWave].skeletonCount;
+        orbedCount = waves[gameManager.currentWave].orbedCount;
+        vorgCount = waves[gameManager.currentWave].vorgCount;
+        enhancedVorgCount = waves[gameManager.currentWave].enhancedVorgCount;
         enemiesRemaining = waves[gameManager.currentWave].totalEnemyCount;
-        for (int i = 0; i >= totalEnemyCount; i++)
-        {
-            if (waves[gameManager.currentWave].vorgCount > 0) 
-            {
-                enemiesToSpawn.Add(enemyPoolVorgs.objectPool.Get());
-            }
+        gameManager.enemyCount = enemiesRemaining;
 
-            
+        enemiesToSpawn.Clear();
+
+        /*for (int i = 0; i < enemiesRemaining; i++)
+        {
+            Debug.Log("Adding to list");
+            if (vorgCount > 0) 
+            {
+                enemiesToSpawn.Add("Vorg");
+                vorgCount--;
+            }
+            if(orbedCount > 0)
+            {
+                enemiesToSpawn.Add("Orbed");
+                orbedCount--;
+            }
+            if (skeletonCount > 0)
+            {
+                enemiesToSpawn.Add("Skeleton");
+                skeletonCount--;
+            }
+            if (enhancedVorgCount > 0)
+            {
+                enemiesToSpawn.Add("EnhancedVorg");
+                enhancedVorgCount--;
+            }
+        }*/
+
+        for (int i = 0; i < skeletonCount; i++)
+        {
+            enemiesToSpawn.Add("Skeleton");
         }
+        for (int i = 0; i < orbedCount; i++)
+        {
+            enemiesToSpawn.Add("Orbed");
+        }
+        for (int i = 0; i < vorgCount; i++)
+        {
+            enemiesToSpawn.Add("Vorg");
+        }
+        for (int i = 0; i < enhancedVorgCount; i++)
+        {
+            enemiesToSpawn.Add("EnhancedVorg");
+        }
+        randomizer.RandomizeList(enemiesToSpawn);
     }
-    public void RemoveEnemy()
-    {
-        enemiesRemaining--;
-    }
+
 }

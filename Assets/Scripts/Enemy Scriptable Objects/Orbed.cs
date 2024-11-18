@@ -8,28 +8,18 @@ public class Orbed : Enemy
 {
     private int damage;
     private float attackCooldown;
+    private float nextAttack;
     private bool willThrow;
     private int enemyXP;
-    private Rigidbody rb;
     private bool deathStarted;
 
     private bool TargetInRange => Vector3.Distance(transform.position, player.transform.position) < attackRange;
     private bool attacking;
 
 
-    void Awake()
-    {
-        health = enemyData.maxHealth;
-        damage = enemyData.damage;
-        attackCooldown = enemyData.attackCooldown;
-        enemyXP = enemyData.enemyXP;
-        rb = GetComponent<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();
-    }
-
     private void OnEnable()
     {
-        //willThrow = randomizer.SetEnemyVariant();
+        player = GameObject.Find("Player").GetComponent<Player>();
         gameObject.GetComponent<BoxCollider>().enabled = true;
         deathStarted = false;
         anim.SetBool("isDying", false);
@@ -38,8 +28,9 @@ public class Orbed : Enemy
         damage = enemyData.damage;
         attackCooldown = enemyData.attackCooldown;
         attackRange = enemyData.attackRange;
-        healthSlider.enabled = true;
-        
+        enemyXP = enemyData.enemyXP;
+        healthSlider.gameObject.SetActive(true);
+
     }
     private void OnDisable()
     {
@@ -54,7 +45,6 @@ public class Orbed : Enemy
             return;
         }
         anim.SetFloat("Speed", agent.velocity.magnitude);
-
 
         if (!agent.isOnNavMesh)
         {
@@ -72,15 +62,10 @@ public class Orbed : Enemy
 
     void Attack(int damage)
     {
-        if (deathStarted)
+        if (deathStarted || Time.time < nextAttack)
             return;
-        anim.SetTrigger("RightAttack");
-
-        /*if (!attacking)
-        {
-            attacking = true;
-            StartCoroutine("DamageAfter");
-        }*/
+        nextAttack = Time.time + attackCooldown;
+        anim.SetTrigger("Attack");
     }
 
     public override void GetHit(int damage)
@@ -99,6 +84,8 @@ public class Orbed : Enemy
 
     public void Die()
     {
+        healthSlider.gameObject.SetActive(false);
+        gameManager.RemoveEnemy();
         gameObject.GetComponent<BoxCollider>().enabled = false;
         xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1f, Quaternion.identity);
         xpOrb.containedXP = enemyXP;
@@ -121,16 +108,6 @@ public class Orbed : Enemy
         else
             Debug.Log("SAFE!");
         StopCoroutine("CheckGround");
-    }
-    private IEnumerator DamageAfter()
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (TargetInRange)
-        {
-            player.GetHit(damage);
-        }
-        yield return new WaitForSeconds(attackCooldown);
-        attacking = false;
     }
 
     private IEnumerator DieAfter()

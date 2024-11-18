@@ -5,15 +5,8 @@ using UnityEngine;
 
 public class Pistol : Weapon
 {
-    public WeaponDataObject weaponData;
-    private float weaponWeight;
-    private float bulletDMG;
-    private float fireRate;
-    private float reloadSpeed; //Lower is better
-    private int magSize;
-    private bool reloadStarted;
-
-    
+    public WeaponDataObject weaponData; 
+    private bool reloadStarted;   
 
     private void OnEnable()
     {
@@ -27,12 +20,9 @@ public class Pistol : Weapon
 
     void Update()
     {
-#if UNITY_EDITOR
-
         if (Input.GetKey(KeyCode.Mouse0)){
             Fire();
         }
-#endif
         if (inputManager.rotation.magnitude > 0 &! IsReloading)
             Fire();
 
@@ -46,11 +36,35 @@ public class Pistol : Weapon
 
     public override void Fire()
     {
-        if (cooldown.IsCoolingDown &! IsReloading)
+        if (cooldown.IsCoolingDown || IsReloading)
             return;
-        Debug.Log("Fire");
-        bulletPool.objectPool.Get();
-        muzzleFlash.Play();
+        if (!diresVengeance)
+        {
+            Debug.Log("Fire");
+            Bullet bulletInstance = bulletPool.objectPool.Get();
+            bulletInstance.knockBack = isKnockbackEnabled;
+            bulletInstance.transform.position = bulletSpawns[0].position;
+            bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y, 0);
+            muzzleFlash.Play();
+        }
+        else
+        {
+            for (int i = 0; i <= 2; i++)
+            {
+                Bullet bulletInstance = bulletPool.objectPool.Get();
+                bulletInstance.knockBack = isKnockbackEnabled;
+                bulletInstance.transform.position = bulletSpawns[i].position;
+                if(i == 0)               
+                    bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y, 0);
+                if(i == 1)
+                    bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y + 30f, 0);
+                if (i == 2)
+                    bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y - 30f, 0);
+                muzzleFlash.Play();
+            }
+            
+            
+        }
         cooldown.cooldownTime = 60 / fireRate;
         cooldown.StartCooldown();
         currentAmmo--;
@@ -59,6 +73,7 @@ public class Pistol : Weapon
     private IEnumerator Reload(float t)
     {
         yield return new WaitForSeconds(t);
+        Debug.Log("Reloaded!");
         reloadStarted = false;
         currentAmmo = magSize;
     }

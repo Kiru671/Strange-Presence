@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using System;
+
 
 public class Randomizer
 {
     [SerializeField] private GameObject player;
 
-
     public Vector3 GetSpawnPos(float spawnRange)
     {
         Vector3 playerPos = GameObject.Find("Player").GetComponent<Transform>().position;
-        Vector2 randomV2 = Random.insideUnitCircle;
+        Vector2 randomV2 = UnityEngine.Random.insideUnitCircle;
         Vector2 spawnPos = randomV2.normalized * spawnRange;
         Vector3 returnPos = new Vector3(spawnPos.x + playerPos.x,0, spawnPos.y + playerPos.z);
         return returnPos;   
@@ -20,5 +21,18 @@ public class Randomizer
     public bool SetEnemyVariant()
     {
         return false;
+    }
+
+    public List<string> RandomizeList(List<string> listToShuffle)
+    {
+        System.Random rand = new System.Random();
+        for (int i = listToShuffle.Count - 1; i > 0; i--)
+        {
+            var k = rand.Next(i + 1);
+            var value = listToShuffle[k];
+            listToShuffle[k] = listToShuffle[i];
+            listToShuffle[i] = value;
+        }
+        return listToShuffle;
     }
 }

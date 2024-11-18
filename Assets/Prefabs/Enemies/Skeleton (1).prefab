@@ -703,10 +703,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2024555871712486219}
   - component: {fileID: 3764285766974152958}
-  - component: {fileID: 6636885847318090928}
   - component: {fileID: 8051254833171733188}
   - component: {fileID: 931198662917033657}
   - component: {fileID: 7643548274187631595}
+  - component: {fileID: 7695867406461607969}
   m_Layer: 0
   m_Name: Skeleton (1)
   m_TagString: Enemy
@@ -754,27 +754,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6636885847318090928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3834564005537997509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa025869e6a2249438311563df5c5250, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: f966e17432f4eb241b4e5f8e3f9d67ac, type: 2}
-  xpOrb: {fileID: 1772978810394773105, guid: 3758f4c70e333de418132e1efe364f39, type: 3}
-  player: {fileID: 0}
-  health: 0
-  attackRange: 0
-  anim: {fileID: 4090081883814290314}
-  lookSpeed: 4
-  healthSlider: {fileID: 4136311551392160990}
-  agent: {fileID: 7643548274187631595}
 --- !u!54 &8051254833171733188
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -845,6 +824,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7695867406461607969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834564005537997509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef7f8289e929954bb8f2c441ec1fb7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: f966e17432f4eb241b4e5f8e3f9d67ac, type: 2}
+  xpOrb: {fileID: 1772978810394773105, guid: 3758f4c70e333de418132e1efe364f39, type: 3}
+  player: {fileID: 0}
+  health: 0
+  attackRange: 0
+  anim: {fileID: 3764285766974152958}
+  lookSpeed: 0
+  healthSlider: {fileID: 4136311551392160990}
+  agent: {fileID: 7643548274187631595}
 --- !u!1 &4026734294490985091
 GameObject:
   m_ObjectHideFlags: 0

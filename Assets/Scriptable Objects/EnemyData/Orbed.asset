@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 75
   damage: 10
-  attackCooldown: 1
+  attackCooldown: 3
   enemyXP: 5
   attackRange: 12.5

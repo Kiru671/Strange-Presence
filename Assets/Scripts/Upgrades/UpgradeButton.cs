@@ -10,8 +10,7 @@ public class UpgradeButton : MonoBehaviour
     public void Upgrade()
     {
         Time.timeScale = 1;
-        string chosenUpgrade = gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
-        upgrades.UpgradeChosen(chosenUpgrade);
+        upgrades.UpgradeChosen(upgrades.GetClassWithValue(upgrades.upgrades, gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text));
         Debug.Log("Upgrade clicked"); 
     }
 }

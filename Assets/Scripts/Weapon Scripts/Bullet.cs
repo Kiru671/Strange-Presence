@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     private BulletPool pool;
     private float bulletDespawnTimer = 1f;
     private Player player;
+    public bool knockBack;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,10 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
             other.gameObject.GetComponent<Enemy>().GetHit(player.damage);
+        if (knockBack)
+        {
+            other.gameObject.GetComponent<Enemy>().KnockedBack();
+        }
             pool.objectPool.Release(this);
     }
 

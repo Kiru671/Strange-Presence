@@ -12,42 +12,45 @@ public class GameManager : MonoBehaviour
 
     private bool waveCleared;
     public int currentWave = 0;
-    private int enemyCount;
+    public int enemyCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyCount = 15; //Placeholder. Change with enemy spawner remaining enemycount.
         Invoke("StartGame", 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (waveCleared)
-        {
-            NextWave();
-        }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextWave();
+
         }
-    }
 #endif
-    private void NextWave()
+    }
+
+    public void NextWave()
     {
-        Debug.Log($"Current Wave: {currentWave}");
         currentWave++;
-        waveCleared = false;
+        enemySpawner.ChangeWave();
+        Debug.Log($"Current Wave: {currentWave}");
         decal.enabled = true;
     }
+
     private void StartGame()
     {
         decal.enabled = true;
     }
+
     public void RemoveEnemy()
     {
-        enemyCount--;
+        enemySpawner.enemiesRemaining--;
+        if (enemySpawner.enemiesRemaining <= 0)
+        {
+            NextWave();         
+        }
     }
 }

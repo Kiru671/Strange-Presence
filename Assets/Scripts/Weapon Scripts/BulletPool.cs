@@ -18,6 +18,8 @@ public class BulletPool : MonoBehaviour
     [SerializeField] private GameObject Player;
     [SerializeField] private CinemachineShake virtualCam;
     private Transform bulletSpawnPoint;
+    private Transform bulletSpawnPoint1;
+    private Transform bulletSpawnPoint2;
     private Bullet bullet;
 
     private void Awake()
@@ -28,8 +30,11 @@ public class BulletPool : MonoBehaviour
         if(chosenWeapon == null)
             chosenWeapon = Player.GetComponentInChildren<Weapon>();
 
-        //Always set BulletSpawn as first child!
+        /*//Always set BulletSpawn as first child!
         bulletSpawnPoint = chosenWeapon.transform.GetChild(0);
+        bulletSpawnPoint1 = chosenWeapon.transform.GetChild(1);
+        bulletSpawnPoint2 = chosenWeapon.transform.GetChild(2);*/
+
         bullet = bulletPrefab.GetComponent<Bullet>();
     }
 
@@ -43,8 +48,8 @@ public class BulletPool : MonoBehaviour
     void OnPull(Bullet bulletInstance)
     {
         bulletInstance.gameObject.SetActive(true);
-        bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
-        bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0,Player.transform.localEulerAngles.y,0);
+        //bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
+        //bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0,Player.transform.localEulerAngles.y,0);
         virtualCam.Shake(1f, 0.1f);
     }
 

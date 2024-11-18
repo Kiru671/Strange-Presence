@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveType: 2
   skeletonCount: 1
-  specialCount: 0
+  orbedCount: 0
+  vorgCount: 0
+  enhancedVorgCount: 0
+  totalEnemyCount: 1

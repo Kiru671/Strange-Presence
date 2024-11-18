@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   maxHealth: 75
-  damage: 10
+  damage: 5
   attackCooldown: 1
   enemyXP: 5
-  attackRange: 2
+  attackRange: 3

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Wave 1
   m_EditorClassIdentifier: 
   waveType: 0
-  orbedCount: 15
-  vorgCount: 1
-  enhancedVorglCount: 0
-  totalEnemyCount: 0
+  skeletonCount: 5
+  orbedCount: 0
+  vorgCount: 0
+  enhancedVorgCount: 0
+  totalEnemyCount: 5
