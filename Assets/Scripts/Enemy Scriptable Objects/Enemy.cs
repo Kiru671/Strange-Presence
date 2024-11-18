@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
 {
     protected Randomizer randomizer;
     protected GameManager gameManager;
-    
+    protected AudioManager audioManager;
+
     [SerializeField] protected EnemyDataObject enemyData;
     [SerializeField] protected XPOrb xpOrb;
     [SerializeField] protected Player player;
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
         randomizer = new Randomizer();
         player = GameObject.Find("Player").GetComponent<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame

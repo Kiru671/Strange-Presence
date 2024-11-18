@@ -101,30 +101,6 @@ public class EnemySpawner : MonoBehaviour
 
         enemiesToSpawn.Clear();
 
-        /*for (int i = 0; i < enemiesRemaining; i++)
-        {
-            Debug.Log("Adding to list");
-            if (vorgCount > 0) 
-            {
-                enemiesToSpawn.Add("Vorg");
-                vorgCount--;
-            }
-            if(orbedCount > 0)
-            {
-                enemiesToSpawn.Add("Orbed");
-                orbedCount--;
-            }
-            if (skeletonCount > 0)
-            {
-                enemiesToSpawn.Add("Skeleton");
-                skeletonCount--;
-            }
-            if (enhancedVorgCount > 0)
-            {
-                enemiesToSpawn.Add("EnhancedVorg");
-                enhancedVorgCount--;
-            }
-        }*/
 
         for (int i = 0; i < skeletonCount; i++)
         {

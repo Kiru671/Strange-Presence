@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class VorgEnhanced : Enemy
 {
-    private int health;
     private float damage;
     private float attackCooldown;
+    private int enemyXP;
 
     void Start()
     {
         health = enemyData.maxHealth;
         damage = enemyData.damage;
         attackCooldown = enemyData.attackCooldown;
+        enemyXP = enemyData.enemyXP;
     }
 
     void Update()

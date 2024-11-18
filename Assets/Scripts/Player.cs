@@ -13,9 +13,13 @@ public class Player : MonoBehaviour
     public int xpCap;
     public bool magnetic = false;
 
+    private AudioManager audioManager;
+
     [SerializeField] private Upgrades upgrades;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider xpBar;
+
+    
 
     [SerializeField] protected CinemachineShake virtualCam;
 
@@ -27,6 +31,7 @@ public class Player : MonoBehaviour
         XP = 0;
         xpCap = 5;
         virtualCam = GameObject.Find("VirtualCamera").GetComponent<CinemachineShake>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()

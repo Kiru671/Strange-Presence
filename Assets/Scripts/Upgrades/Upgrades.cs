@@ -68,6 +68,7 @@ public class Upgrades : MonoBehaviour
 
     private void OnEnable()
     {
+        AudioManager.Instance.PlaySFX("Upgrade");
         // List 3 upgrades on screen when enabled. List 3 uniques playerLevel % 5 = 0. List 3 weapons at first.
         if(borderImages != null)
         {

@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextWave();
-
         }
 #endif
     }
 
     public void NextWave()
     {
+        AudioManager.Instance.PlaySFX("New wave");
         currentWave++;
         enemySpawner.ChangeWave();
         Debug.Log($"Current Wave: {currentWave}");

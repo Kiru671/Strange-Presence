@@ -11,6 +11,7 @@ public class UpgradeButton : MonoBehaviour
     {
         Time.timeScale = 1;
         upgrades.UpgradeChosen(upgrades.GetClassWithValue(upgrades.upgrades, gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text));
+        AudioManager.Instance.PlaySFX("UpgradeChosen");
         Debug.Log("Upgrade clicked"); 
     }
 }

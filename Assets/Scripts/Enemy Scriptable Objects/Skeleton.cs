@@ -75,6 +75,7 @@ public class Skeleton : Enemy
         {
             nextAttack = Time.time + attackCooldown;
             anim.SetTrigger("Attack");
+            AudioManager.Instance.PlaySFX("SkeletonAttack");
         }       
     }
 

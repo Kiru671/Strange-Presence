@@ -30,6 +30,7 @@ public class Pistol : Weapon
         {
             Debug.Log("RELOADING!");
             reloadStarted = true;
+            AudioManager.Instance.PlaySFX("Reload");
             StartCoroutine("Reload", reloadSpeed);
         }
     }
@@ -65,6 +66,7 @@ public class Pistol : Weapon
             
             
         }
+        AudioManager.Instance.PlaySFX("RifleFire");
         cooldown.cooldownTime = 60 / fireRate;
         cooldown.StartCooldown();
         currentAmmo--;
