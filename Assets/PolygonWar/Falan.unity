@@ -2868,7 +2868,7 @@ MonoBehaviour:
   - name: Upgrade
     clip: {fileID: 8300000, guid: 90feef88dc3b26e47a56ff341981fbaa, type: 3}
   - name: UpgradeChosen
-    clip: {fileID: 8300000, guid: 90feef88dc3b26e47a56ff341981fbaa, type: 3}
+    clip: {fileID: 8300000, guid: 8ad1f9f3a2a60c04da596e35cf500c03, type: 3}
   - name: xp
     clip: {fileID: 8300000, guid: b1382b64570ef4d46928e046c8d8b7f1, type: 3}
   musicSource: {fileID: 1748457371}
