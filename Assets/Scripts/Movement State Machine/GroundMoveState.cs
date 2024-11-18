@@ -7,17 +7,19 @@ using UnityEngine.Windows;
 public class GroundMoveState : IMovementState
 {
     private GameObject player;
+    private Player playerScript;
     private Vector2 rotation;
     private MovementStateMachine stateMachine;
     private PlayerInputManager inputManager;
     private Weapon chosenWeapon;
+    private float rayLength;
     public void EnterState(MovementStateMachine context, PlayerInputManager inputs)
     {
         Debug.Log("GroundState");
         stateMachine = context;
         player = context.gameObject;
+        playerScript = player.gameObject.GetComponent<Player>();
         inputManager = inputs;
-        
         inputs.inputActions.Move.Dash.performed -= inputs.OnDash;
         inputs.inputActions.Move.Dash.performed += Dash;
     }
@@ -35,12 +37,24 @@ public class GroundMoveState : IMovementState
     public void UpdateState()
     {
         LookAndShoot();
+        Ray camRay = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, -9,0));
+        
+
+        if (groundPlane.Raycast(camRay, out rayLength))
+        {
+            Vector3 pointToLook = camRay.GetPoint(rayLength);
+            Debug.DrawLine(camRay.origin, pointToLook, Color.cyan);
+            player.transform.LookAt(new Vector3(pointToLook.x, player.transform.position.y, pointToLook.z));
+        }
+
+
         Move();
     }
 
     public void Move()
     {
-        Vector2 pos = inputManager.move.normalized * inputManager.moveSpeed * Time.deltaTime;
+        Vector2 pos = inputManager.move.normalized * playerScript.moveSpeed * Time.deltaTime;
         Vector3 move = new Vector3(pos.x, 0, pos.y);
         player.transform.position += move;
     }

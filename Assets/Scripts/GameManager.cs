@@ -5,31 +5,52 @@ using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private ShowWaveDecal decal;
+    [SerializeField] private Player player;
+    private Weapon chosenWeapon;
+
     private bool waveCleared;
-    public int currentWave = 1;
+    public int currentWave = 0;
+    public int enemyCount;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Invoke("StartGame", 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (waveCleared)
-        {
-            NextWave();
-        }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextWave();
         }
-    }
 #endif
-    private void NextWave()
+    }
+
+    public void NextWave()
     {
+        AudioManager.Instance.PlaySFX("New wave");
         currentWave++;
-        waveCleared = false;
+        enemySpawner.ChangeWave();
+        Debug.Log($"Current Wave: {currentWave}");
+        decal.enabled = true;
+    }
+
+    private void StartGame()
+    {
+        decal.enabled = true;
+    }
+
+    public void RemoveEnemy()
+    {
+        enemySpawner.enemiesRemaining--;
+        if (enemySpawner.enemiesRemaining <= 0)
+        {
+            NextWave();         
+        }
     }
 }

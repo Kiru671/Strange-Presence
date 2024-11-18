@@ -16,20 +16,25 @@ public class BulletPool : MonoBehaviour
 
     [SerializeField] private Weapon chosenWeapon;
     [SerializeField] private GameObject Player;
+    [SerializeField] private CinemachineShake virtualCam;
     private Transform bulletSpawnPoint;
+    private Transform bulletSpawnPoint1;
+    private Transform bulletSpawnPoint2;
     private Bullet bullet;
 
     private void Awake()
     {
-        objectPool = new ObjectPool<Bullet>(CreateGround, OnPull, OnRelease, OnDestroyGround, collectionCheck, defaultCap, maxSize);
+        objectPool = new ObjectPool<Bullet>(CreateGround, OnPull, OnRelease, OnDestroyBullet, collectionCheck, defaultCap, maxSize);
+        virtualCam = GameObject.Find("VirtualCamera").GetComponent<CinemachineShake>();
         
         if(chosenWeapon == null)
             chosenWeapon = Player.GetComponentInChildren<Weapon>();
-        else
-            Debug.LogError("No weapon attached to player.");
 
-        //Always set BulletSpawn as first child!
+        /*//Always set BulletSpawn as first child!
         bulletSpawnPoint = chosenWeapon.transform.GetChild(0);
+        bulletSpawnPoint1 = chosenWeapon.transform.GetChild(1);
+        bulletSpawnPoint2 = chosenWeapon.transform.GetChild(2);*/
+
         bullet = bulletPrefab.GetComponent<Bullet>();
     }
 
@@ -43,8 +48,9 @@ public class BulletPool : MonoBehaviour
     void OnPull(Bullet bulletInstance)
     {
         bulletInstance.gameObject.SetActive(true);
-        bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
-        bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0,Player.transform.localEulerAngles.y,0);
+        //bulletInstance.gameObject.transform.position = bulletSpawnPoint.position;
+        //bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0,Player.transform.localEulerAngles.y,0);
+        virtualCam.Shake(1f, 0.1f);
     }
 
     void OnRelease(Bullet bulletInstance)
@@ -52,7 +58,7 @@ public class BulletPool : MonoBehaviour
         bulletInstance.gameObject.SetActive(false);
     }
 
-    void OnDestroyGround(Bullet bulletInstance)
+    void OnDestroyBullet(Bullet bulletInstance)
     {
 
     }
