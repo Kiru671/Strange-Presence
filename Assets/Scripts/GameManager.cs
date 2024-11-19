@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private Weapon chosenWeapon;
 
     private bool waveCleared;
+    private bool gameWon;
     public bool gameStopped;
     public int currentWave = 0;
     public int enemyCount;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     public void CompleteScreen()
     {
         completeScreen.SetActive(true);
+        gameWon = true;
     }
 
     public void NextWave()
@@ -103,6 +105,7 @@ public class GameManager : MonoBehaviour
         }
         stopScreen.SetActive(false);
         settingsScreen.SetActive(true);
+        completeScreen.SetActive(false);
     }
     public void BackFromSettings()
     {
@@ -112,6 +115,10 @@ public class GameManager : MonoBehaviour
         {
             deathScreen.SetActive(true);
             return;
+        }
+        else if (gameWon)
+        {
+            completeScreen.SetActive(true);
         }
         if(gameStopped)
             ResumeGame();
