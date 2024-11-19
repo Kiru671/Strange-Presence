@@ -809,7 +809,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3834564005537997509}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 6
@@ -839,12 +839,15 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: f966e17432f4eb241b4e5f8e3f9d67ac, type: 2}
   xpOrb: {fileID: 1772978810394773105, guid: 3758f4c70e333de418132e1efe364f39, type: 3}
   player: {fileID: 0}
+  maxHealth: 0
   health: 0
   attackRange: 0
   anim: {fileID: 3764285766974152958}
   lookSpeed: 0
   healthSlider: {fileID: 4136311551392160990}
   agent: {fileID: 7643548274187631595}
+  knockbackForce: 10
+  knockbackDuration: 0.5
 --- !u!1 &4026734294490985091
 GameObject:
   m_ObjectHideFlags: 0

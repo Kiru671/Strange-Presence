@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject stopScreen;
     [SerializeField] private GameObject settingsScreen;
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject completeScreen;
+    public Timer timer;
 
     private Weapon chosenWeapon;
 
@@ -40,10 +42,21 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
+    public void CompleteScreen()
+    {
+        completeScreen.SetActive(true);
+    }
+
     public void NextWave()
     {
         AudioManager.Instance.PlaySFX("New wave");
         currentWave++;
+        if (currentWave == 1)
+            timer.enabled = true;
+        if (currentWave == enemySpawner.MaxWave)
+        {
+            CompleteScreen();
+        }
         enemySpawner.ChangeWave();
         Debug.Log($"Current Wave: {currentWave}");
         decal.enabled = true;
@@ -71,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         stopScreen.SetActive(false);
+        gameStopped = false;
     }
     public void ReloadScene()
     {
@@ -80,18 +94,29 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.musicSource.Play();
     }
     public void EnableSettingsPanel()
-    {     
+    {
+        gameStopped = true;
         if (deathScreen.activeInHierarchy)
         {
             deathScreen.SetActive(false);
+            
         }
+        stopScreen.SetActive(false);
         settingsScreen.SetActive(true);
     }
     public void BackFromSettings()
     {
         settingsScreen.SetActive(false);
-        if(player.isDead)
+        
+        if (player.isDead)
+        {
             deathScreen.SetActive(true);
+            return;
+        }
+        if(gameStopped)
+            ResumeGame();
+        else
+            stopScreen.SetActive(true);      
     }
     public void QuitGame()
     {

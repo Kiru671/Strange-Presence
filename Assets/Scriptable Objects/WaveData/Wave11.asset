@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3da1e6ed9afd2141bceb2fab4a5269d, type: 3}
-  m_Name: Wave 5
+  m_Name: Wave11
   m_EditorClassIdentifier: 
   waveType: 0
-  skeletonCount: 15
+  skeletonCount: 0
   orbedCount: 0
-  vorgCount: 3
+  vorgCount: 0
   enhancedVorgCount: 0
-  totalEnemyCount: 18
+  totalEnemyCount: 0

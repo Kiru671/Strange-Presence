@@ -22,10 +22,10 @@ public class Upgrades : MonoBehaviour
 
     public Upgrade[] upgrades = new Upgrade[]
     {
-        new Upgrade{Title = "Agile Hands", Rarity = "Common", Description = "Reload speed is faster by X%", Increase = 25, Reocurring = true , UpgradeType = UpgradeType.ReloadSpeed},
-        new Upgrade{Title = "Hasty Reflexes", Rarity = "Rare", Description = "Reload speed is faster by X%", Increase = 50, Reocurring = true, UpgradeType = UpgradeType.ReloadSpeed},
-        new Upgrade{Title = "0 Delay Neural Enhancements", Rarity = "Epic", Description = "Reload speed is faster by X%", Increase = 100, Reocurring = false, UpgradeType = UpgradeType.ReloadSpeed},
-        new Upgrade{Title = "Rocket Assisted Gloves by LeaTech", Rarity = "Legendary", Description = "Reload speed is faster by X%", Increase = 250, Reocurring = false, UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "Agile Hands", Rarity = "Common", Description = "Reload speed is faster by X%", Increase = 15, Reocurring = true , UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "Hasty Reflexes", Rarity = "Rare", Description = "Reload speed is faster by X%", Increase = 25, Reocurring = true, UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "0 Delay Neural Enhancements", Rarity = "Epic", Description = "Reload speed is faster by X%", Increase = 50, Reocurring = false, UpgradeType = UpgradeType.ReloadSpeed},
+        new Upgrade{Title = "Rocket Assisted Gloves by LeaTech", Rarity = "Legendary", Description = "Reload speed is faster by X%", Increase = 75, Reocurring = false, UpgradeType = UpgradeType.ReloadSpeed},
 
         new Upgrade{Title = "Deep Mags", Rarity = "Common", Description = "Your magazines have X% more ammunition.", Increase = 30, Reocurring = true, UpgradeType = UpgradeType.Magazine},
         new Upgrade{Title = "Deeper Mags", Rarity = "Rare", Description = "Your magazines have X% more ammunition.", Increase = 75, Reocurring = true, UpgradeType = UpgradeType.Magazine},
@@ -215,7 +215,6 @@ public class Upgrades : MonoBehaviour
                 player.moveSpeed += chosenUpgrade.Increase * 0.01f * player.moveSpeed;
                 break;
             case UpgradeType.Unique:
-
                 if(chosenUpgrade.Title == "Electromagnetism")
                 {
                     Debug.Log("Magnetic");
@@ -230,9 +229,7 @@ public class Upgrades : MonoBehaviour
                     weapon.bulletDMG *= chosenUpgrade.Increase * 0.01f;
                     weapon.diresVengeance = true;
                 }
-
                 break;
-
         }
         this.gameObject.SetActive(false);
     }

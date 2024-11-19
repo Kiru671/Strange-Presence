@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Pool;
 using UnityEngine.VFX;
 
@@ -15,18 +16,19 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private GameObject Player;
+    private NavMeshAgent agent;
     private Enemy enemy;
 
     private void Awake()
     {
-        objectPool = new ObjectPool<Enemy>(CreateGround, OnPull, OnRelease, OnDestroyEnemy, collectionCheck, defaultCap, maxSize);
-
+        objectPool = new ObjectPool<Enemy>(CreateSkeletons, OnPull, OnRelease, OnDestroyEnemy, collectionCheck, defaultCap, maxSize);
         enemy = enemyPrefab.GetComponent<Enemy>();
     }
 
-    private Enemy CreateGround()
+    private Enemy CreateSkeletons()
     {
-        Enemy enemyInstance = Instantiate(enemy, Vector3.zero, Quaternion.identity);
+        Enemy enemyInstance = Instantiate(enemy, new Vector3(-16,-8, -107), Quaternion.identity);
+        enemyInstance.GetComponent<NavMeshAgent>().enabled = false;
         enemyInstance.gameObject.SetActive(false);
         return enemyInstance;
     }

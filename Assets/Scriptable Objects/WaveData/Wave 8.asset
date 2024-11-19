@@ -15,6 +15,6 @@ MonoBehaviour:
   waveType: 0
   skeletonCount: 50
   orbedCount: 0
-  vorgCount: 1
-  enhancedVorgCount: 1
-  totalEnemyCount: 52
+  vorgCount: 5
+  enhancedVorgCount: 0
+  totalEnemyCount: 55

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {   
@@ -32,11 +33,14 @@ public class EnemySpawner : MonoBehaviour
     private int skeletonCount;
     private int totalEnemyCount;
 
+    public int MaxWave => waves.Length - 1;
+
 
     private float timeUntilSpawn;
 
     void Awake()
     {
+        Debug.Log(MaxWave);
         randomizer = new Randomizer();
         SetTimeUntilSpawn();
         ChangeWave();
@@ -59,31 +63,31 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnAd()
     {
-        //if (enemiesToSpawn.Count == 0) Debug.Log("List Empty"); return;
-
         Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
 
         if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Skeleton")
         {
             Enemy enemyInstance = enemyPoolSkeletons.objectPool.Get();
-            enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+            enemyInstance.GetComponent<NavMeshAgent>().enabled = true;
+            enemyInstance.GetComponent<NavMeshAgent>().Warp(new Vector3(spawnPos.x, 0, spawnPos.z));
             enemiesToSpawn.Remove("Skeleton");
         }
         else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Orbed")
         {
             Enemy enemyInstance = enemyPoolOrbeds.objectPool.Get();
+            enemyInstance.GetComponent<NavMeshAgent>().enabled = true;
             enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
             enemiesToSpawn.Remove("Orbed");
         }
         else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Vorg")
         {
             Enemy enemyInstance = enemyPoolVorgs.objectPool.Get();
+            enemyInstance.GetComponent<NavMeshAgent>().enabled = true;
             enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
             enemiesToSpawn.Remove("Vorg");
         }
         else
             Debug.Log("All enemies in this wave have spawned.");
-
     }
 
     private void SetTimeUntilSpawn()
