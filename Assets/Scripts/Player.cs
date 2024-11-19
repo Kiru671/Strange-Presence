@@ -12,17 +12,20 @@ public class Player : MonoBehaviour
     public int XP;
     public int xpCap;
     public bool magnetic;
+    public bool isDead;
 
     private AudioManager audioManager;
 
     [SerializeField] private Upgrades upgrades;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider xpBar;
+    [SerializeField] private GameObject deathPanel;
 
-    
+
+
 
     [SerializeField] protected CinemachineShake virtualCam;
-
+    
     void Start()
     {
         health = maxHealth;
@@ -36,7 +39,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void GetHit(int damage)
@@ -48,7 +51,8 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-
+        deathPanel.SetActive(true);
+        AudioManager.Instance.musicSource.Pause();
     }
     
     public void GainXP(int gainedXP)
@@ -58,7 +62,6 @@ public class Player : MonoBehaviour
         xpBar.value = (float)XP / (float)xpCap;
         if (XP >= xpCap)
         {
-            Debug.Log("Checkxp");
             XP = 0;
             LevelUp();
             Debug.Log("Leveled up!");
@@ -68,6 +71,7 @@ public class Player : MonoBehaviour
     void LevelUp()
     {
         upgrades.gameObject.SetActive(true);
+        xpBar.value = 0;
         xpCap += 10;
         StartCoroutine("StopTime");
     }

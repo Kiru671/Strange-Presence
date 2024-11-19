@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private ShowWaveDecal decal;
     [SerializeField] private Player player;
+    [SerializeField] private GameObject stopScreen;
+    [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private GameObject deathScreen;
+
     private Weapon chosenWeapon;
 
     private bool waveCleared;
+    public bool gameStopped;
     public int currentWave = 0;
     public int enemyCount;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,4 +62,42 @@ public class GameManager : MonoBehaviour
             NextWave();         
         }
     }
+    public void StopGame()
+    {
+        stopScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        stopScreen.SetActive(false);
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("Falan");
+        Time.timeScale = 1f;
+        AudioManager.Instance.musicSource.Stop();
+        AudioManager.Instance.musicSource.Play();
+    }
+    public void EnableSettingsPanel()
+    {     
+        if (deathScreen.activeInHierarchy)
+        {
+            deathScreen.SetActive(false);
+        }
+        settingsScreen.SetActive(true);
+    }
+    public void BackFromSettings()
+    {
+        settingsScreen.SetActive(false);
+        if(player.isDead)
+            deathScreen.SetActive(true);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+
+
 }
