@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Skeleton : Enemy
 {
@@ -14,6 +15,7 @@ public class Skeleton : Enemy
 
     private bool TargetInRange => Vector3.Distance(transform.position, player.transform.position) < attackRange;
     private bool attacking;
+    
 
 
     void Awake()
@@ -23,6 +25,7 @@ public class Skeleton : Enemy
 
     private void OnEnable()
     {
+        
         player = GameObject.Find("Player").GetComponent<Player>();
         anim = GetComponentInChildren<Animator>();
         gameObject.GetComponent<BoxCollider>().enabled = true;
@@ -35,6 +38,9 @@ public class Skeleton : Enemy
         attackRange = enemyData.attackRange;
         enemyXP = enemyData.enemyXP;
         healthSlider.gameObject.SetActive(true);
+        healthSlider.value = (float)health / maxHealth;
+
+
 
     }
     private void OnDisable()
@@ -50,7 +56,6 @@ public class Skeleton : Enemy
             return;
         }
         anim.SetFloat("Speed", agent.velocity.magnitude);
-
 
         if (!agent.isOnNavMesh)
         {
@@ -111,7 +116,7 @@ public class Skeleton : Enemy
         {
             Vector3 newSpawnPos = randomizer.GetSpawnPos(30f);
             Vector3 adjustedPos = new Vector3(newSpawnPos.x, -9.81f, newSpawnPos.z); ;
-            gameObject.transform.position = adjustedPos;
+            //gameObject.transform.position = adjustedPos;
             agent.Warp(adjustedPos);
             
         }
@@ -136,6 +141,7 @@ public class Skeleton : Enemy
         deathStarted = true;
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+        //Pools.gameObject.GetComponent<EnemyPool>().objectPool.Release(this);
     }
 
     public void DamageIfInRange()

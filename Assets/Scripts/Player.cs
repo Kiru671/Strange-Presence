@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public bool isDead;
 
     private AudioManager audioManager;
+    [SerializeField] private Timer timer;
 
     [SerializeField] private Upgrades upgrades;
     [SerializeField] private Slider healthBar;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         deathPanel.SetActive(true);
+        timer.enabled = false;
         AudioManager.Instance.musicSource.Pause();
     }
     
@@ -90,10 +92,12 @@ public class Player : MonoBehaviour
         }
         StopCoroutine(StopTime());
     }
+
     public void SetHealthBar()
     {
         healthBar.value = (float)health / maxHealth;
     }
+
     public void SetXPBar()
     {
         xpBar.value = (float)XP / xpCap;

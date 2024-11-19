@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     protected Randomizer randomizer;
     protected GameManager gameManager;
     protected AudioManager audioManager;
+    
 
     [SerializeField] protected EnemyDataObject enemyData;
     [SerializeField] protected XPOrb xpOrb;
@@ -20,6 +21,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float lookSpeed;
     [SerializeField] protected Slider healthSlider;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected GameObject Pools;
+
 
     public float knockbackForce = 10f;
     public float knockbackDuration = 0.5f;
@@ -33,6 +36,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        Pools = GameObject.Find("EnemyPool");
     }
 
     // Update is called once per frame

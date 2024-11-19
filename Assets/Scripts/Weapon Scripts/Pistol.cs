@@ -20,7 +20,8 @@ public class Pistol : Weapon
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) &! inputManager.gamepadMoving){
+        if (Input.GetKey(KeyCode.Mouse0) &! inputManager.gamepadMoving)
+        {
             Fire();
         }
         if (inputManager.rotation.magnitude > 0 &! IsReloading)

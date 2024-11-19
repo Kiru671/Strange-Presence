@@ -6,11 +6,16 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private float timeCounter;
+    [SerializeField] public float timeCounter;
     [SerializeField] private int minutes;
     [SerializeField] private int seconds;
     [SerializeField] private TextMeshProUGUI timerText;
-
+    private Timer thisTimer;
+    private void Awake()
+    {
+        thisTimer = this;
+        thisTimer.enabled = false;
+    }
     void Update()
     {
         timeCounter += Time.deltaTime;

@@ -14,13 +14,8 @@ public class Randomizer
         Vector3 playerPos = GameObject.Find("Player").GetComponent<Transform>().position;
         Vector2 randomV2 = UnityEngine.Random.insideUnitCircle;
         Vector2 spawnPos = randomV2.normalized * spawnRange;
-        Vector3 returnPos = new Vector3(spawnPos.x + playerPos.x,0, spawnPos.y + playerPos.z);
+        Vector3 returnPos = new Vector3(spawnPos.x + playerPos.x, 0, spawnPos.y + playerPos.z);
         return returnPos;   
-    }
-
-    public bool SetEnemyVariant()
-    {
-        return false;
     }
 
     public List<string> RandomizeList(List<string> listToShuffle)
