@@ -5,37 +5,49 @@ public class PlayerInputManager : MonoBehaviour
 {
     public InputActions inputActions;
     private MovementStateMachine stateMachine;
+    [SerializeField] private GameManager gameManager;
 
     [SerializeField, Range(4f,15f)]
 
     public Vector2 rotation;
     public Vector2 move;
 
+    public bool gamepadMoving;
     private void Awake()
     {
         inputActions = new InputActions();
         stateMachine = new MovementStateMachine();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void OnEnable()
     {
         inputActions.Enable();
-        inputActions.Move.Dash.performed += OnDash;
-        inputActions.Move.Walk.performed += cntxt => move = cntxt.ReadValue<Vector2>();
+        inputActions.Move.Walk.performed += cntxt => { move = cntxt.ReadValue<Vector2>();
+            if (cntxt.control.device is Gamepad) { gamepadMoving = true; }
+            else { gamepadMoving = false; }
+        };
         inputActions.Move.LookShoot.performed += cntxt => rotation = cntxt.ReadValue<Vector2>();
         inputActions.Move.LookShoot.canceled += cntxt => rotation = Vector2.zero;
-        //inputActions.Move.LookShoot.performed += OnLookAndShoot;
     }
 
     private void OnDisable()
     {
         inputActions.Disable();
-        inputActions.Move.Dash.performed -= OnDash;
     }
-
-    public void OnDash(InputAction.CallbackContext context)
+    private void Update()
     {
-        Debug.Log("SKIDIBOPMMDADA!!");
-    }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if (gameManager.gameStopped)
+            {
+                gameManager.ResumeGame();
+            }
+            else
+            {
+                gameManager.StopGame();
+            }           
+        }
+    }
 }
