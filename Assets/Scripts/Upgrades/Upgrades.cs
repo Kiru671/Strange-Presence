@@ -20,6 +20,7 @@ public class Upgrades : MonoBehaviour
     private List<GameObject> borderImages = new List<GameObject>();
     private Image[] upgradeImages;
 
+    [SerializeField]
     public Upgrade[] upgrades = new Upgrade[]
     {
         new Upgrade{Title = "Agile Hands", Rarity = "Common", Description = "Reload speed is faster by X%", Increase = 15, Reocurring = true , UpgradeType = UpgradeType.ReloadSpeed},
