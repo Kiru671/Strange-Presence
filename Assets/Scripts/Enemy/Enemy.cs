@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class Enemy : MonoBehaviour
     protected Randomizer randomizer;
     protected GameManager gameManager;
     protected AudioManager audioManager;
-    private FadeOutOnDeath fadeOutOnDeath;
+    private HealthBarFade fadeOutOnDeath;
     
     [SerializeField] protected EnemyDataObject enemyData;
     [SerializeField] protected XPOrb xpOrb;
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour
     private float knockbackTime = 0f;
 
     protected bool deathStarted;
+    protected bool firstHit;
 
     void Start()
     {
@@ -40,13 +42,14 @@ public class Enemy : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         Pools = GameObject.Find("EnemyPool");
-        fadeOutOnDeath = healthSlider.GetComponentInChildren<FadeOutOnDeath>();
+        fadeOutOnDeath = healthSlider.gameObject.GetComponent<HealthBarFade>();
+        
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        //transform.rotation = Quaternion.Slerp(transform.rotation, player.transform.rotation, lookSpeed * Time.deltaTime);
+        firstHit = false;
     }
 
     public void KnockedBack()
@@ -58,6 +61,12 @@ public class Enemy : MonoBehaviour
     {
         if (deathStarted)
             return;
+        //Fade in the health bar when shot if enemy is shot for the first time.
+        if (!firstHit)
+        {
+            StartCoroutine(fadeOutOnDeath.FadeIn());
+            firstHit = true;
+        }
         health -= damage;
         healthSlider.value = (float)health / maxHealth;
         anim.SetTrigger("Hit");
@@ -66,10 +75,10 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    public virtual void Die()
+    
+    protected virtual void Die()
     {
-        //healthSlider.gameObject.SetActive(false);
-        fadeOutOnDeath.enabled = true;
+        StartCoroutine(fadeOutOnDeath.FadeOut());
         gameManager.RemoveEnemy();
         gameObject.GetComponent<BoxCollider>().enabled = false;
         xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1.5f, Quaternion.identity);
@@ -78,6 +87,4 @@ public class Enemy : MonoBehaviour
         if (!deathStarted)
             StartCoroutine("DieAfter");
     }
-
-
 }
