@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     protected Randomizer randomizer;
     protected GameManager gameManager;
     protected AudioManager audioManager;
+    private FadeOutOnDeath fadeOutOnDeath;
     
     [SerializeField] protected EnemyDataObject enemyData;
     [SerializeField] protected XPOrb xpOrb;
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         Pools = GameObject.Find("EnemyPool");
+        fadeOutOnDeath = healthSlider.GetComponentInChildren<FadeOutOnDeath>();
     }
 
     // Update is called once per frame
@@ -66,7 +68,8 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Die()
     {
-        healthSlider.gameObject.SetActive(false);
+        //healthSlider.gameObject.SetActive(false);
+        fadeOutOnDeath.enabled = true;
         gameManager.RemoveEnemy();
         gameObject.GetComponent<BoxCollider>().enabled = false;
         xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1.5f, Quaternion.identity);

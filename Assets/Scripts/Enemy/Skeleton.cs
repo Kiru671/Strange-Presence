@@ -82,31 +82,7 @@ public class Skeleton : Enemy
             AudioManager.Instance.PlaySFX("SkeletonAttack");
         }       
     }
-
-    /*public override void GetHit(int damage)
-    {
-        if (deathStarted)
-            return;
-        health -= damage;
-        healthSlider.value = (float)health / maxHealth;
-        anim.SetTrigger("Hit");
-        if (health <= 0)
-        {
-            Die();
-        }
-    }*/
-
-    /*public void Die()
-    {
-        healthSlider.gameObject.SetActive(false);
-        gameManager.RemoveEnemy();
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        xpOrb.containedXP = enemyXP;
-        anim.SetTrigger("Death");
-        if(!deathStarted)
-            StartCoroutine("DieAfter");
-    }*/
+    
 
     private IEnumerator CheckGround()
     {
