@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PolygonWar_Texture_04_A
+  m_Name: PolygonWar_Cutout
   m_Shader: {fileID: -6465566751694194690, guid: 9b6f4c976676e6a4ea5e27c89a6ffe88,
     type: 3}
   m_Parent: {fileID: 0}
@@ -108,13 +108,13 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _CutoutSize: 0.35
+    - _CutoutSize: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FalloffSize: 0.35
+    - _FalloffSize: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0

@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 7fd607540048c894c9a50b7bf21b0037, type: 2}
-  xpOrb: {fileID: 1772978810394773105, guid: 3758f4c70e333de418132e1efe364f39, type: 3}
+  xpOrb: {fileID: 6716869668195900131, guid: 09b4aaa20a5046f4786191ccaef5c0ef, type: 3}
   player: {fileID: 0}
   maxHealth: 0
   health: 0
@@ -1145,6 +1145,7 @@ MonoBehaviour:
   lookSpeed: 0
   healthSlider: {fileID: 7850557582247800810}
   agent: {fileID: 5533507327294049533}
+  Pools: {fileID: 7545112029257304197, guid: 09b4aaa20a5046f4786191ccaef5c0ef, type: 3}
   knockbackForce: 10
   knockbackDuration: 0.5
 --- !u!65 &8323613560675213859
