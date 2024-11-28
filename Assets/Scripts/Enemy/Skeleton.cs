@@ -16,12 +16,6 @@ public class Skeleton : Enemy
     private bool attacking;
     
 
-
-    void Awake()
-    {
-        
-    }
-
     private void OnEnable()
     {
         
@@ -38,10 +32,8 @@ public class Skeleton : Enemy
         enemyXP = enemyData.enemyXP;
         healthSlider.gameObject.SetActive(true);
         healthSlider.value = (float)health / maxHealth;
-
-
-
     }
+    
     private void OnDisable()
     {
         StopCoroutine("CheckGround");
@@ -98,16 +90,6 @@ public class Skeleton : Enemy
         else
             Debug.Log("SAFE!");
         StopCoroutine("CheckGround");
-    }
-    private IEnumerator DamageAfter()
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (TargetInRange)
-        {
-            player.GetHit(damage);
-        }
-        yield return new WaitForSeconds(attackCooldown);
-        attacking = false;
     }
 
     private IEnumerator DieAfter()

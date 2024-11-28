@@ -69,9 +69,9 @@ public class Upgrades : MonoBehaviour
 
     private void OnEnable()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = FindObjectOfType<Player>();
         AudioManager.Instance.PlaySFX("Upgrade");
-        // List 3 upgrades on screen when enabled. List 3 uniques playerLevel % 5 = 0. List 3 weapons at first.
+
         if(borderImages != null)
         {
             for (int i = 0; i < borderImages.Count(); i++)

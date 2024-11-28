@@ -43,8 +43,6 @@ public class Enemy : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         Pools = GameObject.Find("EnemyPool");
         fadeOutOnDeath = healthSlider.gameObject.GetComponent<HealthBarFade>();
-        
-        
     }
 
     private void OnEnable()

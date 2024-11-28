@@ -16,8 +16,7 @@ public class PlayerInputManager : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputActions();
-        stateMachine = new MovementStateMachine();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnEnable()
@@ -35,6 +34,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         inputActions.Disable();
     }
+    
     private void Update()
     {
 

@@ -5,15 +5,6 @@ using UnityEngine;
 public class HealthBarFade : MonoBehaviour
 {
     [SerializeField, Range(0.5f,2f)] private float fadeTime = 1f;
-    /*public void OnEnable()
-    {
-        StartCoroutine(FadeOut());
-    }
-
-    private void OnDisable()
-    {
-        StopCoroutine(FadeOut());
-    }*/
     public IEnumerator FadeOut()
     {
         CanvasGroup canvasGroup = gameObject.GetComponent<CanvasGroup>();
