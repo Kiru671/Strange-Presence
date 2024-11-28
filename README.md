@@ -4,11 +4,11 @@ Strange Presence
 
 A rogue-lite shoother action game with a modular wave & upgrades system that was born in a game jam.
 
-![strange-presence](assets\Gifs&Photos\Strange-Presence.png)
+![strange-presence](Assets/Gifs&Photos/Strange-Presence.png)
 
 ***Upgrade System***
 
-![strange-presence-upgrade](Assets\Gifs&Photos\StrangePresence_Short.gif)
+![strange-presence-upgrade](Assets/Gifs&Photos/StrangePresence_Short.gif)
 
 You an easily create new Upgrades and it will work unless the new Upgrade has a different upgrade type or is "Unique". If that's the case, you can modify the method below for the extended capability. (Unfortunately, that's how it is for now, sorry open-closed principle :pensive:).
 
