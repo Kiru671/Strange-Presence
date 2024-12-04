@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ListUpgrades
 {
-    private Upgrades upgrades;
+    private Upgrade upgrades;
 
     void ShowUpgrades()
     {

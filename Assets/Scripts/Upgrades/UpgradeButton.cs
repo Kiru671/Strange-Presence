@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpgradeButton : MonoBehaviour
 {
-    [SerializeField] private Upgrades upgrades;
+    [SerializeField] private UpgradeManager upgrades;
 
     public void Upgrade()
     {

@@ -8,9 +8,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Upgrades : MonoBehaviour
+public class UpgradeManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] upgradeCards;
+    [SerializeField] private Upgrade[] allUpgrades;
     private Weapon weapon;
     private TextMeshPro titleText;
     private TextMeshPro descriptionText;
@@ -83,22 +84,6 @@ public class Upgrades : MonoBehaviour
         availabeUpgrades.Clear();
         ChooseUpgrades();
         ListUpgrades();
-    }
-
-    void Update()
-    {
-        
-    }
-    public class Upgrade
-    {
-        public string Title { get; set; }
-        public float Increase { get; set; }
-        public string Description { get; set; }
-        public UpgradeType UpgradeType { get; set; }
-        public string Rarity { get; set; }
-        public bool Reocurring { get; set; }
-        public float Bias {get; set;}
-
     }
 
     public float GetRarityBias(string rarity)

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private AudioManager audioManager;
     [SerializeField] private Timer timer;
 
-    [SerializeField] private Upgrades upgrades;
+    [SerializeField] private UpgradeManager upgrades;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider xpBar;
     [SerializeField] private GameObject deathPanel;
