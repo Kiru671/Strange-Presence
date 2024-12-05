@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUpgrade : Upgrade
+namespace Upgrades
 {
-    public float speedIncrease;
-
-    public SpeedUpgrade(Rarity rarity, float speedIncrease) : base(rarity)
+    [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/SpeedUpgrade", order = 1) ]
+    public class SpeedUpgrade : Upgrade
     {
-        this.speedIncrease = speedIncrease;
-    }
-
-    public override void ApplyUpgrade(GameObject target)
-    {
-        // Apply the upgrade
+        public override void ApplyUpgrade(GameObject target, Rarity rarity)
+        {
+            // Apply the upgrade
+        }
     }
 }

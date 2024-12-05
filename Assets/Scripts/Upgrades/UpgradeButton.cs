@@ -9,9 +9,11 @@ public class UpgradeButton : MonoBehaviour
 
     public void Upgrade()
     {
-        Time.timeScale = 1;
+        /*
+         Time.timeScale = 1;
         upgrades.UpgradeChosen(upgrades.GetClassWithValue(upgrades.upgrades, gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text));
         AudioManager.Instance.PlaySFX("UpgradeChosen");
         Debug.Log("Upgrade clicked"); 
+        */
     }
 }

@@ -1,28 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Upgrade : ScriptableObject
+namespace Upgrades
 {
-    public string[] upgradeNames;
-    protected string finalName;
-    public string description;
-    public Rarity rarity;
-    
-    public abstract void ApplyUpgrade(GameObject target);
-    
-    public enum Rarity
+    public abstract class Upgrade : ScriptableObject
     {
-        Common,
-        Uncommon,
-        Rare,
-        Epic,
-        Legendary
-    }
-
-    protected Upgrade(Rarity rarity)
-    {
-        this.rarity = rarity;
-    }
+        public string[] upgradeNames;
+        protected string finalName;
+        public string description;
     
+        public abstract void ApplyUpgrade(GameObject target, Rarity rarity);
+    
+        public enum Rarity
+        {
+            Common,
+            Uncommon,
+            Rare,
+            Epic,
+            Legendary
+        }
+    }
 }

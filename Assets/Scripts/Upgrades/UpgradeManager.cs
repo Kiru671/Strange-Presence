@@ -7,6 +7,7 @@ using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Upgrades;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class UpgradeManager : MonoBehaviour
     private Image[] upgradeImages;
 
     [SerializeField]
-    public Upgrade[] upgrades = new Upgrade[]
+    /*public Upgrade[] upgrades = new Upgrade[]
     {
         new Upgrade{Title = "Agile Hands", Rarity = "Common", Description = "Reload speed is faster by X%", Increase = 15, Reocurring = true , UpgradeType = UpgradeType.ReloadSpeed},
         new Upgrade{Title = "Hasty Reflexes", Rarity = "Rare", Description = "Reload speed is faster by X%", Increase = 25, Reocurring = true, UpgradeType = UpgradeType.ReloadSpeed},
@@ -59,8 +60,8 @@ public class UpgradeManager : MonoBehaviour
         new Upgrade{Title = "Attack"},
         new Upgrade{Title = "Attack"},
         new Upgrade{Title = "Attack"},
-        new Upgrade{Title = "Piercing Bullets"}*/
-    };
+        new Upgrade{Title = "Piercing Bullets"}
+    };*/
 
     void Start()
     {
@@ -82,78 +83,12 @@ public class UpgradeManager : MonoBehaviour
         }
         borderImages.Clear();
         availabeUpgrades.Clear();
-        ChooseUpgrades();
-        ListUpgrades();
+        //ChooseUpgrades();
+        //ListUpgrades();
     }
-
-    public float GetRarityBias(string rarity)
-    {
-        switch (rarity)
-        {
-            case "Common":
-                return 5f;
-            case "Rare":
-                return 3f;
-            case "Epic":
-                return 2f;
-            case "Legendary":
-                return 0.2f;
-            case "Unique":
-                return 1f;
-            default:
-                return 1f;
-        }
-    }
-    public enum UpgradeType
-    {
-        ReloadSpeed,
-        FireRate,
-        MovementSpeed,
-        Magazine,
-        Health,
-        Unique
-    }
-
-    public void ChooseUpgrades()
-    {
-        List<float> weights = new List<float>();
-        float totalWeight = 0f;
-
-
-        foreach (Upgrade upgrade in upgrades)
-        {
-            float weight = GetRarityBias(upgrade.Rarity);
-            weights.Add(weight);
-            totalWeight += weight;
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            float randomValue = Random.Range(0, totalWeight);
-            float cumulativeWeight = 0f;
-
-            for (int j = 0; j < upgrades.Length; j++)
-            {
-                cumulativeWeight += weights[j];
-                if (randomValue <= cumulativeWeight)
-                {
-                    if (upgrades[j].Reocurring == false && selectedUpgrades.Contains(upgrades[j].Title))
-                    {
-                        continue;
-                    }
-
-                    if (upgrades[j].Rarity == "Legendary" || upgrades[j].Rarity == "Epic" || upgrades[j].Rarity == "Unique")
-                        selectedUpgrades.Add(upgrades[j].Title);
-
-                    availabeUpgrades.Add(upgrades[j]);
-                    totalWeight -= weights[j];
-                    weights[j] = 0f;
-                    break;
-                }
-            }
-        }      
-    }
-
+    
+    
+    /*
     public void ListUpgrades()
     {
         //Enable rarity borders, add to array to disable on next OnEnable()
@@ -177,8 +112,8 @@ public class UpgradeManager : MonoBehaviour
             transform.GetChild(i).GetComponent<Transform>().GetChild(1).GetComponent<TextMeshProUGUI>().text = availabeUpgrades[i].Description.Replace("X", availabeUpgrades[i].Increase.ToString());
         }
     }
-
-    public void UpgradeChosen(Upgrade chosenUpgrade)
+    */
+    /*public void UpgradeChosen(Upgrade chosenUpgrade)
     {
         Debug.Log(chosenUpgrade.Title);
         switch (chosenUpgrade.UpgradeType)
@@ -218,8 +153,8 @@ public class UpgradeManager : MonoBehaviour
                 break;
         }
         this.gameObject.SetActive(false);
-    }
-    public Upgrade GetClassWithValue(Upgrade[] array, string targetValue)
+    }*/
+    /*public Upgrade GetClassWithValue(Upgrade[] array, string targetValue)
     {
         foreach (Upgrade item in array)
         {
@@ -229,5 +164,5 @@ public class UpgradeManager : MonoBehaviour
             }
         }
         return null;
-    }
+    }*/
 }

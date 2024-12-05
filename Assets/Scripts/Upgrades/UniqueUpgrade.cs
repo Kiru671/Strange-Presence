@@ -1,20 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class UniqueUpgrade : Upgrade
+namespace Upgrades
 {
-    public string uniqueUpgradeName;
-    public string uniqueUpgradeDescription;
-
-    public UniqueUpgrade(Rarity rarity, string uniqueUpgradeName, string uniqueUpgradeDescription) : base(rarity)
+    [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/Unique Upgrade")]
+    public class UniqueUpgrade : Upgrade
     {
-        this.uniqueUpgradeName = uniqueUpgradeName;
-        this.uniqueUpgradeDescription = uniqueUpgradeDescription;
-    }
-
-    public override void ApplyUpgrade(GameObject target)
-    {
-        // Apply the upgrade
+        public override void ApplyUpgrade(GameObject target, Rarity rarity)
+        {
+            // Apply the upgrade
+        }
     }
 }

@@ -2,14 +2,10 @@ using UnityEngine;
 
 namespace Upgrades
 {
+    [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/Health Upgrade")]
     public class HealthUpgrade : Upgrade
     {
-        public HealthUpgrade(Rarity rarity) : base(rarity)
-        {
-            
-        }
-
-        public override void ApplyUpgrade(GameObject target)
+        public override void ApplyUpgrade(GameObject target, Rarity rarity)
         {
             // Example: Increase the health of the target
             var player = target.GetComponent<Player>();
