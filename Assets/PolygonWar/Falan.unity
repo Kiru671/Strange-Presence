@@ -2155,11 +2155,6 @@ MonoBehaviour:
   xpCap: 5
   magnetic: 0
   isDead: 0
-  timer: {fileID: 17051538}
-  upgrades: {fileID: 2062468989}
-  healthBar: {fileID: 964848231}
-  xpBar: {fileID: 1404641042}
-  deathPanel: {fileID: 812885322}
   virtualCam: {fileID: 0}
 --- !u!4 &173192848
 Transform:
@@ -2584,7 +2579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 1
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &217368478
@@ -16589,7 +16584,7 @@ GameObject:
   - component: {fileID: 1404641041}
   - component: {fileID: 1404641042}
   m_Layer: 5
-  m_Name: XP_Slider
+  m_Name: XPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24397,6 +24392,22 @@ MonoBehaviour:
   - {fileID: 1198288273}
   - {fileID: 1313365219}
   - {fileID: 530675812}
+  allUpgrades:
+  - {fileID: 11400000, guid: 940d45b3c125ffe4a8947900f1475112, type: 2}
+  - {fileID: 11400000, guid: 296ffc9f71a2f9546859ef94a31b3ad8, type: 2}
+  - {fileID: 11400000, guid: 7dc147fbe7873dc4b879892d8c293979, type: 2}
+  - {fileID: 11400000, guid: 5d52c02a5a8e9fc4c802fc74fd5d8764, type: 2}
+  - {fileID: 11400000, guid: 409dd175d8fb63f458894e4d4e5fd846, type: 2}
+  - {fileID: 11400000, guid: 5f9c8bd78ab8b7d44b91b616e12681b5, type: 2}
+  - {fileID: 11400000, guid: 87f31e4c7e7f68149ba5dbe6b64ece8b, type: 2}
+  cardTitles:
+  - {fileID: 1667863270}
+  - {fileID: 1897286434}
+  - {fileID: 190398788}
+  cardDescs:
+  - {fileID: 416200284}
+  - {fileID: 1665866369}
+  - {fileID: 571729295}
   player: {fileID: 173192847}
 --- !u!4 &2062468990
 Transform:
@@ -25035,6 +25046,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097209965}
   m_Mesh: {fileID: 4300000, guid: f8bfb8040ca45db4395257edec72ffa9, type: 3}
+--- !u!1 &2106053661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106053663}
+  - component: {fileID: 2106053662}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2106053662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106053661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0f0a7f8d3cce9409182f03ce5e08fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeManager: {fileID: 2062468989}
+  upgradeCanvas: {fileID: 2062468988}
+  deathPanel: {fileID: 812885322}
+  healthBar: {fileID: 964848231}
+  xpBar: {fileID: 1404641042}
+  timer: {fileID: 17051538}
+--- !u!4 &2106053663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106053661}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 113.43113, y: -221.19524, z: 280.6904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2108010672
 GameObject:
   m_ObjectHideFlags: 0
@@ -29494,9 +29555,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1152423709}
-  - {fileID: 1693808283}
   - {fileID: 2064402866}
   - {fileID: 1332729425}
+  - {fileID: 1693808283}
+  - {fileID: 2106053663}
+  - {fileID: 326878584}
+  - {fileID: 297448412}
   - {fileID: 909108005}
   - {fileID: 149225478}
   - {fileID: 173192848}
@@ -29504,9 +29568,7 @@ SceneRoots:
   - {fileID: 889286336}
   - {fileID: 1097464607}
   - {fileID: 1121075681}
-  - {fileID: 326878584}
   - {fileID: 998033971}
   - {fileID: 879459410}
   - {fileID: 929349472}
-  - {fileID: 297448412}
   - {fileID: 1167743814}

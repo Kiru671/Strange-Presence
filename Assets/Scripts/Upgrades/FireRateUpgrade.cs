@@ -6,8 +6,8 @@ using Upgrades;
 [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/FireRateUpgrade", order = 2)]
 public class FireRateUpgrade : Upgrade
 {
-    public override void ApplyUpgrade(GameObject target, Rarity rarity)
+    public override void ApplyUpgrade(GameObject target, UpgradeManager.Rarity rarity)
     {
-        // Apply the upgrade
+        Debug.Log("FireRateUpgrade");
     }
 }
