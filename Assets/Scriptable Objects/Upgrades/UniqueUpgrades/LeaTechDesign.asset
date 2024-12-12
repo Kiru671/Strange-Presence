@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c9e510805593e4fa8e00467087b694, type: 3}
+  m_Script: {fileID: 11500000, guid: 97da5ac9a719dca4bad493d187ae27da, type: 3}
   m_Name: LeaTechDesign
   m_EditorClassIdentifier: 
   upgradeNames:
   - LeaTech's Leaked Weapon Design
-  description: Your rifle now deals twice the damage and knocks back enemies.
+  description: Your rifle now deals X% more damage and knocks back enemies. Firerate
+    is reduced by X%
+  isUnique: 1
+  multipliers: 1e00000032000000

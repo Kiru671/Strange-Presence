@@ -78,14 +78,22 @@ public class GameManager : MonoBehaviour
     }
     public void StopGame()
     {
+        
+        Time.timeScale = 1f;
+        gameStopped = false;
         stopScreen.SetActive(true);
-        Time.timeScale = 0f;
     }
     public void ResumeGame()
     {
+        UpgradeManager upgradeManager = GameObject.Find("Upgrade").GetComponent<UpgradeManager>();
+        if (!upgradeManager.enabled)
+        {
+            stopScreen.SetActive(false);
+            gameStopped = false;
+            return;
+        }
         Time.timeScale = 1f;
-        stopScreen.SetActive(false);
-        gameStopped = false;
+        
     }
     public void ReloadScene()
     {

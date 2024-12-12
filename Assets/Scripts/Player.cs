@@ -7,8 +7,8 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    public static event Action setXP;
-    public static event Action setHP;
+    public static event Action onXpChanged;
+    public static event Action onHpChanged;
     public static event Action onPlayerDeath;
     public static event Action onLevelUp;
     
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public void GetHit(int damage)
     {
         health -= damage;
-        setHP?.Invoke();
+        HealthUpdate();
         virtualCam.Shake(damage * 0.25f, 0.2f);
         if(health <= 0)
         {
@@ -48,14 +48,14 @@ public class Player : MonoBehaviour
         AudioManager.Instance.musicSource.Pause();
     }
     
-    public void GainXP(int gainedXP)
+    public void GainXp(int gainedXp)
     {
-        XP += gainedXP;
+        XP += gainedXp;
         if (XP >= xpCap)
         {
             LevelUp();
         }
-        setHP?.Invoke();
+        onXpChanged?.Invoke();
     }
 
     void LevelUp()
@@ -63,5 +63,10 @@ public class Player : MonoBehaviour
         XP = 0;
         xpCap += 10;
         onLevelUp?.Invoke();
+    }
+
+    public void HealthUpdate()
+    {
+        onHpChanged?.Invoke();
     }
 }

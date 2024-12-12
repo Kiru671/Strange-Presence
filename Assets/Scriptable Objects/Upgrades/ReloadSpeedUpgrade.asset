@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e59541af5deb1641afc6020612c01e8, type: 3}
-  m_Name: DiresVengeance
+  m_Script: {fileID: 11500000, guid: 125e57734b151a94997eb34f606dd28f, type: 3}
+  m_Name: ReloadSpeedUpgrade
   m_EditorClassIdentifier: 
   upgradeNames:
-  - Dire's Vengeance
-  description: Your rifle now shoots in a spread out pattern with X% reduced damage.
-  isUnique: 1
-  multipliers: 23000000
+  - Agile Hands
+  - Hasty Reflexes
+  - Zero-Delay Neural Enhancements
+  - Rocket Assisted Gloves by LeaTech
+  description: Your reload speed is faster by X%
+  multipliers: 0a00000019000000320000004b000000

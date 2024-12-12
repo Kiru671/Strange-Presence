@@ -5,7 +5,7 @@ namespace Upgrades
     [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/Unique Upgrade")]
     public class UniqueUpgrade : Upgrade
     {
-        public override void ApplyUpgrade(GameObject target, UpgradeManager.Rarity rarity)
+        public override void ApplyUpgrade(GameObject target, RarityHelper.Rarity rarity)
         {
             Debug.Log("UniqueUpgrade");
         }

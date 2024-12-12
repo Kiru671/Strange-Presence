@@ -18,3 +18,4 @@ MonoBehaviour:
   - Bottomless Mags
   - Pocket Dimension
   description: Your magazines have X% more ammunition.
+  multipliers: 0a0000000f0000001900000028000000

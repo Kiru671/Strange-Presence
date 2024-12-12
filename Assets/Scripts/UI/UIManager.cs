@@ -20,8 +20,8 @@ public class UIManager : MonoBehaviour
     {
         player = GameObject.FindObjectOfType<Player>();
         SetBarsInitial();
-        Player.setXP += SetXPBar;
-        Player.setHP += SetHealthBar;
+        Player.onXpChanged += OnXpChangedBar;
+        Player.onHpChanged += OnHealthBar;
         Player.onPlayerDeath += EnableDeathPanel;
         Player.onLevelUp += EnableUpgrades;
         UpgradeManager.onUpgradeChosen += DisableUpgrades;
@@ -29,8 +29,8 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Player.setXP -= SetXPBar;
-        Player.setHP -= SetHealthBar;
+        Player.onXpChanged -= OnXpChangedBar;
+        Player.onHpChanged -= OnHealthBar;
         Player.onPlayerDeath -= EnableDeathPanel;
         Player.onLevelUp -= EnableUpgrades;
         UpgradeManager.onUpgradeChosen -= DisableUpgrades;
@@ -38,11 +38,13 @@ public class UIManager : MonoBehaviour
 
     public void EnableUpgrades()
     {
+        AudioManager.Instance.PlaySFX("Upgrade");
         upgradeCanvas.SetActive(true);
     }
     
     public void DisableUpgrades()
     {
+        AudioManager.Instance.PlaySFX("UpgradeChosen");
         upgradeCanvas.SetActive(false);
     }
     
@@ -52,12 +54,12 @@ public class UIManager : MonoBehaviour
         xpBar.value = 0.01f;
     }
     
-    public void SetHealthBar()
+    public void OnHealthBar()
     {
         healthBar.value = (float)player.health / player.maxHealth;
     }
     
-    public void SetXPBar()
+    public void OnXpChangedBar()
     {
         xpBar.value = (float)player.XP / player.xpCap;
     }

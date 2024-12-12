@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c9e510805593e4fa8e00467087b694, type: 3}
-  m_Name: Electromangetism
+  m_Script: {fileID: 11500000, guid: e999479387686744bb6753cc20bacc52, type: 3}
+  m_Name: Electromagnetism
   m_EditorClassIdentifier: 
   upgradeNames:
   - Electromagnetism
-  description: Experience Orbs are attracted to you.
+  description: Electromagnetism
+  isUnique: 1
+  multipliers: 

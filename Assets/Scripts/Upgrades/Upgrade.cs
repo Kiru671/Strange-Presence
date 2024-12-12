@@ -5,14 +5,10 @@ namespace Upgrades
     public abstract class Upgrade : ScriptableObject
     {
         public string[] upgradeNames;
-        public string finalName;
         public string description;
+        public bool isUnique;
     
-        public abstract void ApplyUpgrade(GameObject target, UpgradeManager.Rarity rarity);
-
-        public void SetName(UpgradeManager.Rarity rarity)
-        {
-            finalName = upgradeNames[(int)rarity];
-        }
+        public abstract void ApplyUpgrade(GameObject target, RarityHelper.Rarity rarity);
+        public int[] multipliers;
     }
 }

@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.bodardr.databinding": {
+      "version": "https://github.com/bodardr/databinding.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a1e34dc6139d4c0ec6f39d3bd73c82ca554ab480"
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,

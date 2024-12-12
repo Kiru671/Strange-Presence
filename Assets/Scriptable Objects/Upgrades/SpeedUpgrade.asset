@@ -18,3 +18,4 @@ MonoBehaviour:
   - Quick Graceful Movements
   - The speed to evade tax- I mean, rockets.
   description: You move X% faster
+  multipliers: 050000000f0000002300000032000000

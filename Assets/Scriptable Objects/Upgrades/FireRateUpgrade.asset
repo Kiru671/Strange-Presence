@@ -18,3 +18,4 @@ MonoBehaviour:
   - Enhanced Trigger Finger (Enhanced)
   - Thermodynamics? Never heard of 'em.
   description: Your weapon fires X% faster.
+  multipliers: 050000000f0000002300000032000000

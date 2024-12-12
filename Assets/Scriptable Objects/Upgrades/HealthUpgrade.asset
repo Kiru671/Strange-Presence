@@ -18,3 +18,4 @@ MonoBehaviour:
   - Indomitability
   - Hit me. I said hit me!
   description: Your base health is increased by X. Regain all lost health.
+  multipliers: 050000000f0000002300000032000000
