@@ -25,7 +25,7 @@ public class XPOrb : MonoBehaviour
         if(other.tag == "Player")
         {
             AudioManager.Instance.PlaySFX("xp");
-            player.GainXP(containedXP);
+            player.GainXp(containedXP);
             Debug.Log("XP Gained");
             Destroy(gameObject);
         }
