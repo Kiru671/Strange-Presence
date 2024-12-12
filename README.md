@@ -10,51 +10,48 @@ A rogue-lite shoother action game with a modular wave & upgrades system that was
 
 ![strange-presence-upgrade](Assets/Gifs&Photos/StrangePresence_Short.gif)
 
-You an easily create new Upgrades and it will work unless the new Upgrade has a different upgrade type or is "Unique". If that's the case, you can modify the method below for the extended capability. (Unfortunately, that's how it is for now, sorry open-closed principle :pensive:).
+A dynamic upgrade system with highly decoupled, easy to expand code.
 
 ```c#
-public void UpgradeChosen(Upgrade chosenUpgrade)
+using UnityEngine;
+
+namespace Upgrades
+{
+    public abstract class Upgrade : ScriptableObject
     {
-        switch (chosenUpgrade.UpgradeType)
+        public string[] upgradeNames;
+        public string description;
+        public bool isUnique;
+    
+        public abstract void ApplyUpgrade(GameObject target, RarityHelper.Rarity rarity);
+        public int[] multipliers;
+    }
+}
+
+```
+All we have to do is to create a child class and fill ApplyUpgrade with custom logic for a new upgrade.
+
+```c#
+using UnityEngine;
+
+namespace Upgrades
+{
+    [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/FireRateUpgrade")]
+    public class FireRateUpgrade : Upgrade
+    {
+        public override void ApplyUpgrade(GameObject target, RarityHelper.Rarity rarity)
         {
-            //Execute a set logic for different types of upgrades
-            case UpgradeType.Health:
-                player.maxHealth += (int)chosenUpgrade.Increase;
-                player.health = player.maxHealth;
-                player.SetHealthBar();
-                break;
-            case UpgradeType.FireRate:
-                weapon.fireRate +=  chosenUpgrade.Increase * 0.01f * weapon.fireRate;
-                break;
-            case UpgradeType.Magazine:
-                weapon.magSize += Mathf.RoundToInt(chosenUpgrade.Increase * 0.01f * weapon.magSize);
-                break;
-            case UpgradeType.ReloadSpeed:
-                weapon.reloadSpeed -= chosenUpgrade.Increase * 0.01f * weapon.reloadSpeed;
-                break;
-            case UpgradeType.MovementSpeed:
-                player.moveSpeed += chosenUpgrade.Increase * 0.01f * player.moveSpeed;
-                break;
-            //Unique upgrades have their own logic
-            case UpgradeType.Unique:
-                if(chosenUpgrade.Title == "Electromagnetism")
-                {
-                    Debug.Log("Magnetic");
-                    player.magnetic = true;
-                }
-                if (chosenUpgrade.Title == "LeaTech's Leaked Weapon Design")
-                {
-                    weapon.bulletDMG *= 2; weapon.isKnockbackEnabled = true;
-                }
-                if(chosenUpgrade.Title == "Dire's Vengeance")
-                {
-                    weapon.bulletDMG *= chosenUpgrade.Increase * 0.01f;
-                    weapon.diresVengeance = true;
-                }
-                break;
+            var weapon = target.GetComponentInChildren<Weapon>();
+            if (weapon != null) weapon.fireRate +=  multipliers[(int)rarity] * 0.01f * weapon.fireRate;
+            else Debug.LogError("FireRateUpgrade can only be applied to Weapon");
         }
     }
+}
 ```
+And just like that, we have everything accessible in the inspector to quickly test.
+![image](https://github.com/user-attachments/assets/95df6327-ca39-48df-b810-0ab6b18b4137)
+
+
 ***Wave System***
 
 WIP
