@@ -41,7 +41,7 @@ public class GroundMoveState : IMovementState
         isGamepadActiveShoot = false;
         LookAndShoot();
         Ray camRay = Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, -9,0));
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0,player.transform.position.y,0));
         
 
         if (groundPlane.Raycast(camRay, out rayLength) &!isGamepadActiveShoot)
