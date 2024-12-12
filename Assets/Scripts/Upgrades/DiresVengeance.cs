@@ -10,7 +10,7 @@ namespace Upgrades
             var weapon = target.GetComponentInChildren<Weapon>();
             if (weapon != null)
             {
-                weapon.bulletDMG *= multipliers[(int)rarity] * 0.01f;
+                weapon.bulletDMG *= multipliers[0] * 0.01f;
                 weapon.diresVengeance = true;
             }
             else Debug.LogError("Electromagnetism can only be applied to Weapon");

@@ -13,30 +13,18 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject[] upgradeCards;
     [SerializeField] private Upgrade[] allUpgrades;
     [SerializeField] private BindingCollectionBehavior bindingCollection;
+    [SerializeField] private Player player;
     
     private TextMeshPro titleText;
     private TextMeshPro descriptionText;
-    [SerializeField] private Player player;
     private List<Upgrade> availabeUpgrades = new List<Upgrade>();
     private UpgradeWithRarity[] selectedUpgrades;
-    //private List<GameObject> borderImages = new List<GameObject>();
-    public static Action onUpgradeListed;
     public static Action onUpgradeChosen;
 
     private void OnEnable()
     {
-        player = FindObjectOfType<Player>();
         availabeUpgrades.Clear();
         GenerateUpgradeChoices();
-
-        /*if(borderImages != null)
-        {
-            for (int i = 0; i < borderImages.Count(); i++)
-            {
-                //borderImages[i].SetActive(false);
-            }
-        }
-        borderImages?.Clear();*/
         availabeUpgrades.Clear();
     }
     

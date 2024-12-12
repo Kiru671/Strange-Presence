@@ -10,13 +10,14 @@ namespace Upgrades
     {
         public override void ApplyUpgrade(GameObject target, RarityHelper.Rarity rarity)
         {
-            var weapon = target.GetComponent<Weapon>();
+            var weapon = target.GetComponentInChildren<Weapon>();
             if (weapon != null)
             {
-                weapon.bulletDMG *= multipliers[(int)rarity] * 0.01f;
+                weapon.bulletDMG *= multipliers[0] * 0.01f;
+                weapon.fireRate *= multipliers[1] * 0.01f;
                 weapon.isKnockbackEnabled = true;
             }
-            else Debug.LogError("LeaTechsLeakedWeaponDesign can only be applied to Player");
+            else Debug.LogError("LeaTechsLeakedWeaponDesign can only be applied to Weapon");
         }
     }
 }

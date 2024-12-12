@@ -85,8 +85,8 @@ public class GameManager : MonoBehaviour
     }
     public void ResumeGame()
     {
-        UpgradeManager upgradeManager = GameObject.Find("Upgrade").GetComponent<UpgradeManager>();
-        if (!upgradeManager.enabled)
+        UpgradeManager upgradeManager = GameObject.Find("Upgrade")?.GetComponent<UpgradeManager>();
+        if (upgradeManager != null && !upgradeManager.enabled)
         {
             stopScreen.SetActive(false);
             gameStopped = false;
