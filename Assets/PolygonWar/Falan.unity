@@ -2089,15 +2089,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173192846}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 12.39, y: -8.838, z: -29.93}
+  m_LocalRotation: {x: -0, y: -0.086150624, z: -0, w: 0.99628216}
+  m_LocalPosition: {x: 12.487294, y: -8.838, z: -32.620155}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1676606730}
   - {fileID: 1295831307}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.884, z: 0}
 --- !u!114 &173192849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13122,7 +13122,7 @@ Transform:
   m_GameObject: {fileID: 1121075677}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5286641, y: 0.0000000115393535, z: -0.0000000071868773, w: 0.8488311}
-  m_LocalPosition: {x: 12.39, y: 11.512, z: -39.93}
+  m_LocalPosition: {x: 12.487294, y: 11.512, z: -42.620155}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15359,7 +15359,7 @@ Transform:
   m_GameObject: {fileID: 1332729420}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5286642, y: 0.00000001153935, z: -0.0000000071868715, w: 0.8488311}
-  m_LocalPosition: {x: 12.39, y: 11.512, z: -39.93}
+  m_LocalPosition: {x: 12.487294, y: 11.512, z: -42.620155}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23650,8 +23650,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2062468990}
   - component: {fileID: 2062468989}
-  - component: {fileID: 2062468991}
   - component: {fileID: 2062468992}
+  - component: {fileID: 2062468991}
   m_Layer: 0
   m_Name: Upgrade
   m_TagString: Untagged
@@ -23736,9 +23736,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2062468988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3f6af0e22c6a744d99c70d076cb647f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e6bd9229b9644cda357b0c7c81aa972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniqueUpgradePools:
+  - pathwayName: Shockwave
+    upgrades: []
+  - pathwayName: Orbiter
+    upgrades:
+    - {fileID: 0}
+  - pathwayName: Dire's
+    upgrades: []
+  - pathwayName: LeaTech's
+    upgrades: []
 --- !u!1 &2064238686
 GameObject:
   m_ObjectHideFlags: 0
@@ -23802,8 +23812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectionCheck: 0
-  defaultCap: 4
-  maxSize: 20
+  defaultCap: 20
+  maxSize: 50
   enemyPrefab: {fileID: 3834564005537997509, guid: ab381ed6191f5f14c8d0dffa221929db,
     type: 3}
   Player: {fileID: 173192846}

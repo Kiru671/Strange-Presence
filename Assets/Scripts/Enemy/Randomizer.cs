@@ -24,9 +24,7 @@ public class Randomizer
         for (int i = listToShuffle.Count - 1; i > 0; i--)
         {
             var k = rand.Next(i + 1);
-            var value = listToShuffle[k];
-            listToShuffle[k] = listToShuffle[i];
-            listToShuffle[i] = value;
+            (listToShuffle[k], listToShuffle[i]) = (listToShuffle[i], listToShuffle[k]);
         }
         return listToShuffle;
     }

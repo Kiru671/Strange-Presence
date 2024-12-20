@@ -5,6 +5,7 @@ namespace Upgrades
     [CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrades/Unique_DiresVengeance", order = 99)]
     public class DiresVengeance : Upgrade
     {
+        public UniqueUpgradePool[] uniqueUpgradePool;
         public override void ApplyUpgrade(GameObject target, RarityHelper.Rarity rarity)
         {
             var weapon = target.GetComponentInChildren<Weapon>();
@@ -15,5 +16,6 @@ namespace Upgrades
             }
             else Debug.LogError("Electromagnetism can only be applied to Weapon");
         }
+        
     }
 }

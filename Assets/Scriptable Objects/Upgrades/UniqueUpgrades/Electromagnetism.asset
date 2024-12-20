@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeNames:
   - Electromagnetism
-  description: Electromagnetism
-  isUnique: 1
+  description: XP Orbs are gravitated towards your location.
   multipliers: 
+  isUnique: 1

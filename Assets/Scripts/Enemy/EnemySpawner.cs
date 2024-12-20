@@ -64,30 +64,40 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnAd()
     {
         Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
+        bool navmeshHit = NavMesh.SamplePosition(spawnPos, out NavMeshHit hit, 100, NavMesh.AllAreas);
+        Debug.Log(navmeshHit);
+        while (!navmeshHit)
+        {
+            navmeshHit = NavMesh.SamplePosition(randomizer.GetSpawnPos(spawnRadius), out hit, 100, NavMesh.AllAreas);
+            Debug.Log("Retried");
+        }
+        Debug.Log(hit.position);
+        Enemy enemyInstance = null;
 
         if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Skeleton")
         {
-            Enemy enemyInstance = enemyPoolSkeletons.objectPool.Get();
-            enemyInstance.GetComponent<NavMeshAgent>().enabled = true;
-            enemyInstance.GetComponent<NavMeshAgent>().Warp(new Vector3(spawnPos.x, 0, spawnPos.z));
+            enemyInstance = enemyPoolSkeletons.objectPool.Get();
+            //Debug.Log(enemyInstance.GetComponent<NavMeshAgent>().Warp(hit.position));
             enemiesToSpawn.Remove("Skeleton");
         }
         else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Orbed")
         {
-            Enemy enemyInstance = enemyPoolOrbeds.objectPool.Get();
-            enemyInstance.GetComponent<NavMeshAgent>().enabled = true;
-            enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+            enemyInstance = enemyPoolOrbeds.objectPool.Get();
             enemiesToSpawn.Remove("Orbed");
         }
         else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Vorg")
         {
-            Enemy enemyInstance = enemyPoolVorgs.objectPool.Get();
-            enemyInstance.GetComponent<NavMeshAgent>().enabled = true;
-            enemyInstance.transform.position = new Vector3(spawnPos.x, 0, spawnPos.z);
+            enemyInstance = enemyPoolVorgs.objectPool.Get();
             enemiesToSpawn.Remove("Vorg");
         }
         else
             Debug.Log("All enemies in this wave have spawned.");
+        
+        if (enemyInstance != null)
+        {
+            enemyInstance.GetComponent<NavMeshAgent>().enabled = true; 
+            enemyInstance.transform.position = hit.position;
+        }
     }
 
     private void SetTimeUntilSpawn()
