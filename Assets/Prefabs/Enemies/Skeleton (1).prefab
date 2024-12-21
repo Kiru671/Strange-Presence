@@ -707,6 +707,7 @@ GameObject:
   - component: {fileID: 931198662917033657}
   - component: {fileID: 7643548274187631595}
   - component: {fileID: 7695867406461607969}
+  - component: {fileID: 4225082952237041477}
   m_Layer: 0
   m_Name: Skeleton (1)
   m_TagString: Enemy
@@ -849,6 +850,20 @@ MonoBehaviour:
   Pools: {fileID: 7545112029257304197, guid: 09b4aaa20a5046f4786191ccaef5c0ef, type: 3}
   knockbackForce: 10
   knockbackDuration: 0.5
+--- !u!114 &4225082952237041477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834564005537997509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70462491d1394834d8b1ebe21af28da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  lerpAmount: 5
 --- !u!1 &4026734294490985091
 GameObject:
   m_ObjectHideFlags: 0

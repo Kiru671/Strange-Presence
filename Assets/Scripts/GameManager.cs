@@ -79,9 +79,8 @@ public class GameManager : MonoBehaviour
     }
     public void StopGame()
     {
-        
-        Time.timeScale = 1f;
-        gameStopped = false;
+        Time.timeScale = 0f;
+        gameStopped = true;
         stopScreen.SetActive(true);
     }
     public void ResumeGame()
@@ -93,6 +92,8 @@ public class GameManager : MonoBehaviour
             gameStopped = false;
             return;
         }
+        stopScreen.SetActive(false);
+        gameStopped = false;
         Time.timeScale = 1f;
         
     }
