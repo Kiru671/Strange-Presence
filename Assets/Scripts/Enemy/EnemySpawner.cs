@@ -71,7 +71,6 @@ public class EnemySpawner : MonoBehaviour
             navmeshHit = NavMesh.SamplePosition(randomizer.GetSpawnPos(spawnRadius), out hit, 100, NavMesh.AllAreas);
             Debug.Log("Retried");
         }
-        Debug.Log(hit.position);
         Enemy enemyInstance = null;
 
         if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Skeleton")

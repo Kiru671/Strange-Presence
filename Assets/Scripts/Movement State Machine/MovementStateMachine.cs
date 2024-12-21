@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Movement_State_Machine;
 using UnityEngine;
 
 public class MovementStateMachine: MonoBehaviour
@@ -8,8 +9,9 @@ public class MovementStateMachine: MonoBehaviour
     private IMovementState currentState;
 
     // State instances
-    private GroundMoveState groundState;
+    public GroundMoveState groundState;
     private DashMovementState dashState;
+    public FallingMoveState fallingState;
     [SerializeField, Range(2f,10f)]
     public float lerpAmount = 5f;
 
@@ -21,22 +23,24 @@ public class MovementStateMachine: MonoBehaviour
 
         // Initialize states.
         groundState = new GroundMoveState();
+        fallingState = new FallingMoveState();
         dashState = new DashMovementState();
 
         // Set initial state
         currentState = groundState;  
         currentState.EnterState(this, inputManager);
     }
+    
     private void Update()
     {
         currentState.UpdateState();
     }
 
-
-    private void SwitchState(IMovementState newState)
+    public void SwitchState(IMovementState newState)
     {
         currentState.ExitState();
         currentState = newState;
         currentState.EnterState(this, inputManager);
     }
+    
 }
