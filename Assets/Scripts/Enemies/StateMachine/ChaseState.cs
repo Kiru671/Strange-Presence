@@ -11,7 +11,7 @@ public class ChaseState : IEnemyState
     private EnemyStateMachine stateMachine;
     private Player player;
     private NavMeshAgent agent;
-    public void EnterState(EnemyStateMachine context)
+    public void EnterState(EnemyStateMachine context, Enemy enemy)
     {
         stateMachine = context;
         player = stateMachine.player;

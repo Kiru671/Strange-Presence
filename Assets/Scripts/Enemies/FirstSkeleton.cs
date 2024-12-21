@@ -35,6 +35,12 @@ public class FirstSkeleton : Enemy
         healthSlider.gameObject.SetActive(true);
 
     }
+
+    public override void KnockedBack()
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnDisable()
     {
         StopCoroutine("CheckGround");
@@ -48,7 +54,12 @@ public class FirstSkeleton : Enemy
         }
     }
 
-    void Attack(int damage)
+    public override void Die()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Attack(int damage)
     {
         if (deathStarted)
             return;
@@ -58,47 +69,6 @@ public class FirstSkeleton : Enemy
             nextAttack = Time.time + attackCooldown;
             anim.SetTrigger("Attack");
         }
-    }
-
-    /*public override void GetHit(int damage)
-    {
-        if (deathStarted)
-            return;
-        health -= damage;
-        healthSlider.value = (float)health / maxHealth;
-        anim.SetTrigger("Hit");
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        healthSlider.gameObject.SetActive(false);
-        gameManager.RemoveEnemy();
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        xpOrb.containedXP = enemyXP;
-        anim.SetTrigger("Death");
-        if (!deathStarted)
-            StartCoroutine("DieAfter");
-    }
-    */
-    private IEnumerator CheckGround()
-    {
-        yield return new WaitForSeconds(1f);
-        if (!agent.isOnNavMesh)
-        {
-            Vector3 newSpawnPos = randomizer.GetSpawnPos(30f);
-            Vector3 adjustedPos = new Vector3(newSpawnPos.x, -9.81f, newSpawnPos.z); ;
-            gameObject.transform.position = adjustedPos;
-            agent.Warp(adjustedPos);
-
-        }
-        else
-            Debug.Log("SAFE!");
-        StopCoroutine("CheckGround");
     }
 
     private IEnumerator DamageAfter()

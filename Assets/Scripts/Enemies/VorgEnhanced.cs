@@ -16,6 +16,21 @@ public class VorgEnhanced : Enemy
         enemyXP = enemyData.enemyXP;
     }
 
+    public override void KnockedBack()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Die()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Attack(int damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
     void Update()
     {
 

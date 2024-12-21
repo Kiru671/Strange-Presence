@@ -14,16 +14,22 @@ namespace Enemies.StateMachine
         public AttackState attackState;
 
         public Player player;
+        public Enemy enemy;
         
         [SerializeField, Range(2f,10f)]
         public float lerpAmount = 5f;
         [SerializeField, Range(0f,10f)]
         public float attackRecoveryTime = 1f;
+        [SerializeField, Range(1f,20f)]
+        public float attackRange = 3f;
+        
+        public bool TargetInRange => Vector3.Distance(transform.position, player.transform.position) < attackRange;
 
  
         void Start()
         {
             player = GameObject.FindObjectOfType<Player>();
+            enemy = gameObject.GetComponent<Enemy>();
             
             // Initialize states.
             idleState = new IdleEnemyState();
@@ -32,7 +38,7 @@ namespace Enemies.StateMachine
 
             // Set initial state
             currentState = idleState;  
-            currentState.EnterState(this);
+            currentState.EnterState(this, enemy);
         }
     
         private void Update()
@@ -44,7 +50,7 @@ namespace Enemies.StateMachine
         {
             currentState.ExitState();
             currentState = newState;
-            currentState.EnterState(this);
+            currentState.EnterState(this, enemy);
         }
     }
 }

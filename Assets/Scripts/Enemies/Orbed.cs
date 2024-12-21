@@ -32,6 +32,12 @@ public class Orbed : Enemy
         healthSlider.gameObject.SetActive(true);
 
     }
+
+    public override void KnockedBack()
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnDisable()
     {
         StopCoroutine("CheckGround");
@@ -60,7 +66,7 @@ public class Orbed : Enemy
         }
     }
 
-    void Attack(int damage)
+    public override void Attack(int damage)
     {
         if (deathStarted || Time.time < nextAttack)
             return;
@@ -82,7 +88,7 @@ public class Orbed : Enemy
         }
     }
 
-    public void Die()
+    public override void Die()
     {
         healthSlider.gameObject.SetActive(false);
         gameManager.RemoveEnemy();

@@ -10,7 +10,7 @@ namespace Enemies.StateMachine
         private NavMeshAgent agent;
         private Animator anim;
         
-        public void EnterState(EnemyStateMachine context)
+        public void EnterState(EnemyStateMachine context, Enemy enemy)
         {
             stateMachine = context;
             player = stateMachine.player;
@@ -31,6 +31,14 @@ namespace Enemies.StateMachine
         public void ExitState()
         {
 
+        }
+
+        public void DamageIfInRange()
+        {
+            if (stateMachine.TargetInRange)
+            {
+                player.GetHit(stateMachine.enemy.damage);
+            }
         }
     }
 }

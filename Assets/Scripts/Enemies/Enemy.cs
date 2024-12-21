@@ -5,18 +5,19 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     protected Randomizer randomizer;
     protected GameManager gameManager;
     protected AudioManager audioManager;
-    private HealthBarFade fadeOutOnDeath;
+    protected HealthBarFade fadeOutOnDeath;
     
     [SerializeField] protected EnemyDataObject enemyData;
     [SerializeField] protected XPOrb xpOrb;
     [SerializeField] protected Player player;
     [SerializeField] protected int maxHealth;
     [SerializeField] protected int health;
+    [SerializeField] public int damage;
     [SerializeField] protected float attackRange;
     [SerializeField] protected Animator anim;
     [SerializeField] protected float lookSpeed;
@@ -34,6 +35,12 @@ public class Enemy : MonoBehaviour
 
     protected bool deathStarted;
     protected bool firstHit;
+    
+    protected float attackCooldown;
+    protected float nextAttack;
+
+    protected bool TargetInRange => Vector3.Distance(transform.position, player.transform.position) < attackRange;
+    protected bool attacking;
 
     void Start()
     {
@@ -50,10 +57,7 @@ public class Enemy : MonoBehaviour
         firstHit = false;
     }
 
-    public void KnockedBack()
-    {
-
-    }
+    public abstract void KnockedBack();
 
     public virtual void GetHit(int damage)
     {
@@ -73,16 +77,7 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    
-    protected virtual void Die()
-    {
-        StartCoroutine(fadeOutOnDeath.FadeOut());
-        gameManager.RemoveEnemy();
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        xpOrb.containedXP = enemyXP;
-        anim.SetTrigger("Death");
-        if (!deathStarted)
-            StartCoroutine("DieAfter");
-    }
+
+    public abstract void Die();
+    public abstract void Attack(int damage);
 }

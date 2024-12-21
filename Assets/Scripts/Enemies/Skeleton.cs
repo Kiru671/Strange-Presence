@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 
 public class Skeleton : Enemy
 {
-    private int damage;
+    
     private float attackCooldown;
     private float nextAttack;
 
@@ -32,8 +32,12 @@ public class Skeleton : Enemy
         healthSlider.gameObject.SetActive(true);
         healthSlider.value = (float)health / maxHealth;
     }
-    
 
+    public override void KnockedBack()
+    {
+
+    }
+    
     void Update()
     {
         if (deathStarted)
@@ -49,7 +53,7 @@ public class Skeleton : Enemy
         }
     }
 
-    void Attack(int damage)
+    public override void Attack(int damage)
     {
         if (deathStarted)
             return;    
@@ -70,6 +74,19 @@ public class Skeleton : Enemy
         Destroy(gameObject);
         //Pools.gameObject.GetComponent<EnemyPool>().objectPool.Release(this);
     }
+
+    public override void Die()
+    {
+        StartCoroutine(fadeOutOnDeath.FadeOut());
+        gameManager.RemoveEnemy();
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        xpOrb = Instantiate(xpOrb, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+        xpOrb.containedXP = enemyXP;
+        anim.SetTrigger("Death");
+        if (!deathStarted)
+            StartCoroutine("DieAfter");
+    }
+    
 
     public void DamageIfInRange()
     {
