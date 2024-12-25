@@ -20,7 +20,7 @@ public class Skeleton : Enemy
     {
         
         player = GameObject.Find("Player").GetComponent<Player>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         gameObject.GetComponent<BoxCollider>().enabled = true;
         deathStarted = false;
         anim.SetBool("isDying", false);
