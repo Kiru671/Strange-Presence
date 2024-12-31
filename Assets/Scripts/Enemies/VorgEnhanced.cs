@@ -26,21 +26,17 @@ public class VorgEnhanced : Enemy
         throw new System.NotImplementedException();
     }
 
-    public override void Attack(int damage)
+    public override void Attack()
     {
         throw new System.NotImplementedException();
     }
 
-    void Update()
+    public override void PlayAnimWalkSound()
     {
-
+        AudioManager.Instance.PlaySFX("EnhancedVorgWalk");
     }
 
-    void Attack()
-    {
 
-    }
-    
     void GetHit(float damage)
     {
 

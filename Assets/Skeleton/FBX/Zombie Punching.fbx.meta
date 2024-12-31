@@ -57,10 +57,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3558235
+      - time: 0.3462081
         functionName: DamageIfInRange
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 3ef7f8289e929954bb8f2c441ec1fb7c,
+        objectReferenceParameter: {fileID: 11500000, guid: cda617b4e92176e408b3fa464707cf56,
           type: 3}
         floatParameter: 0
         intParameter: 0

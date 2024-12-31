@@ -50,7 +50,7 @@ public class FirstSkeleton : Enemy
     {
         if (TargetInRange & !attacking)
         {
-            Attack(damage);
+            Attack();
         }
     }
 
@@ -59,7 +59,7 @@ public class FirstSkeleton : Enemy
         throw new NotImplementedException();
     }
 
-    public override void Attack(int damage)
+    public override void Attack()
     {
         if (deathStarted)
             return;
@@ -96,5 +96,10 @@ public class FirstSkeleton : Enemy
         {
             player.GetHit(damage);
         }
+    }
+
+    public override void PlayAnimWalkSound()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,39 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using Enemies.StateMachine;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
 
-public class ChaseState : IEnemyState
+namespace Enemies.StateMachine
 {
-    private EnemyStateMachine stateMachine;
-    private Player player;
-    private NavMeshAgent agent;
-    public void EnterState(EnemyStateMachine context, Enemy enemy)
+    public class ChaseState : IEnemyState
     {
-        stateMachine = context;
-        player = stateMachine.player;
-        agent = stateMachine.GetComponent<NavMeshAgent>();
-    }
-
-    public void UpdateState()
-    {
-        agent.SetDestination(player.transform.position);
-        if(agent.isStopped)
+        private EnemyStateMachine stateMachine;
+        private Player player;
+        private Enemy enemy;
+        public void EnterState(EnemyStateMachine context, Enemy enemy)
         {
-            stateMachine.SwitchState(stateMachine.attackState);
+            stateMachine = context;
+            player = stateMachine.player;
+            this.enemy = enemy;
+            Debug.Log("Entered Chase State");
         }
-    }
 
-    public void PhysicsUpdateState()
-    {
+        public void UpdateState()
+        {
+            enemy.agent.SetDestination(player.transform.position);
+            if(enemy.TargetInRange)
+            {
+                stateMachine.SwitchState(stateMachine.attackState);
+            }
+        }
 
-    }
+        public void PhysicsUpdateState()
+        {
 
-    public void ExitState()
-    {
+        }
 
+        public void ExitState()
+        {
+
+        }
     }
 }

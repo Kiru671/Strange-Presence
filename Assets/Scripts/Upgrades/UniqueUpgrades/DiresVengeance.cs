@@ -12,9 +12,10 @@ namespace Upgrades
             if (weapon != null)
             {
                 weapon.bulletDMG *= multipliers[0] * 0.01f;
-                weapon.diresVengeance = true;
+                weapon.bulletCount = 3;
+                weapon.bulletSpread = 30;
             }
-            else Debug.LogError("Electromagnetism can only be applied to Weapon");
+            else Debug.LogError("Dire's Vengeance can only be applied to Weapon");
         }
         
     }

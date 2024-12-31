@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
+using System;
 
 public class Weapon : MonoBehaviour
 {
@@ -23,8 +24,13 @@ public class Weapon : MonoBehaviour
     protected Transform[] bulletSpawnPoint;
     protected List<Transform> bulletSpawns = new List<Transform>();
     protected Player player;
+
+    public float bulletSpread;
+    public int bulletCount = 1;
     public bool IsReloading => currentAmmo <= 0;
     public int currentAmmo;
+
+    public event Action OnWeaponFired;
     // Start is called before the first frame update
     void Awake()
     {
@@ -48,9 +54,5 @@ public class Weapon : MonoBehaviour
     public virtual void Fire()
     {
 
-    }
-    public void OnConnectedToServer()
-    {
-        
     }
 }

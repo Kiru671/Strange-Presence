@@ -29,7 +29,6 @@ namespace Upgrades
         {
             availabeUpgrades.Clear();
             GenerateUpgradeChoices();
-            availabeUpgrades.Clear();
         }
     
         public void GenerateUpgradeChoices()
@@ -38,9 +37,6 @@ namespace Upgrades
             selectedUpgrades = allUpgrades.OrderBy(x => Random.value).Take(3)
                 .Select(x => new UpgradeWithRarity(x, RarityHelper.GetRandomRarity())).ToArray();
             bindingCollection.Collection = selectedUpgrades;
-            
-            
-        
 
             for (int i = 0; i < selectedUpgrades.Length; i++)
             {
@@ -53,7 +49,6 @@ namespace Upgrades
                         .ApplyUpgrade(player.gameObject, selectedUpgrades[capturedIndex].rarity);
                     ownedUpgrades.Add(selectedUpgrades[capturedIndex].upgrade);
                     Debug.Log($"Current Upgrades: {string.Join(", ", ownedUpgrades.Select(x => x.name))}");
-                    
                 });
             }
         }

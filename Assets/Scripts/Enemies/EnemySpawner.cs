@@ -65,7 +65,6 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
         bool navmeshHit = NavMesh.SamplePosition(spawnPos, out NavMeshHit hit, 100, NavMesh.AllAreas);
-        Debug.Log(navmeshHit);
         while (!navmeshHit)
         {
             navmeshHit = NavMesh.SamplePosition(randomizer.GetSpawnPos(spawnRadius), out hit, 100, NavMesh.AllAreas);

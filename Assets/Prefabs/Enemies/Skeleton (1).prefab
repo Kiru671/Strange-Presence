@@ -708,6 +708,7 @@ GameObject:
   - component: {fileID: 7643548274187631595}
   - component: {fileID: 7695867406461607969}
   - component: {fileID: 4225082952237041477}
+  - component: {fileID: 2204811798854838636}
   m_Layer: 0
   m_Name: Skeleton (1)
   m_TagString: Enemy
@@ -842,6 +843,7 @@ MonoBehaviour:
   player: {fileID: 0}
   maxHealth: 0
   health: 0
+  damage: 0
   attackRange: 0
   anim: {fileID: 3764285766974152958}
   lookSpeed: 0
@@ -863,7 +865,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  enemy: {fileID: 0}
   lerpAmount: 5
+  attackRecoveryTime: 1
+  attackRange: 3
+--- !u!114 &2204811798854838636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834564005537997509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a900bc28cd470fc4abcb39c61f8ac1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4026734294490985091
 GameObject:
   m_ObjectHideFlags: 0

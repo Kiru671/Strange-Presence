@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 namespace Enemies.StateMachine
 {
@@ -7,6 +8,7 @@ namespace Enemies.StateMachine
     {
         private EnemyStateMachine stateMachine;
         private Player player;
+        private Enemy enemy;
         private NavMeshAgent agent;
         private Animator anim;
         
@@ -14,31 +16,40 @@ namespace Enemies.StateMachine
         {
             stateMachine = context;
             player = stateMachine.player;
-            agent = stateMachine.GetComponent<NavMeshAgent>();
+            this.enemy = enemy;
             anim = stateMachine.GetComponent<Animator>();
+            Debug.Log("Entered Attack State");
+            enemy.OnEnemyCooldownOver += TriggerAttackAnim;
+            
+        }
+        
+        public void ExitState()
+        {
+            enemy.OnEnemyCooldownOver -= TriggerAttackAnim;
         }
 
         public void UpdateState()
         {
-    
+            if(enemy.AttackCooldown)
+            {
+                enemy.OnCooldownOver();
+            }
+            if (!enemy.TargetInRange)
+            {
+                stateMachine.SwitchState(stateMachine.chaseState);
+            }
         }
 
         public void PhysicsUpdateState()
         {
 
         }
-
-        public void ExitState()
+        
+        private void TriggerAttackAnim()
         {
-
-        }
-
-        public void DamageIfInRange()
-        {
-            if (stateMachine.TargetInRange)
-            {
-                player.GetHit(stateMachine.enemy.damage);
-            }
+            anim.SetTrigger("Attack");
+            Debug.Log("AttackingAnimation"); 
         }
     }
+    
 }

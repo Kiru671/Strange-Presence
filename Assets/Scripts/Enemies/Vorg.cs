@@ -32,7 +32,7 @@ namespace Enemies
 
         public override void KnockedBack()
         {
-            throw new System.NotImplementedException();
+
         }
 
         void Update()
@@ -55,7 +55,7 @@ namespace Enemies
             }
             if (TargetInRange & !attacking)
             {
-                Attack(damage);
+                Attack();
             }
         }
 
@@ -72,7 +72,7 @@ namespace Enemies
             }
         }
 
-        public override void Attack(int damage)
+        public override void Attack()
         {
             if (deathStarted || Time.time < nextAttack)
                 return;
@@ -103,6 +103,10 @@ namespace Enemies
             deathStarted = true;
             yield return new WaitForSeconds(2f);
             Destroy(gameObject);
+        }
+        public override void PlayAnimWalkSound()
+        {
+            AudioManager.Instance.PlaySFX("VorgWalk");
         }
     }
 }

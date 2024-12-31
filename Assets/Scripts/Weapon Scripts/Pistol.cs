@@ -40,33 +40,7 @@ public class Pistol : Weapon
     {
         if (cooldown.IsCoolingDown || IsReloading)
             return;
-        if (!diresVengeance)
-        {
-            Debug.Log("Fire");
-            Bullet bulletInstance = bulletPool.objectPool.Get();
-            bulletInstance.knockBack = isKnockbackEnabled;
-            bulletInstance.transform.position = bulletSpawns[0].position;
-            bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y, 0);
-            muzzleFlash.Play();
-        }
-        else
-        {
-            for (int i = 0; i <= 2; i++)
-            {
-                Bullet bulletInstance = bulletPool.objectPool.Get();
-                bulletInstance.knockBack = isKnockbackEnabled;
-                bulletInstance.transform.position = bulletSpawns[i].position;
-                if(i == 0)               
-                    bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y, 0);
-                if(i == 1)
-                    bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y + 30f, 0);
-                if (i == 2)
-                    bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, player.transform.localEulerAngles.y - 30f, 0);
-                muzzleFlash.Play();
-            }
-            
-            
-        }
+        FireDireBullets(bulletCount, bulletSpread);
         AudioManager.Instance.PlaySFX("RifleFire");
         cooldown.cooldownTime = 60 / fireRate;
         cooldown.StartCooldown();
@@ -80,4 +54,25 @@ public class Pistol : Weapon
         reloadStarted = false;
         currentAmmo = magSize;
     }
+
+    public void FireDireBullets(int bulletCount, float spreadAngle)
+    {
+        int tempBulletCount = bulletCount;
+        float angleStep = spreadAngle / ((tempBulletCount <= 1 ? 2 : tempBulletCount) - 1);
+        float startAngle = player.transform.localEulerAngles.y - (spreadAngle / 2);
+
+        for (int i = 0; i < bulletCount; i++)
+        {
+            // Get a new bullet from the pool for each iteration
+            Bullet bulletInstance = bulletPool.objectPool.Get();
+            bulletInstance.knockBack = isKnockbackEnabled;
+
+            // Set position and rotation for the bullet
+            bulletInstance.transform.position = bulletSpawns[Mathf.Min(i, bulletSpawns.Count - 1)].position;
+            bulletInstance.gameObject.transform.localRotation = Quaternion.Euler(0, startAngle + (i * angleStep), 0);
+        }
+
+        muzzleFlash.Play();
+    }
+
 }

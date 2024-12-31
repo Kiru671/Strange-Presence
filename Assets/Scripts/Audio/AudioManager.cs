@@ -8,7 +8,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public Sound[] musicSounds, SFXSounds;
     public AudioSource musicSource, SFXSource;
+    
 
+    
     private void Awake()
     {
         if(Instance == null)
@@ -49,7 +51,8 @@ public class AudioManager : MonoBehaviour
         else
         {
             SFXSource.clip = s.clip;
-            SFXSource.Play();
+            SFXSource.volume = s.volume;
+            SFXSource.PlayOneShot(SFXSource.clip, SFXSource.volume);
         }
     }
 }

@@ -62,11 +62,11 @@ public class Orbed : Enemy
         }
         if(TargetInRange &! attacking)
         {
-            Attack(damage);
+            Attack();
         }
     }
 
-    public override void Attack(int damage)
+    public override void Attack()
     {
         if (deathStarted || Time.time < nextAttack)
             return;
@@ -76,9 +76,6 @@ public class Orbed : Enemy
 
     public override void GetHit(int damage)
     {
-        if (deathStarted)
-            return;
-        //healthSlider.enabled = true;
         health -= damage;
         healthSlider.value = (float)health / maxHealth;
         anim.SetTrigger("Hit");
@@ -130,5 +127,10 @@ public class Orbed : Enemy
         {
             player.GetHit(damage);
         }
+    }
+
+    public override void PlayAnimWalkSound()
+    {
+        AudioManager.Instance.PlaySFX("OrbedWalk");
     }
 }
