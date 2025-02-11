@@ -8,9 +8,6 @@ public class WaveDataObject : ScriptableObject
     public WaveType waveType;
     private GameObject bossPrefab;
     public int skeletonCount;
-    public int orbedCount;
-    public int vorgCount;
-    public int enhancedVorgCount;
     public int totalEnemyCount;
 }
 public enum WaveType

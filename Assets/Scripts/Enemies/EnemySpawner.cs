@@ -105,9 +105,6 @@ public class EnemySpawner : MonoBehaviour
     public void ChangeWave()
     {
         skeletonCount = waves[gameManager.currentWave].skeletonCount;
-        orbedCount = waves[gameManager.currentWave].orbedCount;
-        vorgCount = waves[gameManager.currentWave].vorgCount;
-        enhancedVorgCount = waves[gameManager.currentWave].enhancedVorgCount;
         enemiesRemaining = waves[gameManager.currentWave].totalEnemyCount;
         gameManager.enemyCount = enemiesRemaining;
 
