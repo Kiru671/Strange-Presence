@@ -6,27 +6,21 @@ namespace Enemies.StateMachine
 {
     public class AnimHandler : MonoBehaviour
     {
+        [SerializeField]
         private Animator anim;
         private NavMeshAgent agent;
         private Enemy enemy;
 
         void OnEnable()
         {
-            anim = gameObject.GetComponent<Animator>();
             agent = gameObject.GetComponent<NavMeshAgent>();
             enemy = gameObject.GetComponent<Enemy>();
 
             if (enemy != null)
             {
-                enemy.OnEnemyCooldownOver += TriggerAttackAnim;
                 enemy.OnEnemyDeath += TriggerDeathAnim;
                 enemy.OnEnemyHit += TriggerHitAnim;
             }
-        }
-
-        public void TriggerAttackAnim()
-        {
-            anim.SetTrigger("Attack");
         }
         
         public void TriggerDeathAnim()

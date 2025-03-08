@@ -4,29 +4,46 @@ using UnityEngine;
 
 public class HealthBarFade : MonoBehaviour
 {
-    [SerializeField, Range(0.5f,2f)] private float fadeTime = 1f;
+    [SerializeField, Range(0.125f,2f)] private float fadeInTime = 0.25f;
+    [SerializeField, Range(0.125f,2f)] private float fadeOutTime = 0.5f;
+    private bool hasFadedIn = false;
     public IEnumerator FadeOut()
     {
+        Debug.Log("Fading out");
         CanvasGroup canvasGroup = gameObject.GetComponent<CanvasGroup>();
-        for (float ft = 1f; ft >= 0; ft -= 0.1f)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeOutTime)
         {
-            canvasGroup.alpha = ft;
-            yield return new WaitForSeconds(fadeTime * 0.025f);
-            if (ft <= 0) 
-                StopCoroutine(FadeOut());
-                
+            elapsedTime += Time.deltaTime;
+            float normalizedTime = elapsedTime / fadeOutTime;
+            canvasGroup.alpha = Mathf.Clamp01(1f - normalizedTime);
+            yield return null;
         }
+
+        // Ensure we reach exactly 0
+        canvasGroup.alpha = 0f; 
     }
     public IEnumerator FadeIn()
     {
+        Debug.Log("Fading in");
+        if (hasFadedIn) yield break;
+
         CanvasGroup canvasGroup = gameObject.GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 1;
-        for (float ft = 0; ft <= 1; ft += 0.1f)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeInTime)
         {
-            canvasGroup.alpha = ft;
-            yield return new WaitForSeconds(fadeTime * 0.025f);
-            if (ft >= 1)
-                StopCoroutine(FadeIn());
+            elapsedTime += Time.deltaTime;
+            float normalizedTime = elapsedTime / fadeInTime;
+            canvasGroup.alpha = Mathf.Clamp01(normalizedTime);
+            yield return null;
         }
+
+        // Ensure we reach exactly 1
+        canvasGroup.alpha = 1f;
+        hasFadedIn = true;
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(FadeOut());
     }
 }

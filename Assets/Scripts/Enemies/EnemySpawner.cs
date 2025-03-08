@@ -72,18 +72,18 @@ public class EnemySpawner : MonoBehaviour
         }
         Enemy enemyInstance = null;
 
-        if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Skeleton")
+        if (enemiesToSpawn[^1] == "Skeleton")
         {
             enemyInstance = enemyPoolSkeletons.objectPool.Get();
             //Debug.Log(enemyInstance.GetComponent<NavMeshAgent>().Warp(hit.position));
             enemiesToSpawn.Remove("Skeleton");
         }
-        else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Orbed")
+        else if (enemiesToSpawn[^1] == "Orbed")
         {
             enemyInstance = enemyPoolOrbeds.objectPool.Get();
             enemiesToSpawn.Remove("Orbed");
         }
-        else if (enemiesToSpawn[enemiesToSpawn.Count - 1] == "Vorg")
+        else if (enemiesToSpawn[^1] == "Vorg")
         {
             enemyInstance = enemyPoolVorgs.objectPool.Get();
             enemiesToSpawn.Remove("Vorg");

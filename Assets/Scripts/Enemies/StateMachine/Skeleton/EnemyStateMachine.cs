@@ -28,7 +28,7 @@ namespace Enemies.StateMachine
  
         void Start()
         {
-            player = GameObject.FindObjectOfType<Player>();
+            player = FindObjectOfType<Player>();
             enemy = gameObject.GetComponent<Enemy>();
             
             // Initialize states.

@@ -20,7 +20,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected int health;
     [SerializeField] public int damage;
     [SerializeField] protected float attackRange;
-    [SerializeField] protected Animator anim;
+    [SerializeField] public Animator anim;
     [SerializeField] protected float lookSpeed;
     [SerializeField] protected Slider healthSlider;
     [SerializeField] public NavMeshAgent agent;
@@ -40,9 +40,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected bool deathStarted;
     protected bool firstHit;
-    
-    protected float attackCooldown;
-    protected float nextAttack = 0;
+
+    public float attackCooldown;
+    public float nextAttack = 0;
 
     public bool TargetInRange => Vector3.Distance(transform.position, player.transform.position) < attackRange;
     public bool AttackCooldown => Time.time > nextAttack;
@@ -55,23 +55,25 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         Pools = GameObject.Find("EnemyPool");
         player = GameObject.Find("Player").GetComponent<Player>();
-        anim = GetComponent<Animator>();
     }
+
     private void OnEnable()
     {
         firstHit = false;
         gameObject.GetComponent<BoxCollider>().enabled = true;
     }
+    
 
     public abstract void KnockedBack();
 
     public virtual void GetHit(int damage)
     {
+        Debug.Log("Hit");
         OnHit();
         //Fade in the health bar when shot if enemy is shot for the first time.
+        StartCoroutine(fadeOutOnDeath.FadeIn());
         if (!firstHit)
         {
-            StartCoroutine(fadeOutOnDeath.FadeIn());
             firstHit = true;
         }
         health -= damage;
@@ -94,24 +96,29 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         if (!deathStarted)
             StartCoroutine("DieAfter");
     }
+    
     private IEnumerator DieAfter()
     {
+        anim.SetBool("isDying", true);
         agent.speed = 0;
         deathStarted = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("isDying", false);
         Destroy(gameObject);
         //Pools.gameObject.GetComponent<EnemyPool>().objectPool.Release(this);
     }
 
     public virtual void Attack()
     {
+        if(!AttackCooldown || !TargetInRange) return;
         nextAttack = Time.time + attackCooldown;
         AudioManager.Instance.PlaySFX("SkeletonAttack");
-        //DamageIfInRange();
+        anim.SetTrigger("Attack");
     }
     
     public void DamageIfInRange()
     {
+        Debug.Log("Attempt damage");
         if (TargetInRange)
         {
             player.GetHit(damage);

@@ -27,15 +27,15 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition += transform.forward * bulletspeed * Time.deltaTime;
+        transform.localPosition += transform.forward * (bulletspeed * Time.deltaTime);
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             pool.objectPool.Release(this);
-            other.gameObject.GetComponent<Enemy>().GetHit(player.damage);
+            other.gameObject.GetComponent<Enemy>()?.GetHit(player?.damage ?? 0);
             if (knockBack)
             {
                 other.gameObject.GetComponent<Enemy>().KnockedBack();

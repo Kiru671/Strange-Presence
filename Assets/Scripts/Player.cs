@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
     public void GetHit(int damage)
     {
+        Debug.Log("Hit! - " + damage);
         health -= damage;
         HealthUpdate();
         virtualCam.Shake(damage * 0.25f, 0.2f);

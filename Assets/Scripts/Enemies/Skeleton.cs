@@ -9,9 +9,6 @@ public class Skeleton : Enemy
 {
     private void OnEnable()
     {
-        anim = GetComponent<Animator>();
-        //deathStarted = false;
-        //anim.SetBool("isDying", false);
         health = enemyData.maxHealth;
         maxHealth = enemyData.maxHealth;
         damage = enemyData.damage;
@@ -26,6 +23,7 @@ public class Skeleton : Enemy
     {
 
     }
+    
     public override void PlayAnimWalkSound()
     {
         AudioManager.Instance.PlaySFX("SkeletonWalk");
