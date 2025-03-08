@@ -2258,7 +2258,7 @@ MonoBehaviour:
   collectionCheck: 0
   defaultCap: 4
   maxSize: 20
-  enemyPrefab: {fileID: 3981323579399266047, guid: c81bd2d50815aa243b85a4fc044b292a,
+  enemyPrefab: {fileID: 3834564005537997509, guid: ab381ed6191f5f14c8d0dffa221929db,
     type: 3}
   Player: {fileID: 1987700776}
 --- !u!4 &93538880
