@@ -9,10 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private WaveDataObject[] waves;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private EnemyPool enemyPoolSkeletons;
-    [SerializeField] private EnemyPoolOrbed enemyPoolOrbeds;
-    [SerializeField] private EnemyPoolVorg enemyPoolVorgs;
-
-
+    [SerializeField] private EnemyPool enemyPoolOrbeds;
+    [SerializeField] private EnemyPool enemyPoolVorgs;
+    private Player player;
 
     [SerializeField] private Enemy initialEnemy;
 
@@ -35,13 +34,12 @@ public class EnemySpawner : MonoBehaviour
 
     public int MaxWave => waves.Length - 1;
 
-
     private float timeUntilSpawn;
 
     void Awake()
     {
-        Debug.Log(MaxWave);
         randomizer = new Randomizer();
+        player = FindObjectOfType<Player>();
         SetTimeUntilSpawn();
         ChangeWave();
     }
@@ -60,41 +58,71 @@ public class EnemySpawner : MonoBehaviour
             SetTimeUntilSpawn();
         }
     }
-
+    
     private void SpawnAd()
     {
-        Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
-        bool navmeshHit = NavMesh.SamplePosition(spawnPos, out NavMeshHit hit, 100, NavMesh.AllAreas);
-        while (!navmeshHit)
-        {
-            navmeshHit = NavMesh.SamplePosition(randomizer.GetSpawnPos(spawnRadius), out hit, 100, NavMesh.AllAreas);
-            Debug.Log("Retried");
-        }
-        Enemy enemyInstance = null;
+        // Get a valid NavMesh position
+        NavMeshHit spawnPos = GetValidSpawnPosition();
 
-        if (enemiesToSpawn[^1] == "Skeleton")
+        // Spawn the appropriate enemy type
+        if (enemiesToSpawn.Count > 0)
         {
-            enemyInstance = enemyPoolSkeletons.objectPool.Get();
-            //Debug.Log(enemyInstance.GetComponent<NavMeshAgent>().Warp(hit.position));
-            enemiesToSpawn.Remove("Skeleton");
+            string enemyType = enemiesToSpawn[^1];
+            switch (enemyType)
+            {
+                case "Skeleton":
+                    SpawnEnemy(enemyPoolSkeletons, spawnPos);
+                    enemiesToSpawn.Remove("Skeleton");
+                    break;
+                case "Orbed":
+                    SpawnEnemy(enemyPoolOrbeds, spawnPos);
+                    enemiesToSpawn.Remove("Orbed");
+                    break;
+                case "Vorg":
+                    SpawnEnemy(enemyPoolVorgs, spawnPos);
+                    enemiesToSpawn.Remove("Vorg");
+                    break;
+                default:
+                    Debug.LogWarning($"Unknown enemy type: {enemyType}");
+                    break;
+            }
         }
-        else if (enemiesToSpawn[^1] == "Orbed")
-        {
-            enemyInstance = enemyPoolOrbeds.objectPool.Get();
-            enemiesToSpawn.Remove("Orbed");
-        }
-        else if (enemiesToSpawn[^1] == "Vorg")
-        {
-            enemyInstance = enemyPoolVorgs.objectPool.Get();
-            enemiesToSpawn.Remove("Vorg");
-        }
-        else
-            Debug.Log("All enemies in this wave have spawned.");
+    }
+
+    private NavMeshHit GetValidSpawnPosition()
+    {
+        NavMeshHit hit;
         
+        Vector3 spawnPos = randomizer.GetSpawnPos(spawnRadius);
+            
+        if (NavMesh.SamplePosition(spawnPos, out hit, 100f, NavMesh.AllAreas))
+        {
+            return hit;
+        }
+
+        Debug.LogWarning("Could not find a valid spawn position");
+        return hit;
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    private void SpawnEnemy(EnemyPool pool, NavMeshHit hit)
+    {
+        GameObject enemyInstance = pool.objectPool.Get();
         if (enemyInstance != null)
         {
-            enemyInstance.GetComponent<NavMeshAgent>().enabled = true; 
-            enemyInstance.GetComponent<NavMeshAgent>().Warp(hit.position);
+            // First set the position
+            enemyInstance.transform.position = hit.position;
+            
+            // Then enable the NavMeshAgent and set its position
+            NavMeshAgent agent = enemyInstance.gameObject.GetComponent<NavMeshAgent>();
+            agent.enabled = true;
+            agent.SetDestination(transform.position);
+            
+            agent.Warp(hit.position);
+        }
+        else
+        {
+            Debug.Log("Enemy instance is null");
         }
     }
 
@@ -102,6 +130,7 @@ public class EnemySpawner : MonoBehaviour
     {
         timeUntilSpawn = Random.Range(minSpawnTime, maxSpawnTime);
     }
+
     public void ChangeWave()
     {
         skeletonCount = waves[gameManager.currentWave].skeletonCount;
@@ -109,7 +138,6 @@ public class EnemySpawner : MonoBehaviour
         gameManager.enemyCount = enemiesRemaining;
 
         enemiesToSpawn.Clear();
-
 
         for (int i = 0; i < skeletonCount; i++)
         {
@@ -129,5 +157,4 @@ public class EnemySpawner : MonoBehaviour
         }
         randomizer.RandomizeList(enemiesToSpawn);
     }
-
 }

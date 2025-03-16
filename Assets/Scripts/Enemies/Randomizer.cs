@@ -4,10 +4,9 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using System;
 
-
 public class Randomizer
 {
-    [SerializeField] private GameObject player;
+    private GameObject player;
 
     public Vector3 GetSpawnPos(float spawnRange)
     {

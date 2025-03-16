@@ -19,7 +19,6 @@ public class MovementStateMachine: MonoBehaviour
     void Start()
     {
         inputManager = GetComponent<PlayerInputManager>();
-        Debug.Log("Instantiated state machine");
 
         // Initialize states.
         groundState = new GroundMoveState();

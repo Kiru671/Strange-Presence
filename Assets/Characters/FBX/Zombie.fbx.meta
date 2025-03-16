@@ -147,7 +147,7 @@ ModelImporter:
       - time: 0.5427675
         functionName: DamageIfInRange
         data: 
-        objectReferenceParameter: {fileID: 3834564005537997509, guid: ab381ed6191f5f14c8d0dffa221929db,
+        objectReferenceParameter: {fileID: 3981323579399266047, guid: c81bd2d50815aa243b85a4fc044b292a,
           type: 3}
         floatParameter: 0
         intParameter: 0
@@ -221,7 +221,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    sortHierarchyByName: 0
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1

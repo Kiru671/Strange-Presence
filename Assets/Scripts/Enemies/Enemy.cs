@@ -61,6 +61,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         firstHit = false;
         gameObject.GetComponent<BoxCollider>().enabled = true;
+        agent.enabled = true;
+        agent.isStopped = false;
     }
     
 
@@ -68,7 +70,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public virtual void GetHit(int damage)
     {
-        Debug.Log("Hit");
         OnHit();
         //Fade in the health bar when shot if enemy is shot for the first time.
         StartCoroutine(fadeOutOnDeath.FadeIn());
@@ -100,10 +101,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     private IEnumerator DieAfter()
     {
         anim.SetBool("isDying", true);
-        agent.speed = 0;
+        agent.isStopped = true;
         deathStarted = true;
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isDying", false);
+        agent.enabled = false;
         Destroy(gameObject);
         //Pools.gameObject.GetComponent<EnemyPool>().objectPool.Release(this);
     }

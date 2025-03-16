@@ -17,6 +17,10 @@ public class Skeleton : Enemy
         enemyXP = enemyData.enemyXP;
         healthSlider.gameObject.SetActive(true);
         healthSlider.value = (float)health / maxHealth;
+        firstHit = false;
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        agent.enabled = true;
+        agent.isStopped = false;
     }
 
     public override void KnockedBack()
